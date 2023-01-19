@@ -1,13 +1,16 @@
 import React from 'react'
+import './ChosenList.css'
 
-const ChosenList = ({list}) => {
+const ChosenList = ({list, deleteName}) => {
   let id = 0;
   return (
-    <ul>
-      {
-        list.map((name) => <li key={++id}>{name}</li>)
-      }
-    </ul>
+    <div className='chosen-container'>
+      <ul>
+        {
+          list.map((name) => <li key={++id} onClick={deleteName(name)}>{name}</li>)
+        }
+      </ul>
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import './Search.css';
 
 const Search = ({data, addName}) => {
@@ -15,11 +15,11 @@ const Search = ({data, addName}) => {
             {filteredData.map((name) => <li key={++id} tabIndex={0} onClick={addName(name.text)}>{name.text}</li>)}
           </ul>
           :
-          <div className="span-container"><span>Notinng here.</span></div>
+          <div className="span-container"><span>Nothing here.</span></div>
         }
       </div>
     </div>
   )
 }
 
-export default Search; 
+export default Search;

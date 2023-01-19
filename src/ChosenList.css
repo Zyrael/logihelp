@@ -1,0 +1,8 @@
+.chosen-container {
+  width: 350px;
+  flex: 1;
+}
+
+.chosen-container > * {
+  width: 100%;
+}
