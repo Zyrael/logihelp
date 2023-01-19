@@ -1,24 +1,22 @@
 import React, {  useState } from 'react';
 import './Search.css';
-import data from './data-8DzaSBw-FcugDvXhNA38z';
 
-function Search() {
+const Search = ({data, addName}) => {
   const [text, setText] = useState('');
-  const filteredData = !!text ?
-    data.filter((name) => name.text.toLowerCase().includes(text.toLowerCase()))
-    :
-    [];
+  const filteredData = data.filter((name) => name.text.toLowerCase().includes(text.toLowerCase()))
   let id = 0;
-  const listClass = !!filteredData.length ? 'names-list' : 'names-list display-none'
   return(
     <div className='search-container'>
-      <div className="search-inner">
-        <input id='search-bar' className='search-bar' type={'text'} value={text} onChange={(e) => setText(e.target.value)} />
-        <div className='list-container'>
-          <ul className={listClass}>
-            {filteredData.map((name) => <li key={++id} tabIndex={0}>{name.text}</li>)}
+      <input id='search-bar' className='search-bar' type={'text'} value={text} onChange={(e) => setText(e.target.value)} />
+      <div className='list-container'>
+        {
+          !!filteredData.length ? 
+          <ul className='names-list'>
+            {filteredData.map((name) => <li key={++id} tabIndex={0} onClick={addName(name.text)}>{name.text}</li>)}
           </ul>
-        </div>
+          :
+          <div className="span-container"><span>Notinng here.</span></div>
+        }
       </div>
     </div>
   )
