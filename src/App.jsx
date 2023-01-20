@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
-import Search from './Search';
+import React, { useState, useEffect } from 'react';
+import SupplierList from './SupplierList';
 import data from './data-8DzaSBw-FcugDvXhNA38z';
 import ChosenList from './ChosenList';
+import './App.css';
 
 const App = () => {
   const [list, setList] = useState([]);
-  const addName = (name) => () => setList([...list, name]);
-  const deleteName = (name) => () => setList(list.filter((item) => item !== name));
+  const addName = (name) => () => {
+    if (name.chosen) return;
+    name.chosen = true;
+    setList([...list, name]);
+  }
+  const deleteName = (name) => () => {
+    name.chosen = false;
+    setList(list.filter((item) => item !== name));
+  }
 
   return (
     <div id='app' className='app'>
-      <Search className='search' data={data} addName={addName} />
+      <SupplierList className='search' data={data} addName={addName} />
       <ChosenList list={list} deleteName={deleteName} />
     </div>
   )

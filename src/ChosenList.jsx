@@ -7,7 +7,7 @@ const ChosenList = ({list, deleteName}) => {
     <div className='chosen-container'>
       <ul>
         {
-          list.map((name) => <li key={++id} onClick={deleteName(name)}>{name}</li>)
+          list.map((item) => <li key={++id} onClick={deleteName(item)}>{item.name}</li>)
         }
       </ul>
     </div>

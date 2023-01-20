@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './Search.css';
+import './SupplierList.css';
 
 const Search = ({data, addName}) => {
   const [text, setText] = useState('');
-  const filteredData = data.filter((name) => name.text.toLowerCase().includes(text.toLowerCase()))
+  const filteredData = data.filter((item) => item.name.toLowerCase().includes(text.toLowerCase()))
   let id = 0;
   return(
     <div className='search-container'>
@@ -12,7 +12,7 @@ const Search = ({data, addName}) => {
         {
           !!filteredData.length ? 
           <ul className='names-list'>
-            {filteredData.map((name) => <li key={++id} tabIndex={0} onClick={addName(name.text)}>{name.text}</li>)}
+            {filteredData.map((item) => <li key={++id} tabIndex={0} onClick={addName(item)}>{item.name}</li>)}
           </ul>
           :
           <div className="span-container"><span>Nothing here.</span></div>
