@@ -27,7 +27,6 @@
 }
 
 .names-list > li {
-  font-family: sans-serif;
   padding: 0.3rem 0.5rem 0.3rem 15px;
   cursor: pointer;
 }
