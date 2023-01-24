@@ -7,11 +7,12 @@ export const RouteList = () => {
   let id = 0;
   const routes = useSelector((state) => state.routeList.routes);
   const dispatch = useDispatch();
+  const handleRemoveRoute = (route) => () => dispatch(removeRoute(route));
   return (
     <div className='chosen-container'>
       <ul>
         {
-          routes.map((route) => <li key={++id} onClick={() => dispatch(removeRoute(route))}>{route.name}</li>)
+          routes.map((route) => <li key={++id} onClick={handleRemoveRoute(route)}>{route.name}</li>)
         }
       </ul>
     </div>
