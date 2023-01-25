@@ -6,7 +6,7 @@ import './App.css'
 export const App = () => {
   return (
     <div id='app' className='app'>
-      <SupplierList className='search' data={data} />
+      <SupplierList className='search' suppliers={data} />
       <RouteList />
     </div>
   )
