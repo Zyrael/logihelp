@@ -1,4 +1,4 @@
-.search-container {
+.suppliers-container {
   padding: 1em;
   min-width: 350px;
   max-width: 25%;
@@ -15,27 +15,27 @@
   border-radius: 1em;
 }
 
-.list-container {
+.suppliers-list-container {
   border: 1px solid rgb(112, 112, 112);
   margin-top: 1em;
   overflow: auto;
 }
 
-.names-list {
+.suppliers-list {
   list-style: none;
   font-size: 1.2rem;
 }
 
-.names-list > li {
+.suppliers-list > li {
   padding: 0.3rem 0.5rem 0.3rem 15px;
   cursor: pointer;
 }
 
-.names-list > li:nth-child(odd) {
+.suppliers-list > li:nth-child(odd) {
   background: rgb(236, 240, 241);
 }
 
-.names-list > li:hover {
+.suppliers-list > li:hover {
   background: hsl(0 0% 60%);
 }
 

@@ -1,2 +1,2 @@
-export * from './routeList'
-export * from './supplierList'
+export * from "./routeList";
+export * from "./supplierList";

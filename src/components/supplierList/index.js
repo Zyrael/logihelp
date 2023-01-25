@@ -1,1 +1,1 @@
-export * from './SupplierList'
+export * from "./SupplierList";

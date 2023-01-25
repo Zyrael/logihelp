@@ -1,23 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   routes: [],
-}
+};
 
 export const routeListSlice = createSlice({
-  name: 'routeList',
+  name: "routeList",
   initialState,
-  reducers : {
+  reducers: {
     addRoute: (state, action) => {
       state.routes.push(action.payload);
     },
 
     removeRoute: (state, action) => {
-      state.routes = state.routes.filter((route) => route.name !== action.payload.name);
-    }
-  }
-})
+      state.routes = state.routes.filter(
+        (route) => route.name !== action.payload.name
+      );
+    },
+  },
+});
 
-export const { addRoute, removeRoute } = routeListSlice.actions
+export const { addRoute, removeRoute } = routeListSlice.actions;
 
-export default routeListSlice.reducer
+export default routeListSlice.reducer;
