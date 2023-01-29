@@ -1,32 +1,17 @@
 {
-  "name": "logistics",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@fontsource/roboto": "^4.5.8",
-    "@reduxjs/toolkit": "^1.9.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5"
-  },
+  "name": "logist",
+  "version": "1.0.0",
+  "repository": "git@github.com:Zyrael/logistics.git",
+  "author": "zyrael <zyrael@icloud.com>",
+  "license": "MIT",
   "devDependencies": {
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
-    "@vitejs/plugin-react": "^3.0.0",
+    "prettier": "^2.8.3",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "2.8.3",
-    "vite": "^4.0.0"
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }
