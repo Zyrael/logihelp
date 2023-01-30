@@ -1,0 +1,23 @@
+type Supplier {
+  id: ID
+  name: String
+  phoneNumber: String
+  addresses: [Address]
+  contacts: [Contact]
+}
+
+type Address {
+  id: ID
+  name: String
+  address: String
+}
+
+type Contact {
+  id: ID
+  name: String
+  phoneNumber: String
+}
+
+type Query {
+  getSuppliers: [Supplier]
+}
