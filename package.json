@@ -5,11 +5,15 @@
   "author": "zyrael <zyrael@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "install-server": "cd ./server && yarn",
-    "install-front": "cd ./front && yarn",
-    "postinstall": "yarn run install-server && yarn run install-front"
+    "install:server": "cd ./server && yarn",
+    "install:front": "cd ./front && yarn",
+    "postinstall": "yarn run install:server && yarn run install:front",
+    "server": "cd ./server && yarn run serve",
+    "front": "cd ./front && yarn run dev",
+    "start": "yarn concurrently \"yarn run server\" \"yarn run front\""
   },
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",

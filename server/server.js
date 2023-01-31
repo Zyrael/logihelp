@@ -10,7 +10,12 @@ const prisma = new PrismaClient();
 const resolvers = {
   Query: {
     getSuppliers: async () => {
-      const suppliers = await prisma.supplier.findMany();
+      const suppliers = await prisma.supplier.findMany({
+        include: {
+          addresses: true,
+          contacts: true,
+        },
+      });
       return suppliers;
     },
   },
