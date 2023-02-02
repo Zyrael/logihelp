@@ -19,6 +19,17 @@ const resolvers = {
       return suppliers;
     },
   },
+
+  Mutation: {
+    addSupplier: async (_, args) => {
+      const { data } = args;
+      const supplier = await prisma.supplier.create({
+        data,
+      });
+
+      return supplier;
+    },
+  },
 };
 
 const server = new ApolloServer({

@@ -13,11 +13,14 @@ export function App() {
     }
   `;
 
-  const { data } = useQuery(GET_SUPPLIERS);
+  const { loading, data } = useQuery(GET_SUPPLIERS);
 
   return (
     <div id="app" className="app">
-      <SupplierList className="search" suppliers={data.getSuppliers} />
+      {loading && <div>Loading...</div>}
+      {!loading && (
+        <SupplierList className="search" suppliers={data.getSuppliers} />
+      )}
       <RouteList />
     </div>
   );
