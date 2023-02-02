@@ -26,7 +26,7 @@ model Address {
 
 model Contact {
   id          Int      @id @default(autoincrement())
-  name        String
+  name        String?
   phoneNumber String
   supplier    Supplier @relation(fields: [supplierId], references: [id])
   supplierId  Int
