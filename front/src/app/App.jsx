@@ -1,50 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import { SupplierList, RouteList } from "../components";
+import { SupplierList, RouteList, EditingWindow } from "../components";
 import "./App.css";
 
 export function App() {
+  const [editing, setEditing] = useState(true);
+
   const GET_SUPPLIERS = gql`
     query GetSuppliers {
       getSuppliers {
         id
         name
+        webSite
+        additionalData
+        addresses {
+          name
+          address
+          id
+        }
+        contacts {
+          id
+          name
+          phoneNumber
+        }
       }
     }
   `;
 
   const ADD_SUPPLIER = gql`
-    mutation Mutation($name: String!, $phoneNumber: String, $webSite: String) {
-      addSupplier(name: $name, phoneNumber: $phoneNumber, webSite: $webSite) {
+    mutation Mutation(
+      $name: String!
+      $webSite: String
+      $additionalData: String
+    ) {
+      addSupplier(
+        name: $name
+        webSite: $webSite
+        additionalData: $additionalData
+      ) {
         id
         name
+        webSite
+        additionalData
       }
     }
   `;
 
-  const { loading, data } = useQuery(GET_SUPPLIERS);
+  const { loading, error, data } = useQuery(GET_SUPPLIERS);
+
+  // if (error) console.log(error);
+
+  const handleEnableEditing = () => setEditing(true);
+  const handleDisableEditing = () => setEditing(false);
 
   const [addSupplier] = useMutation(ADD_SUPPLIER);
 
-  const handleButton = () =>
-    addSupplier({
-      variables: {
-        name: "test",
-        phoneNumber: "999",
-        webSite: "www.test.com",
-      },
-    });
-
   return (
-    <div id="app" className="app">
+    <>
       {loading && <div>Loading...</div>}
-      {!loading && (
-        <SupplierList className="search" suppliers={data.getSuppliers} />
+      {error && <div>Something went wrong...</div>}
+      {!loading && !error && (
+        <div id="app" className="app">
+          <SupplierList
+            suppliers={data.getSuppliers}
+            editing={editing}
+            handleEnableEditing={handleEnableEditing}
+          />
+          <RouteList />
+          <EditingWindow
+            editing={editing}
+            handleDisableEditing={handleDisableEditing}
+            addSupplier={addSupplier}
+          />
+        </div>
       )}
-      <button type="button" onClick={handleButton}>
-        test
-      </button>
-      <RouteList />
-    </div>
+    </>
   );
 }

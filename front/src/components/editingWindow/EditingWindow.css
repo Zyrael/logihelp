@@ -1,0 +1,56 @@
+.editing-container {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: hsla(0, 0%, 0%, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
+}
+
+.editing-container.shown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.editing-inner {
+  height: 80vh;
+  width: 80vh;
+  background: white;
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.supplier-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.supplier-form > input {
+  height: 40px;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(83, 83, 83);
+  padding-left: 0.5rem;
+}
+
+.supplier-form > * + * {
+  margin-top: 0.5rem;
+}
+
+.close-btn {
+  border: 0;
+  background: 0;
+  cursor: pointer;
+  font-size: 2rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+}

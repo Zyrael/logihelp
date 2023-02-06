@@ -21,9 +21,9 @@ const resolvers = {
   },
 
   Mutation: {
-    addSupplier: async (_, { name, phoneNumber, webSite, additionalData }) => {
+    addSupplier: async (_, { name, webSite, additionalData }) => {
       const supplier = await prisma.supplier.create({
-        data: { name, phoneNumber, webSite, additionalData },
+        data: { name, webSite, additionalData },
       });
 
       return supplier;

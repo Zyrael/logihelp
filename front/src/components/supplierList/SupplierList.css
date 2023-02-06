@@ -6,13 +6,26 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  position: relative;
+}
+
+.add-supplier-btn {
+  position: absolute;
+  right: 30px;
+  top: 17px;
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 0;
+  cursor: pointer;
 }
 
 .search-bar {
   padding: 5px 0 5px 15px;
   font-size: 1.2rem;
   border: 1px solid rgb(112, 112, 112);
-  border-radius: 1em;
+  border-radius: 1rem;
 }
 
 .suppliers-list-container {

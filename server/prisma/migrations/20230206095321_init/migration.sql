@@ -2,7 +2,8 @@
 CREATE TABLE "Supplier" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
-    "phoneNumber" TEXT
+    "webSite" TEXT,
+    "additionalData" TEXT
 );
 
 -- CreateTable
@@ -17,7 +18,7 @@ CREATE TABLE "Address" (
 -- CreateTable
 CREATE TABLE "Contact" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL,
+    "name" TEXT,
     "phoneNumber" TEXT NOT NULL,
     "supplierId" INTEGER NOT NULL,
     CONSTRAINT "Contact_supplierId_fkey" FOREIGN KEY ("supplierId") REFERENCES "Supplier" ("id") ON DELETE RESTRICT ON UPDATE CASCADE

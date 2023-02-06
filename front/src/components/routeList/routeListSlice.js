@@ -9,12 +9,14 @@ export const routeListSlice = createSlice({
   initialState,
   reducers: {
     addRoute: (state, action) => {
-      state.routes.push(action.payload);
+      const newRoute = action.payload;
+      if (state.routes.find((route) => route.id === newRoute.id)) return;
+      state.routes.push(newRoute);
     },
 
     removeRoute: (state, action) => {
       state.routes = state.routes.filter(
-        (route) => route.name !== action.payload.name
+        (route) => route.id !== action.payload.id
       );
     },
   },

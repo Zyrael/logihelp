@@ -1,8 +1,13 @@
-.chosen-container {
-  width: 350px;
+.route-list-container {
+  padding: 1em;
+  max-width: 400px;
   flex: 1;
 }
 
-.chosen-container > * {
-  width: 100%;
+.route-list {
+  list-style: none;
+}
+
+.route-list > * + * {
+  margin-top: 0.5em;
 }
