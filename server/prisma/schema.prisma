@@ -11,6 +11,7 @@ model Supplier {
   id             Int       @id @default(autoincrement())
   name           String
   phoneNumber    String?
+  webSite        String?
   additionalData String?
   addresses      Address[]
   contacts       Contact[]

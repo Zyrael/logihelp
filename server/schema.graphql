@@ -2,6 +2,8 @@ type Supplier {
   id: ID
   name: String
   phoneNumber: String
+  webSite: String
+  additionalData: String
   addresses: [Address]
   contacts: [Contact]
 }
@@ -23,5 +25,5 @@ type Query {
 }
 
 type Mutation {
-  addSupplier: Supplier
+  addSupplier(name: String!, phoneNumber: String, webSite: String): Supplier
 }
