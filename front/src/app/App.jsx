@@ -4,8 +4,6 @@ import { SupplierList, RouteList, EditingWindow } from "../components";
 import "./App.css";
 
 export function App() {
-  const [editing, setEditing] = useState(true);
-
   const GET_SUPPLIERS = gql`
     query GetSuppliers {
       getSuppliers {
@@ -46,14 +44,19 @@ export function App() {
     }
   `;
 
+  const refetchSuppliers = {
+    refetchQueries: [{ query: GET_SUPPLIERS }, "GetSuppliers"],
+  };
+
   const { loading, error, data } = useQuery(GET_SUPPLIERS);
 
   // if (error) console.log(error);
+  const [editing, setEditing] = useState(false);
 
   const handleEnableEditing = () => setEditing(true);
   const handleDisableEditing = () => setEditing(false);
 
-  const [addSupplier] = useMutation(ADD_SUPPLIER);
+  const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
 
   return (
     <>
@@ -67,11 +70,13 @@ export function App() {
             handleEnableEditing={handleEnableEditing}
           />
           <RouteList />
-          <EditingWindow
-            editing={editing}
-            handleDisableEditing={handleDisableEditing}
-            addSupplier={addSupplier}
-          />
+          {editing && (
+            <EditingWindow
+              editing={editing}
+              handleDisableEditing={handleDisableEditing}
+              addSupplier={addSupplier}
+            />
+          )}
         </div>
       )}
     </>
