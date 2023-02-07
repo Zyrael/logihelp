@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addRoute } from "../routeList/routeListSlice";
 import "./SupplierList.css";
 
-export function SupplierList({ suppliers, handleEnableEditing }) {
+export function SupplierList({ suppliers, openModal }) {
   const [searchValue, setSearchValue] = useState("");
   const showSuppliers = suppliers.filter((supplier) =>
     supplier.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -20,11 +20,7 @@ export function SupplierList({ suppliers, handleEnableEditing }) {
         placeholder="Введите название..."
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <button
-        type="button"
-        className="add-supplier-btn"
-        onClick={handleEnableEditing}
-      >
+      <button type="button" className="add-supplier-btn" onClick={openModal}>
         +
       </button>
       <div className="suppliers-list-container">

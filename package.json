@@ -10,7 +10,8 @@
     "postinstall": "yarn run install:server && yarn run install:front",
     "server": "cd ./server && yarn run serve",
     "front": "cd ./front && yarn run dev",
-    "start": "yarn concurrently \"yarn run server\" \"yarn run front\""
+    "start": "yarn concurrently \"yarn run server\" \"yarn run front\"",
+    "generate": "cd ./server && yarn prisma generate"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",

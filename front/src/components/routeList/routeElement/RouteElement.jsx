@@ -3,14 +3,12 @@ import { useDispatch } from "react-redux";
 import { removeRoute } from "../routeListSlice";
 import "./RouteElement.css";
 
-export function RouteElement(props) {
-  const { route } = props;
+export function RouteElement({ route }) {
   const dispatch = useDispatch();
   const handleRemoveRoute = () => dispatch(removeRoute(route));
-  // const href = new URL("http://", route.webSite);
 
   return (
-    <li className="route-element" draggable="true">
+    <li className="route-element">
       <h3>{route.name}</h3>
       <a href={route.webSite} target="_blank" rel="noreferrer">
         {route.webSite}
