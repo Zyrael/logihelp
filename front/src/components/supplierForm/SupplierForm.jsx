@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import "./SupplierForm.css";
 
-export function SupplierForm({
-  closeModal,
-  addSupplier,
-  data = { name: "", webSite: "", additionalData: "" },
-}) {
-  const [name, setName] = useState(data.name);
-  const [webSite, setWebSite] = useState(data.webSite);
-  const [additionalData, setAdditionalData] = useState(data.additionalData);
+export function SupplierForm({ closeModal, addSupplier }) {
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  const [additionalData, setAdditionalData] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     addSupplier({
       variables: {
         name,
-        webSite,
+        url,
         additionalData,
       },
     });
@@ -34,8 +30,8 @@ export function SupplierForm({
         <input
           type="text"
           placeholder="Сайт"
-          value={webSite}
-          onChange={(e) => setWebSite(e.target.value)}
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
         />
         <input
           type="text"

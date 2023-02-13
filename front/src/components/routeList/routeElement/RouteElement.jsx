@@ -10,8 +10,8 @@ export function RouteElement({ route }) {
   return (
     <li className="route-element">
       <h3>{route.name}</h3>
-      <a href={route.webSite} target="_blank" rel="noreferrer">
-        {route.webSite}
+      <a href={route.url} target="_blank" rel="noreferrer">
+        {route.url}
       </a>
       <p>{route.additionalData}</p>
       <button type="button" className="remove-btn" onClick={handleRemoveRoute}>

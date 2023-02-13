@@ -19,9 +19,14 @@ export const routeListSlice = createSlice({
         (route) => route.id !== action.payload.id
       );
     },
+
+    removeAllRoutes: (state) => {
+      state.routes = [];
+    },
   },
 });
 
-export const { addRoute, removeRoute } = routeListSlice.actions;
+export const { addRoute, removeRoute, removeAllRoutes } =
+  routeListSlice.actions;
 
 export default routeListSlice.reducer;

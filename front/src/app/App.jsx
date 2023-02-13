@@ -9,6 +9,7 @@ export function App() {
   const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
 
   const [modalOpened, setModalOpened] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
   const openModal = () => setModalOpened(true);
   const closeModal = () => setModalOpened(false);
@@ -19,11 +20,15 @@ export function App() {
       {error && <div>Something went wrong...</div>}
       {!loading && !error && (
         <div id="app" className="app">
-          <SupplierList suppliers={data.getSuppliers} openModal={openModal} />
+          <SupplierList
+            suppliers={data.getSuppliers}
+            openModal={openModal}
+            setModalContent={setModalContent}
+          />
           <RouteList />
           {modalOpened && (
             <Modal isOpened={modalOpened} closeModal={closeModal}>
-              <SupplierForm closeModal={closeModal} addSupplier={addSupplier} />
+              {modalContent}
             </Modal>
           )}
         </div>

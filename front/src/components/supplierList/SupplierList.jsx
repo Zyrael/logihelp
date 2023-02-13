@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../routeList/routeListSlice";
 import "./SupplierList.css";
+import { SupplierInfo } from "../supplierInfo/SupplierInfo";
 
-export function SupplierList({ suppliers, openModal }) {
+export function SupplierList({ suppliers, openModal, setModalContent }) {
   const [searchValue, setSearchValue] = useState("");
   const showSuppliers = suppliers.filter((supplier) =>
     supplier.name.toLowerCase().includes(searchValue.toLowerCase())
   );
   const dispatch = useDispatch();
   const handleAddRoute = (supplier) => () => dispatch(addRoute(supplier));
+  const handleSeeButton = (supplier) => (e) => {
+    e.stopPropagation();
+    setModalContent(<SupplierInfo supplier={supplier} />);
+    openModal();
+  };
   return (
     <div className="suppliers-container">
       <input
@@ -33,6 +39,9 @@ export function SupplierList({ suppliers, openModal }) {
                 onClick={handleAddRoute(supplier)}
               >
                 {supplier.name}
+                <button type="button" onClick={handleSeeButton(supplier)}>
+                  See more
+                </button>
               </li>
             ))}
           </ul>
