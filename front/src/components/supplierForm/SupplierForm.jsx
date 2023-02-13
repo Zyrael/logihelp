@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_SUPPLIER, refetchSuppliers } from "../../graphql";
 import "./SupplierForm.css";
 
-export function SupplierForm({ closeModal, addSupplier }) {
+export function SupplierForm() {
+  const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [additionalData, setAdditionalData] = useState("");

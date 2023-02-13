@@ -1,38 +1,16 @@
-import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/client";
-import { SupplierList, RouteList, Modal, SupplierForm } from "../components";
-import { GET_SUPPLIERS, ADD_SUPPLIER, refetchSuppliers } from "./queries";
+import React from "react";
+import { useSelector } from "react-redux";
+import { SupplierList, RouteList, Modal } from "../components";
 import "./App.css";
 
 export function App() {
-  const { loading, error, data } = useQuery(GET_SUPPLIERS);
-  const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
-
-  const [modalOpened, setModalOpened] = useState(false);
-  const [modalContent, setModalContent] = useState("");
-
-  const openModal = () => setModalOpened(true);
-  const closeModal = () => setModalOpened(false);
+  const isModalOpen = useSelector((state) => state.modal.isOpen);
 
   return (
-    <>
-      {loading && <div>Loading...</div>}
-      {error && <div>Something went wrong...</div>}
-      {!loading && !error && (
-        <div id="app" className="app">
-          <SupplierList
-            suppliers={data.getSuppliers}
-            openModal={openModal}
-            setModalContent={setModalContent}
-          />
-          <RouteList />
-          {modalOpened && (
-            <Modal isOpened={modalOpened} closeModal={closeModal}>
-              {modalContent}
-            </Modal>
-          )}
-        </div>
-      )}
-    </>
+    <div id="app" className="app">
+      <SupplierList />
+      <RouteList />
+      {isModalOpen && <Modal />}
+    </div>
   );
 }
