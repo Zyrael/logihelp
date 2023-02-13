@@ -34,11 +34,16 @@ type Mutation {
 
   updateSupplier(
     id: ID!
+    name: String
     url: String
     additionalData: String
     addresses: String
     contacts: String
   ): Supplier
+
+  updateAddress(id: ID!, name: String, address: String): Address
+
+  updateContact(id: ID!, name: String, phoneNumber: String): Contact
 
   deleteSupplier(id: ID!): Boolean!
 }

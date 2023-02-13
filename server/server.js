@@ -54,11 +54,12 @@ const resolvers = {
 
     updateSupplier: async (
       _,
-      { id, url, additionalData, addresses = "[]", contacts = "[]" }
+      { id, name, url, additionalData, addresses = "[]", contacts = "[]" }
     ) => {
-      const supplier = await prisma.supplier.update({
+      const updatedSupplier = await prisma.supplier.update({
         where: { id: parseInt(id, 10) },
         data: {
+          name,
           url,
           additionalData,
         },
@@ -84,7 +85,23 @@ const resolvers = {
         });
       });
 
-      return supplier;
+      return updatedSupplier;
+    },
+
+    updateAddress: async (_, { id, name, address }) => {
+      const updatedAddress = await prisma.address.update({
+        where: { id },
+        data: { name, address },
+      });
+      return updatedAddress;
+    },
+
+    updateContact: async (_, { id, name, phoneNumber }) => {
+      const updatedContact = await prisma.contact.update({
+        where: { id },
+        data: { name, phoneNumber },
+      });
+      return updatedContact;
     },
 
     deleteSupplier: async (_, { id }) => {

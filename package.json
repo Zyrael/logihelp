@@ -11,7 +11,8 @@
     "server": "cd ./server && yarn run serve",
     "front": "cd ./front && yarn run dev",
     "start": "yarn concurrently \"yarn run server\" \"yarn run front\"",
-    "generate": "cd ./server && yarn prisma generate"
+    "generate": "cd ./server && yarn prisma generate",
+    "go": "cd ./front"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
