@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "./modalslice";
 import "./Modal.css";
 
-export function Modal({ children }) {
+export function Modal() {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.modal.isOpen);
+  const content = useSelector((state) => state.modal.content);
   return (
     <div
       className={cn({
@@ -15,7 +16,7 @@ export function Modal({ children }) {
       })}
     >
       <div className="modal-body">
-        <div className="modal-content">{children}</div>
+        <div className="modal-content">{content}</div>
         <button
           type="button"
           className="close-btn"
