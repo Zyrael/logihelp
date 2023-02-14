@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { SupplierList, RouteList, Modal } from "../components";
+import { Suppliers, RouteList, Modal } from "../components";
 import "./App.css";
 
 export function App() {
@@ -8,7 +8,7 @@ export function App() {
 
   return (
     <div id="app" className="app">
-      <SupplierList />
+      <Suppliers />
       <RouteList />
       {isModalOpen && <Modal />}
     </div>
