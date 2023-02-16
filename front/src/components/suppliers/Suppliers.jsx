@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierList } from "./supplierList";
-import { openModalWithContent } from "../modal/modalslice";
+import { openModal } from "../modal/modalslice";
 import "./Suppliers.css";
 
 export function Suppliers() {
@@ -28,7 +28,7 @@ export function Suppliers() {
           <button
             type="button"
             className="add-supplier-btn"
-            onClick={() => dispatch(openModalWithContent(""))}
+            onClick={() => dispatch(openModal())}
           >
             +
           </button>
