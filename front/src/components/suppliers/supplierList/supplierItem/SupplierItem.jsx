@@ -1,14 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../../routeList/routeListSlice";
-import { openModalWithContent } from "../../../modal/modalslice";
-import { SupplierInfo } from "../../../supplierInfo";
+import { openModal } from "../../../modal/modalslice";
 
 export function SupplierItem({ supplier }) {
   const dispatch = useDispatch();
   const handleSeeButton = (e) => {
     e.stopPropagation();
-    dispatch(openModalWithContent(<SupplierInfo supplier={supplier} />));
+    dispatch(openModal());
   };
 
   return (
