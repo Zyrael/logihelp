@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierList } from "./supplierList";
-import { openModal, setContentForm } from "../modal/modalslice";
+import { openModal, setContent } from "../modal/modalslice";
 import "./Suppliers.css";
 
 export function Suppliers() {
@@ -11,7 +11,7 @@ export function Suppliers() {
   const { loading, error, data } = useQuery(GET_SUPPLIERS);
   const dispatch = useDispatch();
   const handleAddSupplier = () => {
-    dispatch(setContentForm());
+    dispatch(setContent({ type: "form" }));
     dispatch(openModal());
   };
 

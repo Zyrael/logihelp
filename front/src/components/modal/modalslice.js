@@ -2,8 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
-  content: "info",
-  currSupplier: {},
+  content: {
+    type: "info",
+    supplier: {},
+  },
 };
 
 export const modalSlice = createSlice({
@@ -18,26 +20,12 @@ export const modalSlice = createSlice({
       state.isOpen = false;
     },
 
-    setContentInfo: (state) => {
-      state.content = "info";
-    },
-
-    setContentForm: (state) => {
-      state.content = "form";
-    },
-
-    setCurrSupplier: (state, action) => {
-      state.currSupplier = action.payload;
+    setContent: (state, { payload: { type, supplier = {} } }) => {
+      state.content = { type, supplier };
     },
   },
 });
 
-export const {
-  openModal,
-  closeModal,
-  setContentInfo,
-  setContentForm,
-  setCurrSupplier,
-} = modalSlice.actions;
+export const { openModal, closeModal, setContent } = modalSlice.actions;
 
 export default modalSlice.reducer;

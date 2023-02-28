@@ -6,10 +6,14 @@ import { closeModal } from "../modal/modalslice";
 import "./SupplierForm.css";
 
 export function SupplierForm() {
-  const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
+  const [address, setAddress] = useState("");
+  const [contacts, setContacts] = useState("");
   const [additionalData, setAdditionalData] = useState("");
+
+  const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
+
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +21,8 @@ export function SupplierForm() {
       variables: {
         name,
         url,
+        address,
+        contacts,
         additionalData,
       },
     });
@@ -39,8 +45,23 @@ export function SupplierForm() {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-        <input
-          type="text"
+        <textarea
+          name="address"
+          id="address"
+          placeholder="Адрес"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <textarea
+          name="contacts"
+          id="contacts"
+          placeholder="Контакты"
+          value={contacts}
+          onChange={(e) => setContacts(e.target.value)}
+        />
+        <textarea
+          name="additional-data"
+          id="additional-data"
           placeholder="Дополнительно"
           value={additionalData}
           onChange={(e) => setAdditionalData(e.target.value)}

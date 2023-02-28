@@ -1,11 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../../routeList/routeListSlice";
-import {
-  openModal,
-  setContentInfo,
-  setCurrSupplier,
-} from "../../../modal/modalslice";
+import { openModal, setContent } from "../../../modal/modalslice";
 import Glass from "./glass.svg";
 import "./SupplierItem.css";
 
@@ -13,8 +9,7 @@ export function SupplierItem({ supplier }) {
   const dispatch = useDispatch();
   const handleSeeButton = (e) => {
     e.stopPropagation();
-    dispatch(setCurrSupplier(supplier));
-    dispatch(setContentInfo());
+    dispatch(setContent({ type: "info", supplier }));
     dispatch(openModal());
   };
 

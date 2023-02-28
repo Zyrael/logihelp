@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 export function SupplierInfo() {
-  const { name, url, additionalData } = useSelector(
-    (state) => state.modal.currSupplier
+  const { name, url, address, contacts, additionalData } = useSelector(
+    (state) => state.modal.content.supplier
   );
 
   return (
@@ -12,6 +12,8 @@ export function SupplierInfo() {
       <a href={url} className="supplier-url">
         Сайт
       </a>
+      <p className="address">{address}</p>
+      <p className="contacts">{contacts}</p>
       <p className="addtionalData">{additionalData}</p>
     </div>
   );

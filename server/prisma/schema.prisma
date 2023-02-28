@@ -8,26 +8,10 @@ datasource db {
 }
 
 model Supplier {
-  id             Int       @id @default(autoincrement())
+  id             Int     @id @default(autoincrement())
   name           String
   url            String?
+  address        String?
+  contacts       String?
   additionalData String?
-  addresses      Address[]
-  contacts       Contact[]
-}
-
-model Address {
-  id         Int      @id @default(autoincrement())
-  name       String?
-  address    String
-  supplier   Supplier @relation(fields: [supplierId], references: [id])
-  supplierId Int
-}
-
-model Contact {
-  id          Int      @id @default(autoincrement())
-  name        String?
-  phoneNumber String
-  supplier    Supplier @relation(fields: [supplierId], references: [id])
-  supplierId  Int
 }

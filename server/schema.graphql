@@ -2,21 +2,9 @@ type Supplier {
   id: ID
   name: String
   url: String
-  additionalData: String
-  addresses: [Address]
-  contacts: [Contact]
-}
-
-type Address {
-  id: ID
-  name: String
   address: String
-}
-
-type Contact {
-  id: ID
-  name: String
-  phoneNumber: String
+  contacts: String
+  additionalData: String
 }
 
 type Query {
@@ -27,23 +15,19 @@ type Mutation {
   addSupplier(
     name: String!
     url: String
-    additionalData: String
-    addresses: String
+    address: String
     contacts: String
+    additionalData: String
   ): Supplier
 
   updateSupplier(
     id: ID!
     name: String
     url: String
-    additionalData: String
-    addresses: String
+    address: String
     contacts: String
+    additionalData: String
   ): Supplier
-
-  updateAddress(id: ID!, name: String, address: String): Address
-
-  updateContact(id: ID!, name: String, phoneNumber: String): Contact
 
   deleteSupplier(id: ID!): Boolean!
 }
