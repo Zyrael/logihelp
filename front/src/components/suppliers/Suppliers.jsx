@@ -3,13 +3,17 @@ import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierList } from "./supplierList";
-import { openModal } from "../modal/modalslice";
+import { openModal, setContentForm } from "../modal/modalslice";
 import "./Suppliers.css";
 
 export function Suppliers() {
   const [searchValue, setSearchValue] = useState("");
   const { loading, error, data } = useQuery(GET_SUPPLIERS);
   const dispatch = useDispatch();
+  const handleAddSupplier = () => {
+    dispatch(setContentForm());
+    dispatch(openModal());
+  };
 
   return (
     <>
@@ -28,7 +32,7 @@ export function Suppliers() {
           <button
             type="button"
             className="add-supplier-btn"
-            onClick={() => dispatch(openModal())}
+            onClick={handleAddSupplier}
           >
             +
           </button>

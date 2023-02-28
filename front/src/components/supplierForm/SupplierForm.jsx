@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { useDispatch } from "react-redux";
 import { ADD_SUPPLIER, refetchSuppliers } from "../../graphql";
+import { closeModal } from "../modal/modalslice";
 import "./SupplierForm.css";
 
 export function SupplierForm() {
@@ -8,6 +10,7 @@ export function SupplierForm() {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [additionalData, setAdditionalData] = useState("");
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     addSupplier({
@@ -17,7 +20,7 @@ export function SupplierForm() {
         additionalData,
       },
     });
-    closeModal();
+    dispatch(closeModal());
   };
 
   return (
@@ -31,7 +34,7 @@ export function SupplierForm() {
           required
         />
         <input
-          type="text"
+          type="url"
           placeholder="Сайт"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
