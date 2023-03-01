@@ -1,5 +1,4 @@
 .suppliers-container {
-  padding: 1em;
   min-width: 350px;
   max-width: 25%;
   height: 100vh;
@@ -11,8 +10,8 @@
 
 .add-supplier-btn {
   position: absolute;
-  right: 30px;
-  top: 17px;
+  right: 20px;
+  top: 1px;
   font-size: 1.5rem;
   width: 2rem;
   height: 2rem;

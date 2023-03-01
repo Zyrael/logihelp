@@ -4,16 +4,21 @@ import { removeRoute } from "../routeListSlice";
 import "./RouteElement.css";
 
 export function RouteElement({ route }) {
+  const { name, url, address, contacts, additionalData } = route;
   const dispatch = useDispatch();
   const handleRemoveRoute = () => dispatch(removeRoute(route));
 
   return (
     <li className="route-element">
-      <h3>{route.name}</h3>
-      <a href={route.url} target="_blank" rel="noreferrer">
-        {route.url}
-      </a>
-      <p>{route.additionalData}</p>
+      <h3>{name}</h3>
+      <p>
+        <a href={url} target="_blank" rel="noreferrer">
+          {url}
+        </a>
+      </p>
+      <p>{address}</p>
+      <p>{contacts}</p>
+      <p>{additionalData}</p>
       <button type="button" className="remove-btn" onClick={handleRemoveRoute}>
         &times;
       </button>

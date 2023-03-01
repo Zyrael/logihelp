@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../../routeList/routeListSlice";
 import { openModal, setContent } from "../../../modal/modalslice";
-import Glass from "./glass.svg";
+import Glass from "./pencil.svg";
 import "./SupplierItem.css";
 
 export function SupplierItem({ supplier }) {
@@ -25,7 +25,7 @@ export function SupplierItem({ supplier }) {
         className="open-supplier-btn"
         onClick={handleSeeButton}
       >
-        <img src={Glass} alt="" width="12px" />
+        <img src={Glass} alt="" width="15px" />
       </button>
     </li>
   );

@@ -1,0 +1,7 @@
+.supplier-info {
+  width: 80%;
+}
+
+.supplier-info > p {
+  margin-top: 1rem;
+}
