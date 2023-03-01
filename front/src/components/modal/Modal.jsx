@@ -3,7 +3,7 @@ import cn from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import { SupplierForm } from "../supplierForm";
 import { SupplierInfo } from "../supplierInfo";
-import { closeModal } from "./modalslice";
+import { setStatus } from "./modalslice";
 import "./Modal.css";
 
 const mapContentType = {
@@ -28,7 +28,7 @@ export function Modal() {
         <button
           type="button"
           className="close-btn"
-          onClick={() => dispatch(closeModal())}
+          onClick={() => dispatch(setStatus({ status: "closed" }))}
         >
           &times;
         </button>
