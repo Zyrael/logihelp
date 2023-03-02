@@ -1,16 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../../routeList/routeListSlice";
-import { openModal, setContent } from "../../../modal/modalslice";
-import Glass from "./pencil.svg";
+import Pencil from "./pencil.svg";
+import { setMode } from "../../../modal/modalslice";
 import "./SupplierItem.css";
 
 export function SupplierItem({ supplier }) {
   const dispatch = useDispatch();
-  const handleSeeButton = (e) => {
+  const handleEditButton = (e) => {
     e.stopPropagation();
-    dispatch(setContent({ type: "info", supplier }));
-    dispatch(openModal());
+    dispatch(setMode({ mode: "edit", supplier }));
   };
 
   return (
@@ -23,9 +22,9 @@ export function SupplierItem({ supplier }) {
       <button
         type="button"
         className="open-supplier-btn"
-        onClick={handleSeeButton}
+        onClick={handleEditButton}
       >
-        <img src={Glass} alt="" width="15px" />
+        <img src={Pencil} alt="Edit" width="15px" />
       </button>
     </li>
   );

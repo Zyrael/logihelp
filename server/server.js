@@ -9,29 +9,20 @@ const prisma = new PrismaClient();
 
 const resolvers = {
   Query: {
-    getSuppliers: async () => {
-      const suppliers = await prisma.supplier.findMany();
-      return suppliers;
-    },
+    getSuppliers: async () => prisma.supplier.findMany(),
   },
 
   Mutation: {
-    addSupplier: async (
-      _,
-      { name, url, additionalData, address, contacts }
-    ) => {
-      const supplier = await prisma.supplier.create({
+    addSupplier: async (_, { name, url, additionalData, address, contacts }) =>
+      prisma.supplier.create({
         data: { name, url, address, contacts, additionalData },
-      });
-
-      return supplier;
-    },
+      }),
 
     updateSupplier: async (
       _,
       { id, name, url, additionalData, address, contacts }
-    ) => {
-      const updatedSupplier = await prisma.supplier.update({
+    ) =>
+      prisma.supplier.update({
         where: { id: parseInt(id, 10) },
         data: {
           name,
@@ -40,10 +31,7 @@ const resolvers = {
           contacts,
           additionalData,
         },
-      });
-
-      return updatedSupplier;
-    },
+      }),
 
     deleteSupplier: async (_, { id }) => {
       await prisma.supplier.delete({

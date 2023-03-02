@@ -1,34 +1,40 @@
 import React from "react";
 import cn from "classnames";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SupplierForm } from "../supplierForm";
-import { SupplierInfo } from "../supplierInfo";
-import { setStatus } from "./modalslice";
+import { setMode } from "./modalslice";
 import "./Modal.css";
 
 const mapContentType = {
-  form: () => <SupplierForm />,
-  info: () => <SupplierInfo />,
+  edit: () => useSelector((state) => state.modal.currSupplier),
+  create: () => ({
+    id: "",
+    name: "",
+    url: "",
+    address: "",
+    contacts: "",
+    additionalData: "",
+  }),
 };
 
 export function Modal() {
   const dispatch = useDispatch();
-  const isOpen = useSelector((state) => state.modal.isOpen);
-  const contentType = useSelector((state) => state.modal.content.type);
-  const content = mapContentType[contentType];
+  const mode = useSelector((state) => state.modal.mode);
+  const content = mapContentType[mode]();
   return (
     <div
       className={cn({
         "modal-backdrop": true,
-        "is-open": isOpen,
       })}
     >
       <div className="modal-body">
-        <div className="modal-content">{content()}</div>
+        <div className="modal-content">
+          <SupplierForm content={content} />
+        </div>
         <button
           type="button"
           className="close-btn"
-          onClick={() => dispatch(setStatus({ status: "closed" }))}
+          onClick={() => dispatch(setMode({ mode: "closed" }))}
         >
           &times;
         </button>

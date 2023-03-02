@@ -1,32 +1,59 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { useDispatch } from "react-redux";
-import { ADD_SUPPLIER, refetchSuppliers } from "../../graphql";
-import { closeModal } from "../modal/modalslice";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_SUPPLIER, refetchSuppliers, UPDATE_SUPPLIER } from "../../graphql";
+import { setMode } from "../modal/modalslice";
 import "./SupplierForm.css";
 
-export function SupplierForm() {
-  const [name, setName] = useState("");
-  const [url, setUrl] = useState("");
-  const [address, setAddress] = useState("");
-  const [contacts, setContacts] = useState("");
-  const [additionalData, setAdditionalData] = useState("");
+export function SupplierForm({ content }) {
+  const {
+    id,
+    name: currName,
+    url: currUrl,
+    address: currAddress,
+    contacts: currContacts,
+    additionalData: currData,
+  } = content;
+  const [name, setName] = useState(currName);
+  const [url, setUrl] = useState(currUrl);
+  const [address, setAddress] = useState(currAddress);
+  const [contacts, setContacts] = useState(currContacts);
+  const [additionalData, setAdditionalData] = useState(currData);
 
   const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
+  const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
+
+  const mode = useSelector((state) => state.modal.mode);
+
+  const submitAction = {
+    create: () =>
+      addSupplier({
+        variables: {
+          name,
+          url,
+          address,
+          contacts,
+          additionalData,
+        },
+      }),
+    edit: () =>
+      updateSupplier({
+        variables: {
+          id,
+          name,
+          url,
+          address,
+          contacts,
+          additionalData,
+        },
+      }),
+  };
 
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    addSupplier({
-      variables: {
-        name,
-        url,
-        address,
-        contacts,
-        additionalData,
-      },
-    });
-    dispatch(closeModal());
+    submitAction[mode]();
+    dispatch(setMode({ mode: "closed" }));
   };
 
   return (
