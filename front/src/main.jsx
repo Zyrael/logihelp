@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { App } from "./app";
 import "./main.css";
-import "@fontsource/roboto";
 import { store } from "./store";
 
 const client = new ApolloClient({

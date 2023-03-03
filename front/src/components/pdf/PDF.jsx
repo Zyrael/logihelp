@@ -9,8 +9,8 @@ import {
   View,
 } from "@react-pdf/renderer";
 import { useSelector } from "react-redux";
-import roboto from "../../fonts/Roboto-Regular.ttf";
-import robotoBold from "../../fonts/Roboto-Bold.ttf";
+import roboto from "../../fonts/roboto/Roboto-Regular.ttf";
+import robotoBold from "../../fonts/roboto/Roboto-Bold.ttf";
 import "./PDF.css";
 
 Font.register({

@@ -20,21 +20,24 @@ export function Suppliers() {
       {error && <div>Error</div>}
       {!loading && !error && (
         <div className="suppliers-container">
-          <input
-            id="search-bar"
-            className="search-bar"
-            type="text"
-            value={searchValue}
-            placeholder="Введите название..."
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <button
-            type="button"
-            className="add-supplier-btn"
-            onClick={handleCreateSupplier}
-          >
-            +
-          </button>
+          <div className="top-row">
+            <input
+              id="search-bar"
+              className="search-bar"
+              type="text"
+              value={searchValue}
+              placeholder="Введите название..."
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <button
+              type="button"
+              className="add-supplier-btn"
+              onClick={handleCreateSupplier}
+            >
+              +
+            </button>
+          </div>
+
           <SupplierList
             suppliers={data.getSuppliers}
             searchValue={searchValue}

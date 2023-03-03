@@ -39,7 +39,7 @@ export function SupplierForm({ content }) {
     edit: () =>
       updateSupplier({
         variables: {
-          id,
+          updateSupplierId: id,
           name,
           url,
           address,

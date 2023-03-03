@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Modal, PDF, RouteList, Suppliers } from "../components";
+import { Modal, RouteList, Suppliers } from "../components";
 import "./App.css";
 
 export function App() {
@@ -11,7 +11,7 @@ export function App() {
       <Suppliers />
       <RouteList />
       {!(modalMode === "closed") && <Modal />}
-      <PDF />
+      {/* <PDF /> */}
     </div>
   );
 }
