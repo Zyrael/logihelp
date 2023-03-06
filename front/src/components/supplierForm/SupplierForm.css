@@ -20,6 +20,27 @@
   margin-top: 0.5rem;
 }
 
+textarea {
+  resize: none;
+}
+
+.delete {
+  border: 0;
+  width: 100px;
+  height: 30px;
+  background: rgb(185, 0, 0);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 140px;
+}
+
+.delete:hover {
+  background: rgb(208, 49, 49)
+}
+
 .submit {
   border: 0;
   width: 100px;

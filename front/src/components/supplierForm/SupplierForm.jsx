@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_SUPPLIER, refetchSuppliers, UPDATE_SUPPLIER } from "../../graphql";
+import {
+  ADD_SUPPLIER,
+  refetchSuppliers,
+  UPDATE_SUPPLIER,
+  DELETE_SUPPLIER,
+} from "../../graphql";
 import { setMode } from "../modal/modalslice";
 import "./SupplierForm.css";
 
@@ -22,6 +27,7 @@ export function SupplierForm({ content }) {
 
   const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
   const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
+  const [deleteSupplier] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
 
   const mode = useSelector((state) => state.modal.mode);
 
@@ -50,6 +56,15 @@ export function SupplierForm({ content }) {
   };
 
   const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    deleteSupplier({
+      variables: {
+        deleteSupplierId: id,
+      },
+    });
+    dispatch(setMode({ mode: "closed" }));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     submitAction[mode]();
@@ -93,6 +108,11 @@ export function SupplierForm({ content }) {
           value={additionalData}
           onChange={(e) => setAdditionalData(e.target.value)}
         />
+        {mode === "edit" && (
+          <button type="button" className="delete" onClick={handleDelete}>
+            Удалить
+          </button>
+        )}
         <button type="submit" className="submit">
           Сохранить
         </button>
