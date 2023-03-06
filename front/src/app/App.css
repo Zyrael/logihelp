@@ -1,7 +1,15 @@
 .app {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1em;
-  background: #e0e0e0;
+  background: #f5f7f9;
   overflow: hidden;
+  height: 100vh;
+}
+
+.app-inner {
+  display: flex;
+  justify-content: start;
+  max-width: 1440px;
+  width: 100%;
 }

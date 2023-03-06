@@ -12,9 +12,17 @@ export function RouteList() {
   };
   return (
     <div className="route-list-container">
-      <button type="button" onClick={handleRemoveRoutes}>
-        Очистить
-      </button>
+      <div className="top-row">
+        <span>Маршрутный лист</span>
+        <button
+          type="button"
+          className="clear-routes"
+          onClick={handleRemoveRoutes}
+        >
+          &times;
+        </button>
+      </div>
+
       <ul className="route-list">
         {routes.map((route) => (
           <RouteElement key={route.id} route={route} />

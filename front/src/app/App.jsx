@@ -8,10 +8,12 @@ export function App() {
 
   return (
     <div id="app" className="app">
-      <Suppliers />
-      <RouteList />
-      {!(modalMode === "closed") && <Modal />}
-      {/* <PDF /> */}
+      <div className="app-inner">
+        <Suppliers />
+        <RouteList />
+        {!(modalMode === "closed") && <Modal />}
+        {/* <PDF /> */}
+      </div>
     </div>
   );
 }

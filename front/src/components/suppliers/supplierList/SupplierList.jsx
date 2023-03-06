@@ -1,5 +1,6 @@
 import React from "react";
 import { SupplierItem } from "./supplierItem";
+import "./SupplierList.css";
 
 export function SupplierList({ suppliers, searchValue }) {
   const showSuppliers = suppliers.filter((supplier) =>
