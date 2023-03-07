@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addRoute } from "../../../routeList/routeListSlice";
-import { ReactComponent as Pencil } from "./pencil.svg";
+import { addRoute } from "../../../routes/routeList/routeListSlice";
+import { ReactComponent as Pencil } from "../../../../assets/icons/pencil.svg";
 import { setMode } from "../../../modal/modalslice";
 import "./SupplierItem.css";
 

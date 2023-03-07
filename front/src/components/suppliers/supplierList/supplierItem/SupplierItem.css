@@ -1,10 +1,9 @@
 .supplier-item {
-  display: flex;
-  align-items: start;
-  padding: 0.3rem 0.5rem 0.3rem 15px;
+  padding: 1rem 2rem 1rem 15px;
   cursor: pointer;
-  background: #f5f7f9;
+  background: #dadee5;
   transition: .2s;
+  position: relative;
 }
 
 .supplier-item + .supplier-item {
@@ -16,18 +15,25 @@
 }
 
 .edit-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   border: 0;
+  border-radius: 5px;
   background: 0;
   margin-left: auto;
+  transition: background .2s;
+}
+
+.edit-btn:hover {
+  background: rgba(166, 217, 255, 0.47);
 }
 
 .edit-icon {
   width: 20px;
   height: 20px;
-  transition: fill .2s;
 }
 
-.edit-btn:hover .edit-icon {
-  fill: #1DA1F2;
-}

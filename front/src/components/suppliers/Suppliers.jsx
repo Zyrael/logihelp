@@ -34,7 +34,7 @@ export function Suppliers() {
               className="add-supplier-btn"
               onClick={handleCreateSupplier}
             >
-              +
+              <span>+</span>
             </button>
           </div>
 

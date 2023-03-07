@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SupplierForm } from "../supplierForm";
 import { setMode } from "./modalslice";
 import "./Modal.css";
+import { PDF } from "../pdf";
 
 const mapContentType = {
   edit: () => useSelector((state) => state.modal.currSupplier),
@@ -15,6 +16,7 @@ const mapContentType = {
     contacts: "",
     additionalData: "",
   }),
+  print: () => <PDF />,
 };
 
 export function Modal() {

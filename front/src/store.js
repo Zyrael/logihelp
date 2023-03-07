@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import routeListReducer from "./components/routeList/routeListSlice";
+import routeListReducer from "./components/routes/routeList/routeListSlice";
 import modalReducer from "./components/modal/modalslice";
 
 export const store = configureStore({

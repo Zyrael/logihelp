@@ -43,8 +43,8 @@ export function PDF() {
   const routes = useSelector((state) => state.routeList.routes);
 
   const viewRoutes = routes.map(
-    ({ name = "", address = "", contacts = "", additionalData = "" }) => (
-      <View style={styles.section}>
+    ({ id, name = "", address = "", contacts = "", additionalData = "" }) => (
+      <View key={id} style={styles.section}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.text}>{address}</Text>
         <Text style={styles.text}>{contacts}</Text>
@@ -55,7 +55,7 @@ export function PDF() {
 
   return (
     <div className="pdf">
-      <PDFViewer height="700px" width="600px">
+      <PDFViewer height="100%" width="100%">
         <Document>
           <Page style={styles.page} wrap size="A4">
             {viewRoutes}
