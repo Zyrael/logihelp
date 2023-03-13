@@ -1,5 +1,5 @@
 import React from "react";
-import cn from "classnames";
+import { useSelector } from "react-redux";
 import {
   Document,
   Font,
@@ -8,9 +8,7 @@ import {
   StyleSheet,
   Text,
   View,
-  usePDF,
 } from "@react-pdf/renderer";
-import { useSelector } from "react-redux";
 import roboto from "../../fonts/roboto/Roboto-Regular.ttf";
 import robotoBold from "../../fonts/roboto/Roboto-Bold.ttf";
 import "./PDF.css";
@@ -67,17 +65,12 @@ export function PDF() {
     </Document>
   );
 
-  const [instance, updateInstance] = usePDF({ document });
-  console.log(instance.blob);
+  // const [instance, updateInstance] = usePDF({ document });
   return (
     <div className="pdf">
-      {instance.loading ? (
-        <div>Loading</div>
-      ) : (
-        <PDFViewer height="100%" width="100%">
-          {document}
-        </PDFViewer>
-      )}
+      <PDFViewer height="100%" width="100%">
+        {document}
+      </PDFViewer>
     </div>
   );
 }

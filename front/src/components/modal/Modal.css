@@ -20,6 +20,7 @@
     max-width: 800px;
     background: white;
     position: relative;
+    border: 1px solid rgb(211, 211, 211);
 }
 
 .modal-content {

@@ -26,7 +26,7 @@ export function Suppliers() {
               className="search-bar"
               type="text"
               value={searchValue}
-              placeholder="Введите название..."
+              placeholder="Поиск"
               onChange={(e) => setSearchValue(e.target.value)}
             />
             <button

@@ -1,3 +1,13 @@
+:root {
+    --main-background: rgb(231, 234, 235);
+    --main-blue: rgb(29, 161, 242);
+    --hover-blue: rgb(88, 181, 236);
+    --disabled-blue: rgb(155, 208, 245);
+    --element-background: rgb(231, 234, 235);
+    --element-hover: rgb(230, 242, 250);
+    --font-color: rgb(0, 0, 0);
+}
+
 @font-face {
     font-family: Roboto;
     src: url("./fonts/roboto/Roboto-Regular.ttf");
@@ -24,7 +34,7 @@
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
     scrollbar-width: thin;
-    scrollbar-color: rgb(29, 161, 242) white;
+    scrollbar-color: var(--main-blue) white;
 }
 
 *::-webkit-scrollbar {
@@ -32,13 +42,13 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: rgb(29, 161, 242);
+    background: var(--main-blue);
 }
 
 .blue-btn {
     width: 40px;
     height: 40px;
-    background: rgb(29, 161, 242);
+    background: var(--main-blue);
     cursor: pointer;
     border: 0;
     transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -48,11 +58,11 @@
 }
 
 .blue-btn:enabled:hover {
-    background: #58b5ec;
+    background: var(--hover-blue);
 }
 
 .blue-btn:disabled {
-    background: #9bd0f5;
+    background: var(--disabled-blue);
 }
 
 .visible {

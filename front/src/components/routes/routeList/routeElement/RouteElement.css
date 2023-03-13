@@ -1,5 +1,6 @@
 .route-element {
-    background: #ddecf1;
+    background: var(--element-background);
+    color: var(--font-color);
     padding: 0.5rem;
     position: relative;
 }
@@ -18,6 +19,15 @@
     align-items: center;
     justify-content: center;
     border: 0;
+}
+
+.url {
+    text-decoration: none;
+    color: var(--main-blue);
+}
+
+.url:hover {
+    text-decoration: underline;
 }
 
 .remove-btn:hover {

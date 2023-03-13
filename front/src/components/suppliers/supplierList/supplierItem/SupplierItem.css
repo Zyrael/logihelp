@@ -1,17 +1,14 @@
 .supplier-item {
     padding: 1rem 2rem 1rem 15px;
     cursor: pointer;
-    background: #dadee5;
+    color: var(--font-color);
     transition: background .2s;
     position: relative;
-}
-
-.supplier-item + .supplier-item {
-    margin-top: .7rem;
+    border-top: 1px solid rgb(211, 211, 211);
 }
 
 .supplier-item:hover {
-    background: hsl(0 0% 60%);
+    background: var(--element-hover);
 }
 
 .edit-btn {
@@ -30,12 +27,13 @@
     visibility: hidden;
 }
 
-.edit-btn:hover {
-    background: rgba(166, 217, 255, 0.47);
-}
-
 .edit-icon {
     width: 20px;
     height: 20px;
+    transition: .2s;
+}
+
+.edit-icon:hover {
+    fill: blue;
 }
 

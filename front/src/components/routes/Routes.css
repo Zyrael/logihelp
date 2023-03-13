@@ -1,6 +1,11 @@
 .routes {
     display: flex;
     flex-direction: column;
+    border: 1px solid rgb(211, 211, 211);
+    background: #ffffff;
+    margin-left: 1rem;
+    padding: .7em;
+    flex: 3;
 }
 
 .top-row {
@@ -31,11 +36,4 @@
     width: 1.5rem;
     height: 1.5rem;
     fill: white;
-}
-
-.routes {
-    background: #ffffff;
-    margin-left: 1rem;
-    padding: .7em;
-    flex: 3;
 }

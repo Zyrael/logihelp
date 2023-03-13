@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 1em;
-  background: #dadee5;
+  background: var(--main-background);
   height: 100vh;
 }
 

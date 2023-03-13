@@ -11,11 +11,9 @@ export function RouteElement({ route }) {
   return (
     <li className="route-element">
       <h3>{name}</h3>
-      <p>
-        <a href={url} target="_blank" rel="noreferrer">
-          {url}
-        </a>
-      </p>
+      <a href={url} target="_blank" rel="noreferrer" className="url">
+        Сайт
+      </a>
       <p>{address}</p>
       <p>{contacts}</p>
       <p>{additionalData}</p>
