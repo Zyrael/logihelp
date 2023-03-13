@@ -1,39 +1,40 @@
 .modal-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: hsla(0, 0%, 0%, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(2px);
-  transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: hsla(0, 0%, 0%, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 }
 
 .modal-body {
-  padding: 1rem;
-  max-height: 800px;
-  min-height: 400px;
-  width: 600px;
-  background: white;
-  border-radius: 1rem;
-  position: relative;
+    padding: 1rem;
+    height: 100%;
+    max-height: 600px;
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    position: relative;
 }
 
 .modal-content {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .close-btn {
-  border: 0;
-  background: 0;
-  cursor: pointer;
-  font-size: 2rem;
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
+    border: 0;
+    background: 0;
+    cursor: pointer;
+    font-size: 2rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
 }

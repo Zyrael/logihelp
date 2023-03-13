@@ -1,4 +1,6 @@
 .pdf {
-  margin-left: 1rem;
-  flex: 3;
+    width: 100%;
+    padding: 1rem 3rem;
 }
+
+

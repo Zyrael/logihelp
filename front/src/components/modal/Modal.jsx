@@ -6,23 +6,26 @@ import { setMode } from "./modalslice";
 import "./Modal.css";
 import { PDF } from "../pdf";
 
+const noContent = {
+  id: "",
+  name: "",
+  url: "",
+  address: "",
+  contacts: "",
+  additionalData: "",
+};
+
 const mapContentType = {
-  edit: () => useSelector((state) => state.modal.currSupplier),
-  create: () => ({
-    id: "",
-    name: "",
-    url: "",
-    address: "",
-    contacts: "",
-    additionalData: "",
-  }),
+  edit: () => (
+    <SupplierForm content={useSelector((state) => state.modal.currSupplier)} />
+  ),
+  create: () => <SupplierForm content={noContent} />,
   print: () => <PDF />,
 };
 
 export function Modal() {
   const dispatch = useDispatch();
   const mode = useSelector((state) => state.modal.mode);
-  const content = mapContentType[mode]();
   return (
     <div
       className={cn({
@@ -30,9 +33,7 @@ export function Modal() {
       })}
     >
       <div className="modal-body">
-        <div className="modal-content">
-          <SupplierForm content={content} />
-        </div>
+        <div className="modal-content">{mapContentType[mode]()}</div>
         <button
           type="button"
           className="close-btn"

@@ -1,26 +1,25 @@
 .route-element {
-  background: #ddecf1;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  position: relative;
+    background: #ddecf1;
+    padding: 0.5rem;
+    position: relative;
 }
 
 .remove-btn {
-  width: 25px;
-  height: 25px;
-  font-size: 1.5rem;
-  padding: 0;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: calc(50% - 12.5px);
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
+    width: 25px;
+    height: 25px;
+    font-size: 1.5rem;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 13px);
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
 }
 
 .remove-btn:hover {
-  background: #a5aeb1;
+    background: #a5aeb1;
 }

@@ -108,14 +108,18 @@ export function SupplierForm({ content }) {
           value={additionalData}
           onChange={(e) => setAdditionalData(e.target.value)}
         />
-        {mode === "edit" && (
-          <button type="button" className="delete" onClick={handleDelete}>
-            Удалить
-          </button>
-        )}
-        <button type="submit" className="submit">
-          Сохранить
-        </button>
+        <div className="footer">
+          <div className="buttons">
+            {mode === "edit" && (
+              <button type="button" className="delete" onClick={handleDelete}>
+                УДАЛИТЬ
+              </button>
+            )}
+            <button type="submit" className="submit">
+              СОХРАНИТЬ
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../../routes/routeList/routeListSlice";
 import { ReactComponent as Pencil } from "../../../../assets/icons/pencil.svg";
@@ -12,15 +13,18 @@ export function SupplierItem({ supplier }) {
     dispatch(setMode({ mode: "edit", supplier }));
   };
 
+  const [showButton, setShowButton] = useState(false);
+  const btnClasses = cn("edit-btn", { visible: showButton });
   return (
     <li
       tabIndex={0}
       className="supplier-item"
       onClick={() => dispatch(addRoute(supplier))}
+      onMouseEnter={() => setShowButton(true)}
+      onMouseLeave={() => setShowButton(false)}
     >
       {supplier.name}
-      <button type="button" className="edit-btn" onClick={handleEditButton}>
-        {/* <img src={Pencil} className="edit-icon" alt="Edit" width="15px" /> */}
+      <button type="button" className={btnClasses} onClick={handleEditButton}>
         <Pencil className="edit-icon" />
       </button>
     </li>

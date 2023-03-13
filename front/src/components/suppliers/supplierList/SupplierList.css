@@ -1,20 +1,7 @@
 .suppliers-list-container {
     margin-top: 1rem;
-    margin-right: -.7rem;
+    /*margin-right: -.7rem;*/
     overflow: auto;
-    scrollbar-width: thin;
-}
-
-.suppliers-list-container::-webkit-scrollbar {
-    width:10px;
-}
-
-/*.suppliers-list-container::-webkit-scrollbar-track {*/
-/*    background-color: darkgrey;*/
-/*}*/
-
-.suppliers-list-container::-webkit-scrollbar-thumb {
-    background: rgb(29, 161, 242);
 }
 
 .suppliers-list {

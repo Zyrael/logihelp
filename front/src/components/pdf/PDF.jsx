@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import {
   Document,
   Font,
@@ -7,6 +8,7 @@ import {
   StyleSheet,
   Text,
   View,
+  usePDF,
 } from "@react-pdf/renderer";
 import { useSelector } from "react-redux";
 import roboto from "../../fonts/roboto/Roboto-Regular.ttf";
@@ -42,26 +44,40 @@ const styles = StyleSheet.create({
 export function PDF() {
   const routes = useSelector((state) => state.routeList.routes);
 
-  const viewRoutes = routes.map(
-    ({ id, name = "", address = "", contacts = "", additionalData = "" }) => (
-      <View key={id} style={styles.section}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.text}>{address}</Text>
-        <Text style={styles.text}>{contacts}</Text>
-        <Text style={styles.text}>{additionalData}</Text>
-      </View>
-    )
+  const document = (
+    <Document>
+      <Page style={styles.page} wrap size="A4">
+        {routes.map(
+          ({
+            id,
+            name = "",
+            address = "",
+            contacts = "",
+            additionalData = "",
+          }) => (
+            <View key={id} style={styles.section}>
+              <Text style={styles.name}>{name}</Text>
+              <Text style={styles.text}>{address}</Text>
+              <Text style={styles.text}>{contacts}</Text>
+              <Text style={styles.text}>{additionalData}</Text>
+            </View>
+          )
+        )}
+      </Page>
+    </Document>
   );
 
+  const [instance, updateInstance] = usePDF({ document });
+  console.log(instance.blob);
   return (
     <div className="pdf">
-      <PDFViewer height="100%" width="100%">
-        <Document>
-          <Page style={styles.page} wrap size="A4">
-            {viewRoutes}
-          </Page>
-        </Document>
-      </PDFViewer>
+      {instance.loading ? (
+        <div>Loading</div>
+      ) : (
+        <PDFViewer height="100%" width="100%">
+          {document}
+        </PDFViewer>
+      )}
     </div>
   );
 }
