@@ -25,17 +25,26 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "#E4E4E4",
   },
+
   section: {
-    margin: 10,
+    marginTop: 20,
     padding: 10,
   },
 
   name: {
     fontFamily: "Roboto",
     fontWeight: "bold",
+    marginBottom: 10,
   },
+
   text: {
+    marginTop: 5,
     fontFamily: "Roboto",
+  },
+
+  bold: {
+    fontFamily: "Roboto",
+    fontWeight: "bold",
   },
 });
 
@@ -53,11 +62,26 @@ export function PDF() {
             contacts = "",
             additionalData = "",
           }) => (
-            <View key={id} style={styles.section}>
+            <View key={id} style={styles.section} wrap={false}>
               <Text style={styles.name}>{name}</Text>
-              <Text style={styles.text}>{address}</Text>
-              <Text style={styles.text}>{contacts}</Text>
-              <Text style={styles.text}>{additionalData}</Text>
+              {address && (
+                <Text style={styles.text}>
+                  <Text style={styles.bold}>Адрес: </Text>
+                  {address}
+                </Text>
+              )}
+              {contacts && (
+                <Text style={styles.text}>
+                  <Text style={styles.bold}>Контакты: </Text>
+                  {contacts}
+                </Text>
+              )}
+              {additionalData && (
+                <Text style={styles.text}>
+                  <Text style={styles.bold}>Дополнительно: </Text>
+                  {additionalData}
+                </Text>
+              )}
             </View>
           )
         )}

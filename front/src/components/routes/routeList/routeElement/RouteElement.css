@@ -1,24 +1,33 @@
 .route-element {
-    background: var(--element-background);
     color: var(--font-color);
-    padding: 0.5rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
     position: relative;
 }
 
+.route-element + .route-element {
+    border-top: 1px solid rgb(211, 211, 211);
+}
+
+.route-element > * + * {
+    margin-top: .5rem;
+}
+
 .remove-btn {
-    width: 25px;
-    height: 25px;
-    font-size: 1.5rem;
-    padding: 0;
-    cursor: pointer;
+    margin: 0;
     position: absolute;
-    right: 10px;
-    top: calc(50% - 13px);
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 0;
+    background: 0;
+    cursor: pointer;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.remove-icon {
+    transition: .2s;
+}
+
+.remove-icon:hover {
+    fill: #e51010;
 }
 
 .url {
@@ -28,8 +37,4 @@
 
 .url:hover {
     text-decoration: underline;
-}
-
-.remove-btn:hover {
-    background: #a5aeb1;
 }

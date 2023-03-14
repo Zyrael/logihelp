@@ -9,10 +9,12 @@
     "install:front": "cd ./front && yarn",
     "postinstall": "yarn run install:server && yarn run install:front",
     "server": "cd ./server && yarn run serve",
-    "front": "cd ./front && yarn run dev",
-    "start": "yarn concurrently \"yarn run server\" \"yarn run front\"",
-    "generate": "cd ./server && yarn prisma generate",
-    "go": "cd ./front"
+    "dev": "cd ./front && yarn run dev",
+    "prod": "serve ./front/dist",
+    "start:dev": "yarn concurrently \"yarn run server\" \"yarn run dev\"",
+    "build:front": "cd ./front && yarn run build",
+    "start:prod": "yarn concurrently \"yarn run server\" \"yarn run prod\"",
+    "generate": "cd ./server && yarn prisma generate"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",

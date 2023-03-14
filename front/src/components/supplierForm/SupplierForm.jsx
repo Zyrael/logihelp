@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import cn from "classnames";
 import { useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -24,6 +25,14 @@ export function SupplierForm({ content }) {
   const [address, setAddress] = useState(currAddress);
   const [contacts, setContacts] = useState(currContacts);
   const [additionalData, setAdditionalData] = useState(currData);
+  const [validated, setValidated] = useState(true);
+
+  const validate = (value) => setValidated(value.trim() !== "");
+
+  const onNameChange = (e) => {
+    setValidated(true);
+    setName(e.target.value);
+  };
 
   const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
   const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
@@ -35,22 +44,22 @@ export function SupplierForm({ content }) {
     create: () =>
       addSupplier({
         variables: {
-          name,
+          name: name.trim(),
           url,
-          address,
-          contacts,
-          additionalData,
+          address: address.trim(),
+          contacts: contacts.trim(),
+          additionalData: additionalData.trim(),
         },
       }),
     edit: () =>
       updateSupplier({
         variables: {
           updateSupplierId: id,
-          name,
+          name: name.trim(),
           url,
-          address,
-          contacts,
-          additionalData,
+          address: address.trim(),
+          contacts: contacts.trim(),
+          additionalData: additionalData.trim(),
         },
       }),
   };
@@ -67,6 +76,7 @@ export function SupplierForm({ content }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validated) return;
     submitAction[mode]();
     dispatch(setMode({ mode: "closed" }));
   };
@@ -78,9 +88,12 @@ export function SupplierForm({ content }) {
           type="text"
           placeholder="Имя"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={onNameChange}
+          onBlur={() => validate(name)}
+          className={cn("name-input", { unvalidated: !validated })}
           required
         />
+        {!validated && <span className="unvalidated-span">Введите имя</span>}
         <input
           type="url"
           placeholder="Сайт"

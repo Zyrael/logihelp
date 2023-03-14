@@ -15,7 +15,7 @@
 .modal-body {
     padding: 1rem;
     height: 100%;
-    max-height: 600px;
+    max-height: 80vh;
     width: 100%;
     max-width: 800px;
     background: white;

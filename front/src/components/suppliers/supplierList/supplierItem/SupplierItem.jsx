@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../../routes/routeList/routeListSlice";
-import { ReactComponent as Pencil } from "../../../../assets/icons/pencil.svg";
+import { ReactComponent as Pencil } from "../../../../assets/icons/edit.svg";
 import { setMode } from "../../../modal/modalslice";
 import "./SupplierItem.css";
 
@@ -14,7 +14,7 @@ export function SupplierItem({ supplier }) {
   };
 
   const [showButton, setShowButton] = useState(false);
-  const btnClasses = cn("edit-btn", { visible: showButton });
+  const editBtnClasses = cn("edit-btn", { visible: showButton });
   return (
     <li
       tabIndex={0}
@@ -24,7 +24,11 @@ export function SupplierItem({ supplier }) {
       onMouseLeave={() => setShowButton(false)}
     >
       {supplier.name}
-      <button type="button" className={btnClasses} onClick={handleEditButton}>
+      <button
+        type="button"
+        className={editBtnClasses}
+        onClick={handleEditButton}
+      >
         <Pencil className="edit-icon" />
       </button>
     </li>

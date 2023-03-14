@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierList } from "./supplierList";
 import { setMode } from "../modal/modalslice";
+import { ReactComponent as Glass } from "../../assets/icons/glass.svg";
 import "./Suppliers.css";
 
 export function Suppliers() {
@@ -21,6 +22,7 @@ export function Suppliers() {
       {!loading && !error && (
         <div className="suppliers-container">
           <div className="top-row">
+            <Glass className="glass" />
             <input
               id="search-bar"
               className="search-bar"

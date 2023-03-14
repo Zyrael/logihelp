@@ -19,7 +19,7 @@ export function Routes() {
   return (
     <div className="routes">
       <div className="top-row">
-        <span>Маршрутный лист</span>
+        <div className="routes-title">Маршрутный лист</div>
         <button
           type="button"
           className="blue-btn clear"

@@ -33,17 +33,17 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    scrollbar-width: thin;
-    scrollbar-color: var(--main-blue) white;
+    /*scrollbar-width: thin;*/
+    /*scrollbar-color: var(--main-blue) white;*/
 }
 
-*::-webkit-scrollbar {
-    width: 8px;
-}
+/**::-webkit-scrollbar {*/
+/*    width: 8px;*/
+/*}*/
 
-*::-webkit-scrollbar-thumb {
-    background: var(--main-blue);
-}
+/**::-webkit-scrollbar-thumb {*/
+/*    background: var(--main-blue);*/
+/*}*/
 
 .blue-btn {
     width: 40px;

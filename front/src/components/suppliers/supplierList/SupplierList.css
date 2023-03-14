@@ -1,15 +1,9 @@
 .suppliers-list-container {
     margin-top: 1rem;
-    /*margin-right: -.7rem;*/
     overflow: auto;
 }
 
 .suppliers-list {
     list-style: none;
-    font-size: 1.2rem;
 }
 
-.suppliers-list:nth-last-child(1) {
-    border-bottom: 1px solid rgb(211, 211, 211);
-
-}

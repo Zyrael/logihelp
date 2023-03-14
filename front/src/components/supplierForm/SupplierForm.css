@@ -10,29 +10,52 @@
 
 .supplier-form > input {
     width: 100%;
-    margin-right: .5rem;
-    padding: 5px 0 5px 15px;
+    padding: 5px 15px;
     font-size: 1.2rem;
+    font-weight: 300;
     height: 40px;
-    background: #d7d7d7;
+    background: #f5f7f9;
     outline: none;
-    border: 0;
+    border: 1px solid rgb(211, 211, 211);
+}
+
+.supplier-form > input::placeholder {
+    color: rgb(79, 114, 138);
 }
 
 .supplier-form > * + * {
     margin-top: 1rem;
 }
 
-textarea {
+.name-input.unvalidated {
+    border: 1px solid red;
+}
+
+.name-input.unvalidated::placeholder {
+    color: red;
+}
+
+.unvalidated-span {
+    margin-top: 2px;
+    color: red;
+    font-weight: 300;
+}
+
+.supplier-form > textarea {
     resize: none;
     width: 100%;
-    margin-right: .5rem;
-    padding: 5px 0 5px 15px;
+    padding: 5px 15px;
     font-size: 1.2rem;
-    height: 80px;
+    font-weight: 300;
+    height: 120px;
     background: #f5f7f9;
     outline: none;
-    border: 0;
+    border: 1px solid rgb(211, 211, 211);
+}
+
+.supplier-form > textarea::placeholder {
+    color: rgb(79, 114, 138);
+
 }
 
 .footer {

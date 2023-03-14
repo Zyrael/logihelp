@@ -1,9 +1,13 @@
 .supplier-item {
-    padding: 1rem 2rem 1rem 15px;
+    padding: 1rem 2rem 1rem 1rem;
     cursor: pointer;
     color: var(--font-color);
     transition: background .2s;
     position: relative;
+    font-size: 1.2rem;
+}
+
+.supplier-item + .supplier-item {
     border-top: 1px solid rgb(211, 211, 211);
 }
 
@@ -13,27 +17,26 @@
 
 .edit-btn {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 30px;
-    height: 30px;
+    top: 0.75rem;
+    right: 0.75rem;
     cursor: pointer;
     border: 0;
-    border-radius: 5px;
     background: 0;
-    margin-left: auto;
-    transition: background .2s;
     opacity: 0;
     visibility: hidden;
 }
 
 .edit-icon {
-    width: 20px;
-    height: 20px;
+    padding: 0;
+    fill: black;
+    width: 30px;
+    height: 30px;
     transition: .2s;
 }
 
 .edit-icon:hover {
-    fill: blue;
+    fill: var(--main-blue);
 }
+
+
 
