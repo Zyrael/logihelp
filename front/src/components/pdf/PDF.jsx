@@ -20,30 +20,36 @@ Font.register({
 
 const styles = StyleSheet.create({
   page: {
-    padding: 15,
+    padding: 30,
+    paddingRight: 70,
+    fontSize: 16,
+    fontFamily: "Roboto",
     flexDirection: "column",
     justifyContent: "flex-start",
     backgroundColor: "#E4E4E4",
   },
 
+  header: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 10,
+  },
+
   section: {
     marginTop: 20,
-    padding: 10,
+    paddingLeft: 10,
   },
 
   name: {
-    fontFamily: "Roboto",
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 5,
   },
 
   text: {
     marginTop: 5,
-    fontFamily: "Roboto",
   },
 
   bold: {
-    fontFamily: "Roboto",
     fontWeight: "bold",
   },
 });
@@ -54,6 +60,7 @@ export function PDF() {
   const document = (
     <Document>
       <Page style={styles.page} wrap size="A4">
+        <Text style={styles.header}>Маршрутный лист</Text>
         {routes.map(
           ({
             id,

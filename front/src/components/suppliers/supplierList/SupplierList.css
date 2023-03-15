@@ -1,9 +1,17 @@
 .suppliers-list-container {
     margin-top: 1rem;
     overflow: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .suppliers-list {
+    width: 100%;
     list-style: none;
+}
+
+.nothing-found {
+    font-size: 1.2rem;
+    padding-top: 2rem;
 }
 

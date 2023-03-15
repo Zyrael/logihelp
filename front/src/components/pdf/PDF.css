@@ -1,6 +1,6 @@
 .pdf {
-    width: 100%;
-    padding: 1rem 3rem;
+    min-height: 700px;
+    min-width: 650px;
 }
 
 

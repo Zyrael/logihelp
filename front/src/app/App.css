@@ -1,14 +1,16 @@
 .app {
-  display: flex;
-  justify-content: center;
-  padding: 1em;
-  background: var(--main-background);
-  height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    background: var(--main-background);
+    height: 100vh;
 }
 
 .app-inner {
-  display: flex;
-  justify-content: start;
-  max-width: 1440px;
-  width: 100%;
+    display: flex;
+    justify-content: start;
+    max-width: 1440px;
+    width: 100%;
 }
+
+

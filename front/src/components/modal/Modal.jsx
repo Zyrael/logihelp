@@ -5,6 +5,7 @@ import { SupplierForm } from "../supplierForm";
 import { setMode } from "./modalslice";
 import "./Modal.css";
 import { PDF } from "../pdf";
+import { ReactComponent as Times } from "../../assets/icons/times.svg";
 
 const noContent = {
   id: "",
@@ -39,7 +40,7 @@ export function Modal() {
           className="close-btn"
           onClick={() => dispatch(setMode({ mode: "closed" }))}
         >
-          &times;
+          <Times className="close-btn-icon" />
         </button>
       </div>
     </div>

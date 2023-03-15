@@ -1,5 +1,6 @@
 .supplier-form-container {
-    width: 500px;
+    padding: 2rem 2rem 4rem;
+    min-width: 600px;
 }
 
 .supplier-form {
@@ -47,7 +48,7 @@
     padding: 5px 15px;
     font-size: 1.2rem;
     font-weight: 300;
-    height: 120px;
+    height: 140px;
     background: #f5f7f9;
     outline: none;
     border: 1px solid rgb(211, 211, 211);

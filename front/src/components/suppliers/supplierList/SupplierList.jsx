@@ -9,16 +9,18 @@ export function SupplierList({ suppliers, searchValue }) {
 
   return (
     <div className="suppliers-list-container">
-      {showSuppliers.length ? (
+      {suppliers.length === 0 && (
+        <div className="nothing-found">Добавьте первого поставщика</div>
+      )}
+      {suppliers.length !== 0 && showSuppliers.length === 0 && (
+        <div className="nothing-found">Ничего не найдено</div>
+      )}
+      {showSuppliers.length !== 0 && (
         <ul className="suppliers-list">
           {showSuppliers.map((supplier) => (
             <SupplierItem key={supplier.id} supplier={supplier} />
           ))}
         </ul>
-      ) : (
-        <div className="span-container">
-          <span>Nothing here.</span>
-        </div>
       )}
     </div>
   );
