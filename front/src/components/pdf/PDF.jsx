@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     flexDirection: "column",
     justifyContent: "flex-start",
-    backgroundColor: "#E4E4E4",
   },
 
   header: {
