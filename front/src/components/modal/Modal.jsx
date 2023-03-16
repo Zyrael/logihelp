@@ -34,7 +34,7 @@ export function Modal() {
       })}
     >
       <div className="modal-body">
-        <div className="modal-content">{mapContentType[mode]()}</div>
+        {mapContentType[mode]()}
         <button
           type="button"
           className="close-btn"
