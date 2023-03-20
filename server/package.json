@@ -1,9 +1,9 @@
 {
   "private": true,
   "type": "module",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon index.js"
   },
   "devDependencies": {
     "prisma": "^4.9.0"
