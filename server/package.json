@@ -3,8 +3,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "serve": "nodemon server.js",
-    "build": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "devDependencies": {
     "prisma": "^4.9.0"

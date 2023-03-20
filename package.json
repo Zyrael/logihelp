@@ -8,7 +8,7 @@
     "install:server": "cd ./server && yarn",
     "install:front": "cd ./front && yarn",
     "postinstall": "yarn run install:server && yarn run install:front",
-    "server": "cd ./server && yarn run serve",
+    "server": "cd ./server && yarn run start",
     "dev": "cd ./front && yarn run dev",
     "prod": "serve ./front/dist",
     "start:dev": "yarn concurrently \"yarn run server\" \"yarn run dev\"",
