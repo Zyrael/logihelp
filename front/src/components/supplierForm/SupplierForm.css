@@ -1,5 +1,5 @@
 .supplier-form-container {
-    padding: 2rem 2rem 4rem;
+    padding: 2rem;
     min-width: 600px;
 }
 
@@ -60,12 +60,7 @@
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     display: flex;
-    padding: .7rem;
 }
 
 .buttons {
@@ -73,18 +68,21 @@
 }
 
 .delete {
-    border: 0;
     width: 120px;
     height: 40px;
     font-size: 1rem;
-    background: rgb(185, 0, 0);
-    color: white;
     cursor: pointer;
     margin-right: .5rem;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .delete:hover {
-    background: rgb(208, 49, 49)
+    background-color: #d50000;
 }
 
 .submit {
@@ -92,11 +90,13 @@
     width: 120px;
     height: 40px;
     font-size: 1rem;
-    background: rgb(42, 155, 42);
+    background: var(--main-blue);
     color: white;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .submit:hover {
-    background: rgb(49, 182, 49);
+    background: var(--hover-blue-dark);
 }

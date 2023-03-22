@@ -9,6 +9,7 @@ import {
   DELETE_SUPPLIER,
 } from "../../graphql";
 import { setMode } from "../modal/modalslice";
+import { DeletePrompt } from "./deletePrompt/index.js";
 import "./SupplierForm.css";
 
 export function SupplierForm({ content }) {
@@ -134,6 +135,7 @@ export function SupplierForm({ content }) {
           </div>
         </div>
       </form>
+      {}
     </div>
   );
 }

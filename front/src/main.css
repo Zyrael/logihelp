@@ -2,6 +2,7 @@
     --main-background: rgb(231, 234, 235);
     --main-blue: rgb(29, 161, 242);
     --hover-blue: rgb(88, 181, 236);
+    --hover-blue-dark: rgb(22, 136, 203);
     --disabled-blue: rgb(155, 208, 245);
     --element-background: rgb(231, 234, 235);
     --element-hover: rgb(230, 242, 250);
@@ -33,17 +34,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    /*scrollbar-width: thin;*/
-    /*scrollbar-color: var(--main-blue) white;*/
 }
-
-/**::-webkit-scrollbar {*/
-/*    width: 8px;*/
-/*}*/
-
-/**::-webkit-scrollbar-thumb {*/
-/*    background: var(--main-blue);*/
-/*}*/
 
 .blue-btn {
     width: 40px;

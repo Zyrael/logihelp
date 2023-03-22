@@ -28,11 +28,7 @@ export function Modal() {
   const dispatch = useDispatch();
   const mode = useSelector((state) => state.modal.mode);
   return (
-    <div
-      className={cn({
-        "modal-backdrop": true,
-      })}
-    >
+    <div className="modal-backdrop">
       <div className="modal-body">
         <div className="modal-content">{mapContentType[mode]()}</div>
         <button
