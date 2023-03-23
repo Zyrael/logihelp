@@ -13,7 +13,7 @@ import { store } from "./store";
 import { LoginScreen } from "./components";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 });
 
