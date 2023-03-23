@@ -2,16 +2,27 @@ import React, { useState } from "react";
 import "./LoginScreen.css";
 
 export function LoginScreen() {
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (userName === "admin" && password === "admin") {
-      const expires = new Date();
-      expires.setMinutes(expires.getMinutes() + 60);
-      document.cookie = `loggedIn=true; expires=${expires.toUTCString()}; path=/;`;
-      window.location.href = "/routeList";
+    const res = await fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (res.ok) {
+      const { loggedIn } = await res.json();
+      if (loggedIn) {
+        const expires = new Date();
+        expires.setMinutes(expires.getMinutes() + 1);
+        document.cookie = `loggedIn=true; expires=${expires.toUTCString()}; path=/;`;
+        window.location.href = "/routeList";
+      }
     }
   };
 
@@ -22,8 +33,8 @@ export function LoginScreen() {
         <form onSubmit={handleSubmit} className="login-form">
           <input
             type="text"
-            value={userName}
-            onChange={(e) => setUserName(e.currentTarget.value)}
+            value={username}
+            onChange={(e) => setUsername(e.currentTarget.value)}
             className="username"
             placeholder="Логин"
           />

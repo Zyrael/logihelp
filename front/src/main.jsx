@@ -17,6 +17,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+await fetch("http://localhost:4000/login");
+
 const cookies = document.cookie.split(";");
 const loggedIn = cookies.find((c) => c.startsWith("loggedIn="));
 

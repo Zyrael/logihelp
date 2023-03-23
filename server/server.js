@@ -4,10 +4,32 @@ import fastifyApollo, {
   fastifyApolloDrainPlugin,
 } from "@as-integrations/fastify";
 import { PrismaClient } from "@prisma/client";
+import cookie from "@fastify/cookie";
+import cors from "@fastify/cors";
 import { readFile } from "fs/promises";
 
-const fastify = Fastify();
 const prisma = new PrismaClient();
+const fastify = Fastify();
+await fastify.register(cors);
+await fastify.register(cookie, {
+  secret: "my-secret",
+  hook: false,
+  parseOptions: {},
+});
+
+// fastify.get("/login", async (request) => {
+//   console.log(request.cookies);
+// });
+
+fastify.post("/login", async (request, reply) => {
+  const { username, password } = JSON.parse(request.body);
+  const loggedIn = username === "admin" && password === "admin";
+  if (loggedIn) {
+    reply.setCookie("token", "abracadabra").send({ loggedIn });
+  } else {
+    reply.setCookie("test", "test").send({ loggedIn });
+  }
+});
 
 const typeDefs = await readFile("./schema.graphql", { encoding: "utf-8" });
 const resolvers = {
@@ -60,8 +82,7 @@ await fastify.register(fastifyApollo(apollo));
 const port = 4000;
 const start = async () => {
   try {
-    const url = await fastify.listen({ port });
-    console.log(`Server ready at ${url}/graphql`);
+    await fastify.listen({ port });
   } catch (e) {
     fastify.log.error(e);
     process.exit(1);
