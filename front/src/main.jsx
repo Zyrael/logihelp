@@ -17,10 +17,15 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-await fetch("http://localhost:4000/login");
+const loggedIn = (document.cookie.match(/loggedIn=\w+/g) ?? [])[0];
 
-const cookies = document.cookie.split(";");
-const loggedIn = cookies.find((c) => c.startsWith("loggedIn="));
+const sendCookie = async () => {
+  const res = await fetch("http://localhost:4000/login", {
+    method: "GET",
+    credentials: "include",
+  });
+  console.log(res.headers);
+};
 
 const router = createBrowserRouter([
   {
@@ -62,6 +67,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ApolloProvider client={client}>
+        <button type="button" onClick={sendCookie}>
+          Send
+        </button>
         <RouterProvider router={router} />
       </ApolloProvider>
     </Provider>

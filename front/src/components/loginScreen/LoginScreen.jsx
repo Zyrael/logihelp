@@ -7,6 +7,7 @@ export function LoginScreen() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log({ username, password });
     const res = await fetch("http://localhost:4000/login", {
       method: "POST",
       headers: {
@@ -19,7 +20,7 @@ export function LoginScreen() {
       const { loggedIn } = await res.json();
       if (loggedIn) {
         const expires = new Date();
-        expires.setMinutes(expires.getMinutes() + 1);
+        expires.setMinutes(expires.getMinutes() + 10);
         document.cookie = `loggedIn=true; expires=${expires.toUTCString()}; path=/;`;
         window.location.href = "/routeList";
       }

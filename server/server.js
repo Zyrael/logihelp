@@ -9,25 +9,27 @@ import cors from "@fastify/cors";
 import { readFile } from "fs/promises";
 
 const prisma = new PrismaClient();
-const fastify = Fastify();
-await fastify.register(cors);
+const fastify = Fastify({ logger: true });
+await fastify.register(cors, {
+  origin: "http://localhost:5173",
+  credentials: true,
+});
 await fastify.register(cookie, {
   secret: "my-secret",
   hook: false,
   parseOptions: {},
 });
 
-// fastify.get("/login", async (request) => {
-//   console.log(request.cookies);
-// });
+fastify.get("/login", async (req, rep) => {
+  console.log(req.headers.cookie);
+  rep.send({ hello: "world" });
+});
 
 fastify.post("/login", async (request, reply) => {
-  const { username, password } = JSON.parse(request.body);
+  const { username, password } = request.body;
   const loggedIn = username === "admin" && password === "admin";
   if (loggedIn) {
-    reply.setCookie("token", "abracadabra").send({ loggedIn });
-  } else {
-    reply.setCookie("test", "test").send({ loggedIn });
+    reply.cookie("secret-value", "dadsassda").send({ loggedIn });
   }
 });
 
