@@ -6,7 +6,13 @@ import fastifyApollo, {
 import { PrismaClient } from "@prisma/client";
 import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { readFile } from "fs/promises";
+
+const hashedPassword = await bcrypt.hash("admin", 12);
+const user = { username: "admin", password: hashedPassword };
+const secret = "0N%6ZQ4&*GBBw*%4";
 
 const prisma = new PrismaClient();
 const fastify = Fastify({ logger: true });
@@ -27,10 +33,17 @@ fastify.get("/login", async (req, rep) => {
 
 fastify.post("/login", async (request, reply) => {
   const { username, password } = request.body;
-  const loggedIn = username === "admin" && password === "admin";
-  if (loggedIn) {
-    reply.cookie("secret-value", "dadsassda").send({ loggedIn });
+  const loggedIn =
+    username === user.username &&
+    (await bcrypt.compare(password, user.password));
+
+  if (!loggedIn) {
+    reply.status(400).send({ message: "Not logged" });
   }
+
+  const token = jwt.sign({ username }, secret, { expiresIn: "1h" });
+
+  reply.send({ token });
 });
 
 const typeDefs = await readFile("./schema.graphql", { encoding: "utf-8" });

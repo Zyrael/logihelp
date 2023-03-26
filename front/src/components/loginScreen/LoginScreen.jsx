@@ -14,6 +14,7 @@ export function LoginScreen() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
+      credentials: "include",
     });
 
     if (res.ok) {

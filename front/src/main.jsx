@@ -11,21 +11,16 @@ import { App } from "./app";
 import "./main.css";
 import { store } from "./store";
 import { LoginScreen } from "./components";
+import { useAuth } from "./hooks/auth.hook";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "/graphql",
   cache: new InMemoryCache(),
 });
 
-const loggedIn = (document.cookie.match(/loggedIn=\w+/g) ?? [])[0];
+const { token, login, logout } = useAuth();
 
-const sendCookie = async () => {
-  const res = await fetch("http://localhost:4000/login", {
-    method: "GET",
-    credentials: "include",
-  });
-  console.log(res.headers);
-};
+const loggedIn = (document.cookie.match(/loggedIn=\w+/g) ?? [])[0];
 
 const router = createBrowserRouter([
   {
@@ -35,13 +30,13 @@ const router = createBrowserRouter([
         return redirect("/routeList");
       }
       if (!loggedIn) {
-        return redirect("/login");
+        return redirect("/loginScreen");
       }
       return null;
     },
   },
   {
-    path: "/login",
+    path: "/loginScreen",
     element: <LoginScreen />,
     loader: () => {
       if (loggedIn) {
@@ -55,7 +50,7 @@ const router = createBrowserRouter([
     element: <App />,
     loader: () => {
       if (!loggedIn) {
-        return redirect("/login");
+        return redirect("/loginScreen");
       }
       return null;
     },
@@ -67,9 +62,6 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ApolloProvider client={client}>
-        <button type="button" onClick={sendCookie}>
-          Send
-        </button>
         <RouterProvider router={router} />
       </ApolloProvider>
     </Provider>
