@@ -10,13 +10,14 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { App, AuthPage } from "./pages";
 import "./main.css";
 import { store } from "./store";
+import { useAuth } from "./hooks/auth.hook";
 
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
 });
 
-const token = localStorage.getItem("token");
+const { token, login } = useAuth();
 const isAuthenticated = !!token;
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/authPage",
-    element: <AuthPage />,
+    element: <AuthPage login={login} />,
     loader: () => {
       if (isAuthenticated) {
         return redirect("/");

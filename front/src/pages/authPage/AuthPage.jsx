@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AuthPage.css";
 
-export function AuthPage() {
+export function AuthPage({ login }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -30,7 +30,7 @@ export function AuthPage() {
 
     if (res.ok) {
       const { token } = body;
-      localStorage.setItem("token", token);
+      login(token);
     }
 
     setWrongData(body.message === "Not logged");
