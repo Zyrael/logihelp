@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Routes.css";
+import "./RouteSheet.css";
 import { removeAllRoutes } from "./routeList/routeListSlice";
 import { setMode } from "../modal/modalslice";
 import { RouteList } from "./routeList";
 import { ReactComponent as Times } from "../../assets/icons/times.svg";
 import { ReactComponent as Print } from "../../assets/icons/print.svg";
 
-export function Routes() {
+export function RouteSheet() {
   const routes = useSelector((state) => state.routeList.routes);
   const dispatch = useDispatch();
   const handleRemoveRoutes = () => {
@@ -17,9 +17,9 @@ export function Routes() {
     dispatch(setMode({ mode: "print" }));
   };
   return (
-    <div className="routes">
-      <div className="top-row">
-        <div className="routes-title">Маршрутный лист</div>
+    <div className="route-sheet">
+      <div className="route-sheet-header">
+        <div className="route-sheet-title">Маршрутный лист</div>
         <button
           type="button"
           className="blue-btn clear"

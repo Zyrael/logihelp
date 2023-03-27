@@ -1,4 +1,4 @@
-.supplier-item {
+.supplier {
     padding: 1rem 2rem 1rem 1rem;
     cursor: pointer;
     color: var(--font-color);
@@ -7,15 +7,15 @@
     font-size: 1.2rem;
 }
 
-.supplier-item + .supplier-item {
+.supplier + .supplier {
     border-top: 1px solid rgb(211, 211, 211);
 }
 
-.supplier-item:hover {
+.supplier:hover {
     background: var(--element-hover);
 }
 
-.edit-btn {
+.edit-supplier-btn {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
@@ -37,6 +37,3 @@
 .edit-icon:hover {
     fill: var(--main-blue);
 }
-
-
-

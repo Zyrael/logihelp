@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SupplierForm } from "../supplierForm";
 import { setMode } from "./modalslice";
 import "./Modal.css";
-import { PDF } from "../pdf";
+import { PDFView } from "../pdfView";
 import { ReactComponent as Times } from "../../assets/icons/times.svg";
 
 const noContent = {
@@ -21,7 +21,7 @@ const mapContentType = {
     <SupplierForm content={useSelector((state) => state.modal.currSupplier)} />
   ),
   create: () => <SupplierForm content={noContent} />,
-  print: () => <PDF />,
+  print: () => <PDFView />,
 };
 
 export function Modal() {

@@ -4,7 +4,6 @@ import fastifyApollo, {
   fastifyApolloDrainPlugin,
 } from "@as-integrations/fastify";
 import { PrismaClient } from "@prisma/client";
-import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -17,31 +16,20 @@ const secret = "0N%6ZQ4&*GBBw*%4";
 const prisma = new PrismaClient();
 const fastify = Fastify({ logger: true });
 await fastify.register(cors, {
-  origin: "http://localhost:5173",
-  credentials: true,
-});
-await fastify.register(cookie, {
-  secret: "my-secret",
-  hook: false,
-  parseOptions: {},
-});
-
-fastify.get("/login", async (req, rep) => {
-  console.log(req.headers.cookie);
-  rep.send({ hello: "world" });
+  origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
 });
 
 fastify.post("/login", async (request, reply) => {
   const { username, password } = request.body;
-  const loggedIn =
+  const isAuthenticated =
     username === user.username &&
     (await bcrypt.compare(password, user.password));
 
-  if (!loggedIn) {
+  if (!isAuthenticated) {
     reply.status(400).send({ message: "Not logged" });
   }
 
-  const token = jwt.sign({ username }, secret, { expiresIn: "1h" });
+  const token = jwt.sign({ username }, secret);
 
   reply.send({ token });
 });

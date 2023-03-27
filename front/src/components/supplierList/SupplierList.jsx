@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
-import { SupplierList } from "./supplierList";
 import { setMode } from "../modal/modalslice";
 import { ReactComponent as Glass } from "../../assets/icons/glass.svg";
 import { ReactComponent as Times } from "../../assets/icons/times.svg";
 import { ReactComponent as Loading } from "../../assets/icons/loading.svg";
-import "./Suppliers.css";
+import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
+import { SupplierElement } from "./supplierElement";
 
-export function Suppliers() {
+export function SupplierList() {
   const { loading, error, data } = useQuery(GET_SUPPLIERS);
+  const [suppliers, setSuppliers] = useState([]);
+
+  useEffect(() => {
+    if (!loading && !error) setSuppliers(data.getSuppliers);
+  }, [loading]);
 
   const [searchValue, setSearchValue] = useState("");
   const [showClear, setShowClear] = useState(false);
+
+  const showSuppliers = suppliers.filter((supplier) =>
+    supplier.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   const handleChangeSearch = (e) => {
     setShowClear(e.currentTarget.value !== "");
@@ -31,8 +40,8 @@ export function Suppliers() {
   };
 
   return (
-    <div className="suppliers-container">
-      <div className="top-row">
+    <div className="supplier-list-container">
+      <div className="supplier-list-header">
         <Glass className="glass" />
         <input
           id="search-bar"
@@ -70,7 +79,21 @@ export function Suppliers() {
         </div>
       )}
       {!loading && !error && (
-        <SupplierList suppliers={data.getSuppliers} searchValue={searchValue} />
+        <div className="supplies-list-main">
+          {suppliers.length === 0 && (
+            <div className="nothing-found">Добавьте первого поставщика</div>
+          )}
+          {suppliers.length !== 0 && showSuppliers.length === 0 && (
+            <div className="nothing-found">Ничего не найдено</div>
+          )}
+          {showSuppliers.length !== 0 && (
+            <ul className="supplier-list">
+              {showSuppliers.map((supplier) => (
+                <SupplierElement key={supplier.id} supplier={supplier} />
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );

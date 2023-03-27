@@ -11,7 +11,7 @@ import {
 } from "@react-pdf/renderer";
 import roboto from "../../fonts/roboto/Roboto-Regular.ttf";
 import robotoBold from "../../fonts/roboto/Roboto-Bold.ttf";
-import "./PDF.css";
+import "./PDFView.css";
 
 Font.register({
   family: "Roboto",
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function PDF() {
+export function PDFView() {
   const routes = useSelector((state) => state.routeList.routes);
 
   const document = (

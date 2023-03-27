@@ -1,31 +1,39 @@
 import React, { useState } from "react";
-import "./LoginScreen.css";
+import "./AuthPage.css";
 
-export function LoginScreen() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export function AuthPage() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [wrongData, setWrongData] = useState(false);
+
+  const handleChange = (e) => {
+    setWrongData(false);
+    setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
+  };
 
   const handleSubmit = async (e) => {
+    const { username, password } = formData;
+
     e.preventDefault();
-    console.log({ username, password });
-    const res = await fetch("http://localhost:4000/login", {
+
+    const res = await fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
-      credentials: "include",
     });
 
+    const body = await res.json();
+
     if (res.ok) {
-      const { loggedIn } = await res.json();
-      if (loggedIn) {
-        const expires = new Date();
-        expires.setMinutes(expires.getMinutes() + 10);
-        document.cookie = `loggedIn=true; expires=${expires.toUTCString()}; path=/;`;
-        window.location.href = "/routeList";
-      }
+      const { token } = body;
+      localStorage.setItem("token", token);
     }
+
+    setWrongData(body.message === "Not logged");
   };
 
   return (
@@ -35,18 +43,21 @@ export function LoginScreen() {
         <form onSubmit={handleSubmit} className="login-form">
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.currentTarget.value)}
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
             className="username"
             placeholder="Логин"
           />
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.currentTarget.value)}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             className="password"
             placeholder="Пароль"
           />
+          {wrongData && <p>Неверный логин/пароль</p>}
           <button type="submit" className="login-btn">
             Войти
           </button>
