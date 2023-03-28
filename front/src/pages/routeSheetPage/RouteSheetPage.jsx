@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Modal, SupplierList, RouteSheet } from "../../components";
-import "./App.css";
+import "./RouteSheetPage.css";
 
-export function App() {
+export function RouteSheetPage() {
   const modalMode = useSelector((state) => state.modal.mode);
 
   return (

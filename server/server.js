@@ -16,7 +16,11 @@ const secret = "0N%6ZQ4&*GBBw*%4";
 const prisma = new PrismaClient();
 const fastify = Fastify({ logger: true });
 await fastify.register(cors, {
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+  origin: [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+  ],
 });
 
 fastify.post("/login", async (request, reply) => {
