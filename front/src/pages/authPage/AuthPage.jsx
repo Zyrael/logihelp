@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AuthPage.css";
+import { useHttp } from "../../hooks/http.hook";
 
 export function AuthPage({ login }) {
   const [formData, setFormData] = useState({
@@ -8,33 +9,51 @@ export function AuthPage({ login }) {
   });
   const [wrongData, setWrongData] = useState(false);
 
+  const { loading, request, error, clearError } = useHttp();
+
   const handleChange = (e) => {
     setWrongData(false);
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
   };
 
   const handleSubmit = async (e) => {
-    const { username, password } = formData;
-
     e.preventDefault();
 
-    const res = await fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
-
-    const body = await res.json();
-
-    if (res.ok) {
-      const { token } = body;
-      login(token);
+    try {
+      const data = await request("http://localhost:4000/login", "POST", {
+        ...formData,
+      });
+      login(data.token);
+    } catch (err) {
+      if (error === "Not logged") {
+        setWrongData(true);
+        clearError();
+      }
     }
-
-    setWrongData(body.message === "Not logged");
   };
+
+  // const handleSubmit = async (e) => {
+  //   const { username, password } = formData;
+  //
+  //   e.preventDefault();
+  //
+  //   const res = await fetch("/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ username, password }),
+  //   });
+  //
+  //   const body = await res.json();
+  //
+  //   if (res.ok) {
+  //     const { token } = body;
+  //     login(token);
+  //   }
+  //
+  //   setWrongData(body.message === "Not logged");
+  // };
 
   return (
     <div className="login-screen">
