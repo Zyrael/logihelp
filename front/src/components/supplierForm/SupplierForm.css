@@ -61,24 +61,16 @@
 
 .footer {
     display: flex;
+    height: 3rem;
 }
 
 .buttons {
-    margin-left: auto;
+    width: 100%;
 }
 
 .delete {
-    width: 120px;
-    height: 40px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-right: .5rem;
     background-color: red;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .delete:hover {
@@ -86,17 +78,14 @@
 }
 
 .submit {
-    border: 0;
-    width: 120px;
-    height: 40px;
-    font-size: 1rem;
     background: var(--main-blue);
     color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .submit:hover {
     background: var(--hover-blue-dark);
+}
+
+.delete + .submit {
+    margin-left: .5rem;
 }

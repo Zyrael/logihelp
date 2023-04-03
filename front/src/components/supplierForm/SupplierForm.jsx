@@ -9,30 +9,31 @@ import {
   DELETE_SUPPLIER,
 } from "../../graphql";
 import { setMode } from "../modal/modalslice";
-import { DeletePrompt } from "./deletePrompt/index.js";
+import { DeletePrompt } from "./deletePrompt";
 import "./SupplierForm.css";
 
 export function SupplierForm({ content }) {
-  const {
-    id,
-    name: currName,
-    url: currUrl,
-    address: currAddress,
-    contacts: currContacts,
-    additionalData: currData,
-  } = content;
-  const [name, setName] = useState(currName);
-  const [url, setUrl] = useState(currUrl);
-  const [address, setAddress] = useState(currAddress);
-  const [contacts, setContacts] = useState(currContacts);
-  const [additionalData, setAdditionalData] = useState(currData);
   const [validated, setValidated] = useState(true);
+
+  const [formData, setFormData] = useState(content);
+
+  const trimData = () => {
+    const keys = Object.keys(formData);
+    keys.forEach((key) => {
+      formData[key] = formData[key].trim();
+    });
+  };
+  const handleChange = (e) => {
+    console.log(formData);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const [deleting, setDeleting] = useState(false);
 
   const validate = (value) => setValidated(value.trim() !== "");
 
-  const onNameChange = (e) => {
+  const handleNameChange = (e) => {
     setValidated(true);
-    setName(e.target.value);
+    handleChange(e);
   };
 
   const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
@@ -45,22 +46,22 @@ export function SupplierForm({ content }) {
     create: () =>
       addSupplier({
         variables: {
-          name: name.trim(),
-          url,
-          address: address.trim(),
-          contacts: contacts.trim(),
-          additionalData: additionalData.trim(),
+          name: formData.name,
+          url: formData.url,
+          address: formData.address,
+          contacts: formData.contacts,
+          additionalData: formData.additionalData,
         },
       }),
     edit: () =>
       updateSupplier({
         variables: {
-          updateSupplierId: id,
-          name: name.trim(),
-          url,
-          address: address.trim(),
-          contacts: contacts.trim(),
-          additionalData: additionalData.trim(),
+          updateSupplierId: formData.id,
+          name: formData.name,
+          url: formData.url,
+          address: formData.address,
+          contacts: formData.contacts,
+          additionalData: formData.additionalData,
         },
       }),
   };
@@ -70,7 +71,7 @@ export function SupplierForm({ content }) {
   const handleDelete = () => {
     deleteSupplier({
       variables: {
-        deleteSupplierId: id,
+        deleteSupplierId: formData.id,
       },
     });
     dispatch(setMode({ mode: "closed" }));
@@ -78,6 +79,7 @@ export function SupplierForm({ content }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validated) return;
+    trimData();
     submitAction[mode]();
     dispatch(setMode({ mode: "closed" }));
   };
@@ -88,9 +90,10 @@ export function SupplierForm({ content }) {
         <input
           type="text"
           placeholder="Имя"
-          value={name}
-          onChange={onNameChange}
-          onBlur={() => validate(name)}
+          name="name"
+          value={formData.name}
+          onChange={handleNameChange}
+          onBlur={() => validate(formData.name)}
           className={cn("name-input", { unvalidated: !validated })}
           required
         />
@@ -98,44 +101,49 @@ export function SupplierForm({ content }) {
         <input
           type="url"
           placeholder="Сайт"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          name="url"
+          value={formData.url}
+          onChange={handleChange}
         />
         <textarea
           name="address"
           id="address"
           placeholder="Адрес"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          value={formData.address}
+          onChange={handleChange}
         />
         <textarea
           name="contacts"
           id="contacts"
           placeholder="Контакты"
-          value={contacts}
-          onChange={(e) => setContacts(e.target.value)}
+          value={formData.contacts}
+          onChange={handleChange}
         />
         <textarea
-          name="additional-data"
+          name="additionalData"
           id="additional-data"
           placeholder="Дополнительно"
-          value={additionalData}
-          onChange={(e) => setAdditionalData(e.target.value)}
+          value={formData.additionalData}
+          onChange={handleChange}
         />
         <div className="footer">
-          <div className="buttons">
-            {mode === "edit" && (
-              <button type="button" className="delete" onClick={handleDelete}>
-                УДАЛИТЬ
-              </button>
-            )}
-            <button type="submit" className="submit">
-              СОХРАНИТЬ
+          {mode === "edit" && (
+            <button
+              type="button"
+              className="text-btn delete"
+              onClick={() => setDeleting(true)}
+            >
+              Удалить
             </button>
-          </div>
+          )}
+          <button type="submit" className="text-btn submit">
+            Сохранить
+          </button>
         </div>
       </form>
-      {}
+      {deleting && (
+        <DeletePrompt handleDelete={handleDelete} setDeleting={setDeleting} />
+      )}
     </div>
   );
 }

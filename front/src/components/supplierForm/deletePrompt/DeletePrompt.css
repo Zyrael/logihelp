@@ -1,0 +1,35 @@
+.delete-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+}
+
+.delete-text {
+    font-size: 1.5rem;
+}
+
+.delete-prompt {
+    background: white;
+    padding: 2rem;
+    border: 1px solid rgb(211, 211, 211);
+}
+
+.delete-footer {
+    height: 2rem;
+    display: flex;
+    margin-top: 1rem;
+}
+
+.cancel {
+    background: 0;
+    border: 1px solid var(--main-blue);
+    color: var(--main-blue);
+    margin-right: .5rem;
+}

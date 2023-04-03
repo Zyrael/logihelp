@@ -31,6 +31,7 @@
     width: 2.5rem;
     cursor: pointer;
     position: absolute;
+    padding-top: .25rem;
     top: 1rem;
     right: 1rem;
     transition: background .2s;

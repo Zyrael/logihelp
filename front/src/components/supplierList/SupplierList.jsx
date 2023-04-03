@@ -11,18 +11,19 @@ import { SupplierElement } from "./supplierElement";
 
 export function SupplierList() {
   const { loading, error, data } = useQuery(GET_SUPPLIERS);
-  const [suppliers, setSuppliers] = useState([]);
-
-  useEffect(() => {
-    if (!loading && !error) setSuppliers(data.getSuppliers);
-  }, [loading]);
 
   const [searchValue, setSearchValue] = useState("");
   const [showClear, setShowClear] = useState(false);
+  const [showSuppliers, setShowSuppliers] = useState([]);
 
-  const showSuppliers = suppliers.filter((supplier) =>
-    supplier.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  useEffect(() => {
+    if (!loading && !error)
+      setShowSuppliers(
+        data.getSuppliers.filter((supplier) =>
+          supplier.name.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
+  }, [loading, error]);
 
   const handleChangeSearch = (e) => {
     setShowClear(e.currentTarget.value !== "");
@@ -80,10 +81,10 @@ export function SupplierList() {
       )}
       {!loading && !error && (
         <div className="supplies-list-main">
-          {suppliers.length === 0 && (
+          {data.getSuppliers.length === 0 && (
             <div className="nothing-found">Добавьте первого поставщика</div>
           )}
-          {suppliers.length !== 0 && showSuppliers.length === 0 && (
+          {data.getSuppliers.length !== 0 && showSuppliers.length === 0 && (
             <div className="nothing-found">Ничего не найдено</div>
           )}
           {showSuppliers.length !== 0 && (
