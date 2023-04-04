@@ -96,6 +96,7 @@ export function SupplierForm({ content }) {
           onBlur={() => validate(formData.name)}
           className={cn("name-input", { unvalidated: !validated })}
           required
+          autoComplete="off"
         />
         {!validated && <span className="unvalidated-span">Введите имя</span>}
         <input
@@ -104,6 +105,7 @@ export function SupplierForm({ content }) {
           name="url"
           value={formData.url}
           onChange={handleChange}
+          autoComplete="off"
         />
         <textarea
           name="address"

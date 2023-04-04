@@ -14,16 +14,15 @@ export function SupplierList() {
 
   const [searchValue, setSearchValue] = useState("");
   const [showClear, setShowClear] = useState(false);
-  const [showSuppliers, setShowSuppliers] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
-    if (!loading && !error)
-      setShowSuppliers(
-        data.getSuppliers.filter((supplier) =>
-          supplier.name.toLowerCase().includes(searchValue.toLowerCase())
-        )
-      );
-  }, [loading, error]);
+    if (!loading && !error) setSuppliers(data.getSuppliers);
+  }, [loading, error, data]);
+
+  const showSuppliers = suppliers.filter((supplier) =>
+    supplier.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   const handleChangeSearch = (e) => {
     setShowClear(e.currentTarget.value !== "");
