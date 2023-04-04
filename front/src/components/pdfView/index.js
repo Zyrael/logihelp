@@ -1,1 +1,1 @@
-export * from "./PDFView.jsx";
+export * from "./PDFView";

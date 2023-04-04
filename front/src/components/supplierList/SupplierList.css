@@ -84,19 +84,6 @@
     justify-content: center;
 }
 
-.loading {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.loading-icon {
-    width: 6rem;
-    height: 6rem;
-    fill: var(--main-blue);
-}
-
 .supplier-list-main {
     margin-top: 1rem;
     overflow: auto;

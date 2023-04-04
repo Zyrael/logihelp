@@ -1,7 +1,9 @@
 import { useState, useCallback, useEffect } from "react";
+import { useHttp } from "./http.hook";
 
 export const useAuth = () => {
   const [token, setToken] = useState(null);
+  const { loading, request } = useHttp();
 
   const login = useCallback((jwtToken) => {
     setToken(jwtToken);
@@ -16,10 +18,22 @@ export const useAuth = () => {
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
-    if (jwtToken) {
-      login(jwtToken);
-    }
+    if (!jwtToken) return;
+
+    request("http://localhost:4000/auth", "POST", {
+      token: jwtToken,
+    })
+      .then((data) => {
+        if (data.isAuthenticated) {
+          login(jwtToken);
+        }
+      })
+      .catch((err) => {
+        if (err.message === "Auth failed") {
+          localStorage.removeItem("token");
+        }
+      });
   }, [login]);
 
-  return { token, login, logout };
+  return { loading, token, login, logout };
 };

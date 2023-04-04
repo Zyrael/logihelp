@@ -9,7 +9,14 @@ export function AuthPage({ login }) {
   });
   const [wrongData, setWrongData] = useState(false);
 
-  const { loading, request, error, clearError } = useHttp();
+  const { loading, request } = useHttp();
+
+  // useEffect(() => {
+  //   if (error) {
+  //     setWrongData(true);
+  //     clearError();
+  //   }
+  // }, [error]);
 
   const handleChange = (e) => {
     setWrongData(false);
@@ -25,35 +32,9 @@ export function AuthPage({ login }) {
       });
       login(data.token);
     } catch (err) {
-      if (error === "Not logged") {
-        setWrongData(true);
-        clearError();
-      }
+      if (err.message === "Login failed") setWrongData(true);
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   const { username, password } = formData;
-  //
-  //   e.preventDefault();
-  //
-  //   const res = await fetch("/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ username, password }),
-  //   });
-  //
-  //   const body = await res.json();
-  //
-  //   if (res.ok) {
-  //     const { token } = body;
-  //     login(token);
-  //   }
-  //
-  //   setWrongData(body.message === "Not logged");
-  // };
 
   return (
     <div className="login-screen">
@@ -77,7 +58,7 @@ export function AuthPage({ login }) {
             placeholder="Пароль"
           />
           {wrongData && <p>Неверный логин/пароль</p>}
-          <button type="submit" className="login-btn">
+          <button type="submit" className="login-btn" disabled={loading}>
             Войти
           </button>
         </form>

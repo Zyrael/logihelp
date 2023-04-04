@@ -8,10 +8,9 @@ import cors from "@fastify/cors";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { readFile } from "fs/promises";
+import * as dotenv from "dotenv";
 
-const hashedPassword = await bcrypt.hash("admin", 12);
-const user = { username: "admin", password: hashedPassword };
-const secret = "0N%6ZQ4&*GBBw*%4";
+dotenv.config();
 
 const prisma = new PrismaClient();
 const fastify = Fastify({ logger: true });
@@ -26,16 +25,31 @@ await fastify.register(cors, {
 fastify.post("/login", async (request, reply) => {
   const { username, password } = request.body;
   const isAuthenticated =
-    username === user.username &&
-    (await bcrypt.compare(password, user.password));
+    username === "Sbit" &&
+    (await bcrypt.compare(password, process.env.HASHED_PASSWORD));
 
   if (!isAuthenticated) {
-    reply.status(400).send({ message: "Not logged" });
+    reply.status(400).send({ message: "Login failed" });
   }
 
-  const token = jwt.sign({ username }, secret);
+  const token = jwt.sign({ username }, process.env.SECRET, {
+    expiresIn: "60000",
+  });
 
   reply.send({ token });
+});
+
+fastify.post("/auth", async (request, reply) => {
+  const { token } = request.body;
+  console.log(token);
+  try {
+    const decoded = await jwt.verify(token, process.env.SECRET);
+    console.log(decoded);
+    reply.send({ isAuthenticated: "true" });
+  } catch {
+    console.log("error");
+    reply.status(400).send({ message: "Auth failed" });
+  }
 });
 
 const typeDefs = await readFile("./schema.graphql", { encoding: "utf-8" });

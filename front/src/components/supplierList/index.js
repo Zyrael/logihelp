@@ -1,1 +1,1 @@
-export * from "./SupplierList.jsx";
+export * from "./SupplierList";

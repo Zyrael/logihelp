@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setMode } from "../modal/modalslice";
 import { ReactComponent as Glass } from "../../assets/icons/glass.svg";
 import { ReactComponent as Times } from "../../assets/icons/times.svg";
-import { ReactComponent as Loading } from "../../assets/icons/loading.svg";
+import { Loading } from "../loading";
 import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
@@ -68,11 +68,7 @@ export function SupplierList() {
           +
         </button>
       </div>
-      {loading && (
-        <div className="loading">
-          <Loading className="loading-icon" />
-        </div>
-      )}
+      {loading && <Loading />}
       {error && (
         <div className="error">
           <span className="exclamation">&#x24D8;</span>&nbsp;Произошла ошибка.
