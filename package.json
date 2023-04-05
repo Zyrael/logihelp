@@ -5,10 +5,6 @@
   "author": "zyrael <zyrael@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "install:server": "cd ./server && yarn",
-    "install:front": "cd ./front && yarn",
-    "install": "yarn",
-    "preinstall": "yarn run install:server && yarnyarn  run install:front",
     "server": "cd ./server && yarn run start",
     "dev": "cd ./front && yarn run dev",
     "prod": "serve ./front/dist",

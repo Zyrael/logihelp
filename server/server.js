@@ -9,46 +9,75 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { readFile } from "fs/promises";
 import * as dotenv from "dotenv";
+import cookie from "@fastify/cookie";
 
 dotenv.config();
 
 const prisma = new PrismaClient();
+
+const user = await prisma.user.findUnique({
+  where: { username: "Sbit" },
+});
+
 const fastify = Fastify({ logger: true });
 await fastify.register(cors, {
-  origin: [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-  ],
+  origin: true,
+  credentials: true,
+});
+
+await fastify.register(cookie, {
+  secret: process.env.COOKIE_SECRET,
+  parseOptions: {},
 });
 
 fastify.post("/login", async (request, reply) => {
   const { username, password } = request.body;
   const isAuthenticated =
-    username === "Sbit" &&
-    (await bcrypt.compare(password, process.env.HASHED_PASSWORD));
+    username === user.username &&
+    (await bcrypt.compare(password, user.password));
 
   if (!isAuthenticated) {
     reply.status(400).send({ message: "Login failed" });
   }
 
-  const token = jwt.sign({ username }, process.env.SECRET, {
-    expiresIn: "60000",
+  const refreshToken = jwt.sign({ username }, process.env.REFRESH_SECRET);
+
+  const token = jwt.sign({ username: user.username }, process.env.SECRET, {
+    expiresIn: "1h",
   });
 
-  reply.send({ token });
+  reply
+    .cookie("refresh-token", refreshToken, {
+      httpOnly: true,
+    })
+    .send({ token });
 });
 
 fastify.post("/auth", async (request, reply) => {
   const { token } = request.body;
-  console.log(token);
   try {
     const decoded = await jwt.verify(token, process.env.SECRET);
-    console.log(decoded);
-    reply.send({ isAuthenticated: "true" });
+    if (decoded) {
+      reply.send({ token });
+    }
   } catch {
-    console.log("error");
-    reply.status(400).send({ message: "Auth failed" });
+    try {
+      const refreshToken = request.cookies["refresh-token"];
+      const refreshDecoded = await jwt.verify(
+        refreshToken,
+        process.env.REFRESH_SECRET
+      );
+      if (refreshDecoded) {
+        const newToken = jwt.sign(
+          { username: user.username },
+          process.env.SECRET,
+          { expiresIn: "1h" }
+        );
+        reply.send({ token: newToken });
+      }
+    } catch {
+      reply.status(400).send({ message: "Auth failed" });
+    }
   }
 });
 
@@ -56,6 +85,13 @@ const typeDefs = await readFile("./schema.graphql", { encoding: "utf-8" });
 const resolvers = {
   Query: {
     getSuppliers: async () => prisma.supplier.findMany(),
+
+    getUserByName: async (_, { username }) =>
+      prisma.user.findUnique({
+        where: {
+          username,
+        },
+      }),
   },
 
   Mutation: {
@@ -87,6 +123,15 @@ const resolvers = {
       });
 
       return true;
+    },
+
+    updatePassword: async (_, { username, password }) => {
+      await prisma.user.update({
+        where: {
+          username,
+        },
+        data: { password },
+      });
     },
   },
 };

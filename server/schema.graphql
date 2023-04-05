@@ -7,8 +7,16 @@ type Supplier {
   additionalData: String
 }
 
+type User {
+  id: ID
+  username: String
+  password: String
+}
+
 type Query {
   getSuppliers: [Supplier]
+
+  getUserByName(username: String!): User
 }
 
 type Mutation {
@@ -30,4 +38,6 @@ type Mutation {
   ): Supplier
 
   deleteSupplier(id: ID!): Boolean!
+
+  updatePassword(password: String): User
 }

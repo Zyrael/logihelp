@@ -24,8 +24,8 @@ export const useAuth = () => {
       token: jwtToken,
     })
       .then((data) => {
-        if (data.isAuthenticated) {
-          login(jwtToken);
+        if (data.token) {
+          login(data.token);
         }
       })
       .catch((err) => {
