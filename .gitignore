@@ -19,13 +19,12 @@ node_modules
 dist
 dist-ssr
 *.local
-*/vite.config.js.timestamp*
+vite.config.js.timestamp*
 .prettierrc.json
 .prettierignore
 .eslintrc.json
-*/dev.db
-*/dev.db*
-*/migrations
+dev.db*
+migrations
 
 # Editor directories and files
 .vscode/*
