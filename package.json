@@ -5,9 +5,12 @@
   "author": "zyrael <zyrael@icloud.com>",
   "license": "MIT",
   "type": "module",
+  "prisma": {
+    "schema": "./server/prisma/schema.prisma"
+  },
   "scripts": {
     "dev": "vite",
-    "generate": "cd ./server && yarn prisma migrate dev && yarn prisma generate",
+    "generate": "yarn prisma migrate dev && yarn prisma generate",
     "build": "yarn run generate && vite build",
     "preview": "vite preview",
     "server": "cd ./server && node server.js",
