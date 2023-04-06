@@ -4,16 +4,31 @@
   "repository": "git@github.com:Zyrael/logihelp.git",
   "author": "zyrael <zyrael@icloud.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
+    "dev": "vite",
+    "generate": "cd ./server && yarn run generate",
+    "build": "yarn run generate && vite build",
+    "preview": "vite preview",
     "server": "cd ./server && yarn run start",
-    "dev": "cd ./front && yarn run dev",
-    "prod": "serve ./front/dist",
     "start:dev": "yarn concurrently \"yarn run server\" \"yarn run dev\"",
-    "build:front": "cd ./front && yarn run build",
-    "start:prod": "yarn concurrently \"yarn run server\" \"yarn run prod\"",
-    "generate": "cd ./server && yarn prisma generate"
+    "start:prod": "yarn concurrently \"yarn run server\" \"serve ./dist\""
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.5",
+    "@reduxjs/toolkit": "^1.9.1",
+    "graphql": "^16.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
+    "@react-pdf/renderer": "^3.1.6",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react": "^3.0.0",
+    "classnames": "^2.3.2",
     "concurrently": "^7.6.0",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -22,6 +37,8 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "vite": "^4.0.0",
+    "vite-plugin-svgr": "^2.4.0"
   }
 }

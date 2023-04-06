@@ -3,7 +3,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "generate": "yarn prisma migrate dev && yarn prisma generate"
   },
   "dependencies": {
     "@apollo/server": "^4.5.0",
