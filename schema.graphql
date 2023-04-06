@@ -39,5 +39,7 @@ type Mutation {
 
   deleteSupplier(id: ID!): Boolean!
 
-  updatePassword(password: String): User
+  createUser(username: String!, password: String!): User
+
+  updatePassword(username: String!, password: String!): User
 }
