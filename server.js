@@ -10,6 +10,7 @@ import jwt from "jsonwebtoken";
 import { readFile } from "fs/promises";
 import * as dotenv from "dotenv";
 import cookie from "@fastify/cookie";
+import fastifyStatic from "@fastify/static";
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ const user = await prisma.user.findUnique({
   where: { username: "Sbit" },
 });
 
-const fastify = Fastify({ logger: true });
+const fastify = Fastify();
 await fastify.register(cors, {
   origin: true,
   credentials: true,
@@ -29,6 +30,14 @@ await fastify.register(cookie, {
   secret: process.env.COOKIE_SECRET,
   parseOptions: {},
 });
+
+if (process.env.NODE_ENV === "production") {
+  fastify.register(fastifyStatic, { root: `${process.cwd()}/dist` });
+
+  fastify.get("/", (request, reply) => {
+    reply.sendFile("index.html");
+  });
+}
 
 fastify.post("/login", async (request, reply) => {
   const { username, password } = request.body;
@@ -84,7 +93,7 @@ fastify.post("/auth", async (request, reply) => {
 const typeDefs = await readFile("./schema.graphql", { encoding: "utf-8" });
 const resolvers = {
   Query: {
-    getSuppliers: async () => prisma.supplier.findMany(),
+    getSuppliers: () => prisma.supplier.findMany(),
 
     getUserByName: async (_, { username }) =>
       prisma.user.findUnique({
@@ -140,15 +149,14 @@ const apollo = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [fastifyApolloDrainPlugin(fastify)],
+  introspection: false,
 });
 await apollo.start();
 
 await fastify.register(fastifyApollo(apollo));
-
-const port = 4000;
 const start = async () => {
   try {
-    await fastify.listen({ port });
+    await fastify.listen({ port: process.env.PORT, host: "0.0.0.0" });
   } catch (e) {
     fastify.log.error(e);
     process.exit(1);

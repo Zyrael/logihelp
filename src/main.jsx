@@ -7,8 +7,9 @@ import { store } from "./store";
 import { App } from "./app";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "/graphql",
   cache: new InMemoryCache(),
+  headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

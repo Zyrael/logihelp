@@ -24,7 +24,6 @@ export function SupplierForm({ content }) {
     });
   };
   const handleChange = (e) => {
-    console.log(formData);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const [deleting, setDeleting] = useState(false);
