@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./AuthPage.css";
+import "./LoginPage.css";
 import { useHttp } from "../../hooks/http.hook";
 
-export function AuthPage({ login }) {
+export function LoginPage({ login }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -27,7 +27,7 @@ export function AuthPage({ login }) {
     e.preventDefault();
 
     try {
-      const data = await request("http://localhost:4000/login", "POST", {
+      const data = await request("/login", "POST", {
         ...formData,
       });
       login(data.token);

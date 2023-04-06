@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../hooks/auth.hook";
-import { AuthPage, RouteSheetPage } from "../pages";
+import { LoginPage, RouteSheetPage } from "../pages";
 import { Loading } from "../components";
 
 export function App() {
@@ -15,7 +15,7 @@ export function App() {
         (isAuthenticated ? (
           <RouteSheetPage logout={logout} />
         ) : (
-          <AuthPage login={login} />
+          <LoginPage login={login} />
         ))}
     </>
   );

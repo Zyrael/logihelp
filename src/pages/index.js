@@ -1,2 +1,2 @@
 export * from "./routeSheetPage";
-export * from "./authPage";
+export * from "./loginPage";
