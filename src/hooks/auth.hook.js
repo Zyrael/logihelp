@@ -20,7 +20,7 @@ export const useAuth = () => {
 
     if (!jwtToken) return;
 
-    request("/auth", "POST", {
+    request("http://localhost:4000/auth", "POST", {
       token: jwtToken,
     })
       .then((data) => {

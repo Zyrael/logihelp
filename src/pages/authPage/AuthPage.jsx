@@ -27,7 +27,7 @@ export function AuthPage({ login }) {
     e.preventDefault();
 
     try {
-      const data = await request("/login", "POST", {
+      const data = await request("http://localhost:4000/login", "POST", {
         ...formData,
       });
       login(data.token);
