@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "server": "cd ./server && node server.js",
     "start:dev": "yarn concurrently \"yarn run server\" \"yarn run dev\"",
-    "start:prod": "yarn run build && yarn concurrently \"yarn run server\" \"serve ./dist\""
+    "start:prod": "yarn concurrently \"yarn run server\" \"serve ./dist\""
   },
   "dependencies": {
     "@apollo/client": "^3.7.5",
