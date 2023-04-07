@@ -20,7 +20,7 @@ const user = await prisma.user.findUnique({
   where: { username: "Sbit" },
 });
 
-const fastify = Fastify();
+const fastify = Fastify({ logger: true });
 await fastify.register(cors, {
   origin: true,
   credentials: true,
@@ -134,12 +134,21 @@ const resolvers = {
       return true;
     },
 
+    createUser: async (_, { username, password }) => {
+      await prisma.user.create({
+        data: {
+          username,
+          password: await bcrypt.hash(password, 10),
+        },
+      });
+    },
+
     updatePassword: async (_, { username, password }) => {
       await prisma.user.update({
         where: {
           username,
         },
-        data: { password },
+        data: { password: await bcrypt.hash(password, 10) },
       });
     },
   },
@@ -149,7 +158,7 @@ const apollo = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [fastifyApolloDrainPlugin(fastify)],
-  introspection: false,
+  introspection: process.env.NODE_ENV === "development",
 });
 await apollo.start();
 
