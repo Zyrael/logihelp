@@ -51,7 +51,7 @@
 }
 
 .login-btn {
-    margin-top: 3rem;
+    margin-top: 2rem;
     border: 0;
     height: 40px;
     font-size: 1rem;
@@ -63,4 +63,8 @@
 
 .login-btn:hover {
     background: var(--hover-blue-dark);
+}
+
+.wrong-data {
+    color: red;
 }

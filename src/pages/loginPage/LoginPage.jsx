@@ -11,13 +11,6 @@ export function LoginPage({ login }) {
 
   const { loading, request } = useHttp();
 
-  // useEffect(() => {
-  //   if (error) {
-  //     setWrongData(true);
-  //     clearError();
-  //   }
-  // }, [error]);
-
   const handleChange = (e) => {
     setWrongData(false);
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
@@ -57,7 +50,7 @@ export function LoginPage({ login }) {
             className="password"
             placeholder="Пароль"
           />
-          {wrongData && <p>Неверный логин/пароль</p>}
+          {wrongData && <p className="wrong-data">Неверный логин/пароль</p>}
           <button type="submit" className="login-btn" disabled={loading}>
             Войти
           </button>

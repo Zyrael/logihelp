@@ -31,7 +31,7 @@ export function RouteElement({ route }) {
       )}
       {additionalData && (
         <p>
-          <b>Дополнительно: </b>
+          <b>Примечание: </b>
           {additionalData}
         </p>
       )}

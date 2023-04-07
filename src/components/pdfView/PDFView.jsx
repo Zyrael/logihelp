@@ -84,7 +84,7 @@ export function PDFView() {
               )}
               {additionalData && (
                 <Text style={styles.text}>
-                  <Text style={styles.bold}>Дополнительно: </Text>
+                  <Text style={styles.bold}>Примечание: </Text>
                   {additionalData}
                 </Text>
               )}

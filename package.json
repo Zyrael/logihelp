@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vite",
     "generate": "yarn prisma migrate dev && yarn prisma generate",
-    "build": "yarn generate && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "start": "yarn nodemon server.js"
   },
