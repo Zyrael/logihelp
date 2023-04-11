@@ -58,6 +58,7 @@ fastify.post("/login", async (request, reply) => {
   reply
     .cookie("refresh-token", refreshToken, {
       httpOnly: true,
+      maxAge: 7776000,
     })
     .send({ token });
 });
