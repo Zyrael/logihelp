@@ -95,7 +95,6 @@ export function PDFView() {
     </Document>
   );
 
-  // const [instance, updateInstance] = usePDF({ document });
   return (
     <div className="pdf">
       <PDFViewer>{document}</PDFViewer>

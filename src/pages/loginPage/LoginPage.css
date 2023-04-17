@@ -65,6 +65,6 @@
     background: var(--hover-blue-dark);
 }
 
-.wrong-data {
+.login-error {
     color: red;
 }

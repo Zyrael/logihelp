@@ -55,7 +55,7 @@ export function LoginPage({ login }) {
             className="password"
             placeholder="Пароль"
           />
-          {errorText && <p className="wrong-data">{errorText}</p>}
+          {errorText && <p className="login-error">{errorText}</p>}
           <button type="submit" className="login-btn" disabled={loading}>
             Войти
           </button>

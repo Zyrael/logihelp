@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const serverUrl = `http://localhost:${process.env.PORT}`;
+const serverUrl = `http://127.0.0.1:${process.env.PORT}`;
 export default defineConfig({
   plugins: [react(), svgr()],
   server: {
