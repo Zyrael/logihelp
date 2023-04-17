@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { setMode } from "../modal/modalslice";
@@ -29,9 +29,12 @@ export function SupplierList() {
     setSearchValue(e.currentTarget.value);
   };
 
+  const searchRef = useRef(null);
+
   const handleClearButton = () => {
     setSearchValue("");
     setShowClear(false);
+    // searchRef.current.focus();
   };
 
   const dispatch = useDispatch();
@@ -50,6 +53,7 @@ export function SupplierList() {
           value={searchValue}
           placeholder="Поиск"
           onChange={handleChangeSearch}
+          ref={searchRef}
         />
         {showClear && (
           <button
@@ -75,7 +79,7 @@ export function SupplierList() {
         </div>
       )}
       {!loading && !error && (
-        <div className="supplies-list-main">
+        <div className="supplier-list-main">
           {data.getSuppliers.length === 0 && (
             <div className="nothing-found">Добавьте первого поставщика</div>
           )}

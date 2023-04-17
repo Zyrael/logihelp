@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import { useHttp } from "../../hooks/http.hook";
 
+const errorMap = {
+  "Login failed": "Неверный логин/пароль",
+  "Something went wrong": "Произошла какая-то ошибка",
+};
+
 export function LoginPage({ login }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-  const [wrongData, setWrongData] = useState(false);
+  const [errorText, setErrorText] = useState(null);
 
   const { loading, request } = useHttp();
 
   const handleChange = (e) => {
-    setWrongData(false);
+    setErrorText(null);
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
   };
 
@@ -25,7 +30,7 @@ export function LoginPage({ login }) {
       });
       login(data.token);
     } catch (err) {
-      if (err.message === "Login failed") setWrongData(true);
+      setErrorText(errorMap[err.message]);
     }
   };
 
@@ -50,7 +55,7 @@ export function LoginPage({ login }) {
             className="password"
             placeholder="Пароль"
           />
-          {wrongData && <p className="wrong-data">Неверный логин/пароль</p>}
+          {errorText && <p className="wrong-data">{errorText}</p>}
           <button type="submit" className="login-btn" disabled={loading}>
             Войти
           </button>
