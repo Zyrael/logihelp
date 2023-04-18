@@ -20,6 +20,8 @@ export function SupplierForm({ content }) {
   const trimData = () => {
     const keys = Object.keys(formData);
     keys.forEach((key) => {
+      if (!formData[key] || key === "id") return;
+
       formData[key] = formData[key]
         .replace(/\n/g, " ")
         .replace(/\s+/g, " ")
