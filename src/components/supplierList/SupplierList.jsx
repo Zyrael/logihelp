@@ -30,11 +30,11 @@ export function SupplierList() {
   };
 
   const searchRef = useRef(null);
+  useEffect(() => searchRef.current.focus(), [showClear]);
 
   const handleClearButton = () => {
     setSearchValue("");
     setShowClear(false);
-    // searchRef.current.focus();
   };
 
   const dispatch = useDispatch();
