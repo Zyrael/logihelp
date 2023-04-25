@@ -1,0 +1,16 @@
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background: var(--main-background);
+    height: 100vh;
+
+
+}
+
+@media (max-width: 768px) {
+    .app {
+        padding: 0;
+    }
+}

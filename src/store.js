@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import routeListReducer from "./components/routeSheet/routeList/routeListSlice";
+import routeSheetReducer from "./components/routeSheet/routeSheetSlice";
 import modalReducer from "./components/modal/modalslice";
 
 export const store = configureStore({
   reducer: {
-    routeList: routeListReducer,
+    routeSheet: routeSheetReducer,
     modal: modalReducer,
   },
 });

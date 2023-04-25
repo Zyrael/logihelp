@@ -1,13 +1,3 @@
-.route-sheet {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgb(211, 211, 211);
-    background: #ffffff;
-    margin-left: 1rem;
-    padding: .7em;
-    flex: 3;
-}
-
 .route-sheet-header {
     display: flex;
     align-items: end;
@@ -39,3 +29,18 @@
     height: 1.5rem;
     fill: white;
 }
+
+.route-list-container {
+    overflow: auto;
+    margin-top: 1rem;
+}
+
+.route-list {
+    list-style: none;
+}
+
+.route-list > * + * {
+    margin-top: 0.5em;
+}
+
+

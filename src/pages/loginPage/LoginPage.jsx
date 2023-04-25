@@ -35,32 +35,30 @@ export function LoginPage({ login }) {
   };
 
   return (
-    <div className="login-screen">
-      <div className="login-form-container">
-        <p className="login-title">Вход</p>
-        <form onSubmit={handleSubmit} className="login-form">
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className="username"
-            placeholder="Логин"
-          />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="password"
-            placeholder="Пароль"
-          />
-          {errorText && <p className="login-error">{errorText}</p>}
-          <button type="submit" className="login-btn" disabled={loading}>
-            Войти
-          </button>
-        </form>
-      </div>
+    <div className="login-page">
+      <p className="login-title">Вход</p>
+      <form onSubmit={handleSubmit} className="login-form">
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          className="username"
+          placeholder="Логин"
+        />
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          className="password"
+          placeholder="Пароль"
+        />
+        {errorText && <p className="login-error">{errorText}</p>}
+        <button type="submit" className="login-btn" disabled={loading}>
+          Войти
+        </button>
+      </form>
     </div>
   );
 }

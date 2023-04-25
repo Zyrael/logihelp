@@ -4,7 +4,7 @@ const initialState = {
   routes: [],
 };
 
-export const routeListSlice = createSlice({
+export const routeSheetSlice = createSlice({
   name: "routeList",
   initialState,
   reducers: {
@@ -27,6 +27,6 @@ export const routeListSlice = createSlice({
 });
 
 export const { addRoute, removeRoute, removeAllRoutes } =
-  routeListSlice.actions;
+  routeSheetSlice.actions;
 
-export default routeListSlice.reducer;
+export default routeSheetSlice.reducer;

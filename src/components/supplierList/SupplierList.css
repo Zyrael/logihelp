@@ -4,22 +4,13 @@
     display: flex;
     flex-direction: column;
     flex: 2;
-    position: relative;
     border: 1px solid rgb(211, 211, 211);
 }
 
 .supplier-list-header {
+    height: 40px;
     display: flex;
-    position: relative;
-}
-
-.glass {
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    fill: var(--main-blue);
-    top: calc(50% - 8px);
-    left: 10px;
+    width: 100%;
 }
 
 .add {
@@ -29,13 +20,42 @@
     margin-left: .5rem;
 }
 
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.glass {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    fill: rgb(164, 164, 164);
+    top: 12px;
+    left: 12px;
+}
+
+.glass--active {
+    fill: var(--main-blue);
+}
+
+.clear-input {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    background: 0;
+    border: 0;
+    cursor: pointer;
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
 .search-bar {
-    flex-grow: 1;
-    padding: 5px 0 5px 30px;
+    padding: 5px 0 5px 35px;
     font-size: 1.2rem;
     font-weight: 300;
     height: 40px;
     background: #f5f7f9;
+    width: 100%;
     outline: none;
     border: 1px solid rgb(211, 211, 211);
 }
@@ -52,17 +72,6 @@
     display: flex;
     justify-content: center;
     padding: 1.5em;
-}
-
-.clear-input {
-    position: absolute;
-    top: calc(50% - 7px);
-    right: 3.5rem;
-    background: 0;
-    border: 0;
-    cursor: pointer;
-    width: 0.75rem;
-    height: 0.75rem;
 }
 
 .clear-input-icon {

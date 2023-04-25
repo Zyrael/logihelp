@@ -14,5 +14,6 @@ export default defineConfig({
       "/login": serverUrl,
       "/auth": serverUrl,
     },
+    open: true,
   },
 });

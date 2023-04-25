@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
+import cn from "classnames";
 import { setMode } from "../modal/modalslice";
 import { ReactComponent as Glass } from "../../assets/icons/glass.svg";
 import { ReactComponent as Times } from "../../assets/icons/times.svg";
@@ -15,13 +16,14 @@ export function SupplierList() {
   const [searchValue, setSearchValue] = useState("");
   const [showClear, setShowClear] = useState(false);
   const [suppliers, setSuppliers] = useState([]);
+  const [searchFocus, setSearchFocus] = useState(false);
 
   useEffect(() => {
     if (!loading && !error) setSuppliers(data.getSuppliers);
   }, [loading, error, data]);
 
   const showSuppliers = suppliers.filter((supplier) =>
-    supplier.name.toLowerCase().includes(searchValue.toLowerCase())
+    supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
   );
 
   const handleChangeSearch = (e) => {
@@ -45,25 +47,35 @@ export function SupplierList() {
   return (
     <div className="supplier-list-container">
       <div className="supplier-list-header">
-        <Glass className="glass" />
-        <input
-          id="search-bar"
-          className="search-bar"
-          type="text"
-          value={searchValue}
-          placeholder="Поиск"
-          onChange={handleChangeSearch}
-          ref={searchRef}
-        />
-        {showClear && (
-          <button
-            type="button"
-            className="clear-input"
-            onClick={handleClearButton}
-          >
-            <Times className="clear-input-icon" />
-          </button>
-        )}
+        <div className="search-container">
+          <Glass
+            className={cn({
+              glass: true,
+              "glass--active": searchFocus,
+            })}
+          />
+          <input
+            id="search-bar"
+            className="search-bar"
+            type="text"
+            value={searchValue}
+            placeholder="Поиск"
+            onChange={handleChangeSearch}
+            ref={searchRef}
+            onFocus={() => setSearchFocus(true)}
+            onBlur={() => setSearchFocus(false)}
+          />
+          {showClear && (
+            <button
+              type="button"
+              className="clear-input"
+              onClick={handleClearButton}
+            >
+              <Times className="clear-input-icon" />
+            </button>
+          )}
+        </div>
+
         <button
           type="button"
           className="blue-btn add"

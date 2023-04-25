@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
-import { addRoute } from "../../routeSheet/routeList/routeListSlice";
+import { addRoute } from "../../routeSheet/routeSheetSlice.js";
 import { ReactComponent as Pencil } from "../../../assets/icons/edit.svg";
 import { setMode } from "../../modal/modalslice";
 import "./SupplierElement.css";
