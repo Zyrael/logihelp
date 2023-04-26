@@ -5,8 +5,6 @@
     padding: 1em;
     background: var(--main-background);
     height: 100vh;
-
-
 }
 
 @media (max-width: 768px) {

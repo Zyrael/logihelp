@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
-import { addRoute } from "../../routeSheet/routeSheetSlice.js";
+import { addRoute } from "../../routeSheet/routeSheetSlice";
+import { openSupplierInfo } from "../../supplierInfo/supplierInfoSlice";
 import { ReactComponent as Pencil } from "../../../assets/icons/edit.svg";
 import { setMode } from "../../modal/modalslice";
 import "./SupplierElement.css";
@@ -10,7 +11,7 @@ export function SupplierElement({ supplier }) {
   const dispatch = useDispatch();
   const handleEditButton = (e) => {
     e.stopPropagation();
-    dispatch(setMode({ mode: "edit", supplier }));
+    dispatch(openSupplierInfo({ supplier }));
   };
 
   const [showButton, setShowButton] = useState(false);

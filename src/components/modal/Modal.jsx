@@ -34,7 +34,9 @@ export function Modal() {
         <button
           type="button"
           className="close-btn"
-          onClick={() => dispatch(setMode({ mode: "closed" }))}
+          onClick={() =>
+            dispatch(setMode({ mode: "closed", content: noContent }))
+          }
         >
           <Times className="close-btn-icon" />
         </button>

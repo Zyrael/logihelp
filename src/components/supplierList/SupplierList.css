@@ -1,10 +1,8 @@
 .supplier-list-container {
-    background: #ffffff;
     padding: .7rem;
     display: flex;
     flex-direction: column;
-    flex: 2;
-    border: 1px solid rgb(211, 211, 211);
+    height: 100%;
 }
 
 .supplier-list-header {
@@ -95,9 +93,9 @@
 
 .supplier-list-main {
     margin-top: 1rem;
-    overflow: auto;
     display: flex;
     justify-content: center;
+    overflow: auto;
 }
 
 .supplier-list {

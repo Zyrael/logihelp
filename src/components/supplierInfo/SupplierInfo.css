@@ -1,0 +1,13 @@
+.supplier-info {
+    position: absolute;
+    top: 0;
+    left: -500px;
+    height: 100%;
+    width: 100%;
+    background: white;
+    transition: left .2s;
+}
+
+.supplier-info--active {
+    left: 0;
+}
