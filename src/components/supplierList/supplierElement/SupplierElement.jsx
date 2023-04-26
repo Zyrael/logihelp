@@ -3,8 +3,7 @@ import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../routeSheet/routeSheetSlice";
 import { openSupplierInfo } from "../../supplierInfo/supplierInfoSlice";
-import { ReactComponent as Pencil } from "../../../assets/icons/edit.svg";
-import { setMode } from "../../modal/modalslice";
+import { ReactComponent as Pencil } from "../../../assets/icons/glass.svg";
 import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {

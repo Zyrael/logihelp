@@ -1,13 +1,48 @@
 .supplier-info {
     position: absolute;
     top: 0;
-    left: -500px;
+    left: 500px;
     height: 100%;
     width: 100%;
     background: white;
     transition: left .2s;
+    padding: .7rem;
+}
+
+.supplier-info > * + * {
+    margin-top: .5rem;
 }
 
 .supplier-info--active {
     left: 0;
+}
+
+.close-supplier-info {
+    background: 0;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    border: 0;
+    cursor: pointer;
+    padding: .4rem;
+    transition: background-color .2s;
+}
+
+.close-supplier-info:hover {
+    background: #cccccc;
+}
+
+.close-supplier-info:focus {
+    background: 0;
+}
+
+.close-supplier-icon {
+    height: 2rem;
+    width: 2rem;
+    fill: var(--main-blue);
+}
+
+.close-supplier-text {
+    font-size: 1.1rem;
+    color: var(--main-blue);
 }
