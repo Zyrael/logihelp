@@ -1,7 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import {
-  Modal,
   SupplierList,
   LeftContainer,
   RightContainer,
@@ -11,8 +9,6 @@ import "./RouteSheetPage.css";
 import { SupplierInfo } from "../../components/supplierInfo";
 
 export function RouteSheetPage() {
-  const modalMode = useSelector((state) => state.modal.mode);
-
   return (
     <div className="route-sheet-page">
       <LeftContainer>

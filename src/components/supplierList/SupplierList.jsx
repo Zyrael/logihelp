@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { setMode } from "../modal/modalslice";
 import { ReactComponent as Glass } from "../../assets/icons/glass.svg";
@@ -44,8 +44,14 @@ export function SupplierList() {
     dispatch(setMode({ mode: "create" }));
   };
 
+  const opened = useSelector((state) => state.supplierInfo.opened);
+
   return (
-    <div className="supplier-list-container">
+    <div
+      className={cn("supplier-list-container", {
+        "supplier-list-container--active": !opened,
+      })}
+    >
       <div className="supplier-list-header">
         <div className="search-container">
           <Glass

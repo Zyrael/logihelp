@@ -3,18 +3,91 @@
     top: 0;
     left: 500px;
     height: 100%;
-    width: 100%;
+    width: 500px;
     background: white;
-    transition: left .2s;
+    border-left: 1px solid #cccccc;
+    margin: 0 -1px;
     padding: .7rem;
-}
-
-.supplier-info > * + * {
-    margin-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    transition: left .3s ease-in-out;
 }
 
 .supplier-info--active {
     left: 0;
+}
+
+.supplier-info-header {
+    padding-bottom: .7rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.supplier-info-main {
+    padding: .7rem;
+    height: 100%;
+    overflow: auto;
+}
+
+.supplier-info-main > * + * {
+    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+}
+
+.supplier-name {
+    font-size: 1.3rem;
+}
+
+.supplier-info-text {
+    padding: .5rem 0 .5rem .8rem;
+    transition: background-color .2s ease-in-out;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.supplier-info-text > p {
+    width: 330px;
+    padding-right: 3rem;
+}
+
+.supplier-info-text > b {
+    margin-right: auto;
+}
+
+.copy-btn {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    cursor: pointer;
+    background: var(--hover-gray-color);
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding-top: .2rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s ease-in-out, opacity .2s ease-in-out;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.copy-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: .2rem;
+}
+
+.copy-btn--shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.copy-btn--copied {
+    width: initial;
+    height: initial;
+    padding: .2rem .3rem;
 }
 
 .close-supplier-info {
@@ -24,12 +97,14 @@
     width: 3rem;
     border: 0;
     cursor: pointer;
+    position: relative;
     padding: .4rem;
     transition: background-color .2s;
 }
 
+
 .close-supplier-info:hover {
-    background: #cccccc;
+    background: var(--hover-gray-color);
 }
 
 .close-supplier-info:focus {
@@ -37,12 +112,15 @@
 }
 
 .close-supplier-icon {
+    position: absolute;
+    left: calc(50% - 1.15rem);
+    top: calc(50% - 1rem);
     height: 2rem;
     width: 2rem;
     fill: var(--main-blue);
 }
 
-.close-supplier-text {
-    font-size: 1.1rem;
-    color: var(--main-blue);
+.supplier-info-title {
+    margin-left: 1rem;
+    font-size: 1.5rem;
 }

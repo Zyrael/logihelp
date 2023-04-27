@@ -7,6 +7,8 @@
     --element-background: rgb(231, 234, 235);
     --element-hover: rgb(230, 242, 250);
     --font-color: rgb(0, 0, 0);
+    --border-color: rgb(211, 211, 211);
+    --hover-gray-color: rgba(73, 73, 73, 0.2)
 }
 
 @font-face {
