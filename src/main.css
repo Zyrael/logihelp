@@ -63,10 +63,10 @@
     background: var(--disabled-blue);
 }
 
-.visible {
-    opacity: 1 !important;
-    visibility: visible !important;
-}
+/*.visible {*/
+/*    opacity: 1 !important;*/
+/*    visibility: visible !important;*/
+/*}*/
 
 .text-btn {
     width: 100%;

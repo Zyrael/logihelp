@@ -10,7 +10,7 @@
     padding: .7rem;
     display: flex;
     flex-direction: column;
-    transition: left .3s ease-in-out;
+    transition: left .2s ease-in-out;
 }
 
 .supplier-info--active {
@@ -98,8 +98,7 @@
     border: 0;
     cursor: pointer;
     position: relative;
-    padding: .4rem;
-    transition: background-color .2s;
+    transition: background-color .2s ease-in-out;
 }
 
 
@@ -117,6 +116,11 @@
     top: calc(50% - 1rem);
     height: 2rem;
     width: 2rem;
+    /*fill: var(--main-blue);*/
+    transition: fill .2s ease-in-out;
+}
+
+.close-supplier-info:hover > .close-supplier-icon {
     fill: var(--main-blue);
 }
 

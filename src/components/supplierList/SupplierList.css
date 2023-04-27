@@ -6,7 +6,7 @@
     width: 500px;
     position: absolute;
     left: -200px;
-    transition: left .3s ease-in-out;
+    transition: left .2s ease-in-out;
 }
 
 .supplier-list-container--active {

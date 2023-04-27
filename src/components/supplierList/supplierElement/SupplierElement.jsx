@@ -3,7 +3,7 @@ import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../routeSheet/routeSheetSlice";
 import { openSupplierInfo } from "../../supplierInfo/supplierInfoSlice";
-import { ReactComponent as Pencil } from "../../../assets/icons/glass.svg";
+import { ReactComponent as GlassSVG } from "../../../assets/icons/info.svg";
 import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {
@@ -14,7 +14,7 @@ export function SupplierElement({ supplier }) {
   };
 
   const [showButton, setShowButton] = useState(false);
-  const editBtnClasses = cn("edit-supplier-btn", { visible: showButton });
+  const showBtnClasses = cn("show-supplier-btn", { visible: showButton });
   return (
     <li
       tabIndex={0}
@@ -26,10 +26,10 @@ export function SupplierElement({ supplier }) {
       {supplier.name}
       <button
         type="button"
-        className={editBtnClasses}
+        className={showBtnClasses}
         onClick={handleEditButton}
       >
-        <Pencil className="edit-icon" />
+        <GlassSVG className="show-supplier-icon" />
       </button>
     </li>
   );
