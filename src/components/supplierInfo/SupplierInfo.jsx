@@ -5,6 +5,10 @@ import "./SupplierInfo.css";
 import { closeSupplierInfo } from "./supplierInfoSlice";
 import { ReactComponent as Back } from "../../assets/icons/back.svg";
 import { ReactComponent as CopySVG } from "../../assets/icons/copy.svg";
+import { ReactComponent as PinSVG } from "../../assets/icons/pin.svg";
+import { ReactComponent as ContactSVG } from "../../assets/icons/contact.svg";
+import { ReactComponent as InfoSVG } from "../../assets/icons/info.svg";
+import { ReactComponent as UrlSVG } from "../../assets/icons/url.svg";
 
 export function SupplierInfo() {
   const {
@@ -45,24 +49,30 @@ export function SupplierInfo() {
         <p className="supplier-info-title">Информация</p>
       </div>
       <div className="supplier-info-main">
-        {name && <h3 className="supplier-name">{name}</h3>}
-        {url && (
-          <div className="supplier-info-text">
-            <b>Сайт:</b>
-            <p>
-              <a href={url} target="_blank" rel="noreferrer" className="url">
-                {url}
-              </a>
-            </p>
-          </div>
-        )}
+        <div className="supplier-name-container">
+          {name && <h3 className="supplier-name">{name}</h3>}
+          {url && (
+            <div className="supplier-url">
+              <UrlSVG className="supplier-url-icon" />
+              <p>
+                <a href={url} target="_blank" rel="noreferrer" className="url">
+                  {url}
+                </a>
+              </p>
+            </div>
+          )}
+        </div>
         {address && (
           <div
             className="supplier-info-text"
             onMouseEnter={() => setShowCopy(true)}
             onMouseLeave={handleMouseLeave}
           >
-            <b>Адрес:</b>
+            <div className="icon-container">
+              <PinSVG className="supplier-info-icon" />
+            </div>
+
+            {/* <b>Адрес:</b> */}
             <p>{address}</p>
             <button
               type="button"
@@ -78,13 +88,19 @@ export function SupplierInfo() {
         )}
         {contacts && (
           <div className="supplier-info-text">
-            <b>Контакты:</b>
+            {/* <b>Контакты:</b> */}
+            <div className="icon-container">
+              <ContactSVG className="supplier-info-icon" />
+            </div>
             <p>{contacts}</p>
           </div>
         )}
         {additionalData && (
           <div className="supplier-info-text">
-            <b>Примечание:</b>
+            {/* <b>Примечание:</b> */}
+            <div className="icon-container">
+              <InfoSVG className="supplier-info-icon" />
+            </div>
             <p>{additionalData}</p>
           </div>
         )}

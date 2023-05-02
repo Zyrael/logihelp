@@ -1,5 +1,4 @@
 .supplier-list-container {
-    padding: .7rem;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -14,12 +13,16 @@
 }
 
 .supplier-list-header {
-    height: 40px;
     display: flex;
+    align-items: center;
+    padding: 0 0.625rem;
     width: 100%;
+    min-height: 60px;
+    border-bottom: 1px solid rgb(211, 211, 211);
 }
 
 .add {
+    height: 40px;
     font-size: 2.2rem;
     font-weight: 300;
     color: white;
@@ -29,6 +32,7 @@
 .search-container {
     position: relative;
     width: 100%;
+    height: 40px;
 }
 
 .glass {
@@ -100,10 +104,12 @@
 }
 
 .supplier-list-main {
-    margin-top: 1rem;
+    padding-right: .7rem;
     display: flex;
     justify-content: center;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .supplier-list {

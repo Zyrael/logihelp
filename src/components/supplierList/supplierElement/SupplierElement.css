@@ -1,5 +1,5 @@
 .supplier {
-    padding: 1rem 2rem 1rem 1rem;
+    padding: .8rem;
     cursor: pointer;
     color: var(--font-color);
     transition: background .2s;
@@ -9,6 +9,7 @@
 
 .supplier + .supplier {
     border-top: 1px solid rgb(211, 211, 211);
+
 }
 
 .supplier:hover {
@@ -16,17 +17,17 @@
 }
 
 .show-supplier-btn {
+    /*border: 2px solid black;*/
+    border: 0;
     position: absolute;
-    top: calc(50% - 1.5rem);
+    top: calc(50% - .9rem);
     right: -5rem;
     cursor: pointer;
-    border: 0;
     background: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    transition: background-color .2s ease-in-out, right .2s ease-in-out;
+    transition: border-color .2s ease-in-out, right .2s ease-in-out;
 }
 
 .show-supplier-btn.visible {
@@ -36,10 +37,14 @@
 .show-supplier-icon {
     padding: 0;
     fill: black;
-    width: 3rem;
-    height: 3rem;
+    width: 1.8rem;
+    height: 1.8rem;
     transition: fill .2s ease-in-out;
     shape-rendering: geometricPrecision;
+}
+
+.show-supplier-btn:hover {
+    /*border-color: var(--main-blue);*/
 }
 
 .show-supplier-btn:hover > .show-supplier-icon {
