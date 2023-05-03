@@ -1,11 +1,16 @@
 .right-container {
-    display: flex;
-    flex-direction: column;
     border: 1px solid rgb(211, 211, 211);
     background: #ffffff;
+    height: 100%;
     margin-left: 1rem;
-    padding: .7em;
     flex: 3;
+    box-sizing: content-box;
+}
+
+@media (max-width: 768px) {
+    .right-container {
+        display: none;
+    }
 }
 
 

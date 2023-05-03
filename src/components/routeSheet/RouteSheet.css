@@ -1,7 +1,9 @@
 .route-sheet-header {
     display: flex;
-    align-items: end;
-    padding-left: 1rem;
+    align-items: center;
+    padding: 0 .625rem;
+    min-height: 60px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .route-sheet-title {
@@ -31,16 +33,10 @@
 }
 
 .route-list-container {
+    padding-right: .7rem;
     overflow: auto;
-    margin-top: 1rem;
 }
 
 .route-list {
     list-style: none;
 }
-
-.route-list > * + * {
-    margin-top: 0.5em;
-}
-
-

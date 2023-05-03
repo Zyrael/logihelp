@@ -1,10 +1,11 @@
 .supplier {
-    padding: .8rem;
     cursor: pointer;
     color: var(--font-color);
-    transition: background .2s;
-    position: relative;
+    /*transition: background .1s linear;*/
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: .6rem .8rem;
 }
 
 .supplier + .supplier {
@@ -17,21 +18,16 @@
 }
 
 .show-supplier-btn {
-    /*border: 2px solid black;*/
+    margin-left: auto;
     border: 0;
-    position: absolute;
-    top: calc(50% - .9rem);
-    right: -5rem;
     cursor: pointer;
     background: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: border-color .2s ease-in-out, right .2s ease-in-out;
-}
-
-.show-supplier-btn.visible {
-    right: .5rem;
+    opacity: 0;
+    visibility: hidden;
+    /*transition: opacity .1s linear, visibility .1s linear;*/
 }
 
 .show-supplier-icon {
@@ -39,7 +35,7 @@
     fill: black;
     width: 1.8rem;
     height: 1.8rem;
-    transition: fill .2s ease-in-out;
+    /*transition: fill .2s ease-in-out;*/
     shape-rendering: geometricPrecision;
 }
 
@@ -49,4 +45,10 @@
 
 .show-supplier-btn:hover > .show-supplier-icon {
     fill: var(--main-blue);
+}
+
+@media (max-width: 768px) {
+    .show-supplier-btn {
+        display: none;
+    }
 }

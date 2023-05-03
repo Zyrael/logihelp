@@ -17,6 +17,7 @@ export function SupplierList() {
   const [showClear, setShowClear] = useState(false);
   const [suppliers, setSuppliers] = useState([]);
   const [searchFocus, setSearchFocus] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     if (!loading && !error) setSuppliers(data.getSuppliers);
@@ -31,8 +32,13 @@ export function SupplierList() {
     setSearchValue(e.currentTarget.value);
   };
 
+  const opened = useSelector((state) => state.supplierInfo.opened);
+
   const searchRef = useRef(null);
-  useEffect(() => searchRef.current.focus(), [showClear]);
+  useEffect(() => {
+    if (opened === true) return;
+    searchRef.current.focus();
+  }, [showClear, opened]);
 
   const handleClearButton = () => {
     setSearchValue("");
@@ -44,7 +50,9 @@ export function SupplierList() {
     dispatch(setMode({ mode: "create" }));
   };
 
-  const opened = useSelector((state) => state.supplierInfo.opened);
+  const handleScroll = (e) => {
+    setScrolled(e.currentTarget.scrollTop > 30);
+  };
 
   return (
     <div
@@ -52,7 +60,11 @@ export function SupplierList() {
         "supplier-list-container--active": !opened,
       })}
     >
-      <div className="supplier-list-header">
+      <div
+        className={cn("supplier-list-header", {
+          "supplier-list-header--shadow": scrolled,
+        })}
+      >
         <div className="search-container">
           <Glass
             className={cn({
@@ -97,7 +109,7 @@ export function SupplierList() {
         </div>
       )}
       {!loading && !error && (
-        <div className="supplier-list-main">
+        <div className="supplier-list-main" onScroll={handleScroll}>
           {data.getSuppliers.length === 0 && (
             <div className="nothing-found">Добавьте первого поставщика</div>
           )}

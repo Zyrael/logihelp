@@ -6,8 +6,8 @@ import { closeSupplierInfo } from "./supplierInfoSlice";
 import { ReactComponent as Back } from "../../assets/icons/back.svg";
 import { ReactComponent as CopySVG } from "../../assets/icons/copy.svg";
 import { ReactComponent as PinSVG } from "../../assets/icons/pin.svg";
-import { ReactComponent as ContactSVG } from "../../assets/icons/contact.svg";
-import { ReactComponent as InfoSVG } from "../../assets/icons/info.svg";
+import { ReactComponent as ContactSVG } from "../../assets/icons/contact1.svg";
+import { ReactComponent as InfoSVG } from "../../assets/icons/exclamation.svg";
 import { ReactComponent as UrlSVG } from "../../assets/icons/url.svg";
 
 export function SupplierInfo() {

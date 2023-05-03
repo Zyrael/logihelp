@@ -3,7 +3,7 @@ import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../routeSheet/routeSheetSlice";
 import { openSupplierInfo } from "../../supplierInfo/supplierInfoSlice";
-import { ReactComponent as GlassSVG } from "../../../assets/icons/info.svg";
+import { ReactComponent as InfoSVG } from "../../../assets/icons/info.svg";
 import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {
@@ -13,13 +13,21 @@ export function SupplierElement({ supplier }) {
     dispatch(openSupplierInfo({ supplier }));
   };
 
+  const handleSupplierClick = () => {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      dispatch(openSupplierInfo({ supplier }));
+      return;
+    }
+    dispatch(addRoute(supplier));
+  };
+
   const [showButton, setShowButton] = useState(false);
   const showBtnClasses = cn("show-supplier-btn", { visible: showButton });
   return (
     <li
       tabIndex={0}
       className="supplier"
-      onClick={() => dispatch(addRoute(supplier))}
+      onClick={handleSupplierClick}
       onMouseEnter={() => setShowButton(true)}
       onMouseLeave={() => setShowButton(false)}
     >
@@ -29,7 +37,7 @@ export function SupplierElement({ supplier }) {
         className={showBtnClasses}
         onClick={handleEditButton}
       >
-        <GlassSVG className="show-supplier-icon" />
+        <InfoSVG className="show-supplier-icon" />
       </button>
     </li>
   );
