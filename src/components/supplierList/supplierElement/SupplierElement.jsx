@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../routeSheet/routeSheetSlice";
-import { openSupplierInfo } from "../../supplierInfo/supplierInfoSlice";
+import { openSupplierInfo } from "../../supplierTab/supplierInfoSlice";
 import { ReactComponent as InfoSVG } from "../../../assets/icons/info.svg";
 import "./SupplierElement.css";
 

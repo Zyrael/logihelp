@@ -6,14 +6,14 @@ import {
   RouteSheet,
 } from "../../components";
 import "./RouteSheetPage.css";
-import { SupplierInfo } from "../../components/supplierInfo";
+import { SupplierTab } from "../../components/supplierTab";
 
 export function RouteSheetPage() {
   return (
     <div className="route-sheet-page">
       <LeftContainer>
         <SupplierList />
-        <SupplierInfo />
+        <SupplierTab />
       </LeftContainer>
       <RightContainer>
         <RouteSheet />

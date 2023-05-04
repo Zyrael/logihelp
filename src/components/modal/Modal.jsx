@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
-import { SupplierForm } from "../supplierForm";
+import { SupplierForm } from "../supplierTab/supplierForm";
 import { setMode } from "./modalslice";
 import "./Modal.css";
 import { PDFView } from "../pdfView";

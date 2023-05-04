@@ -1,0 +1,20 @@
+.edit-supplier-btn {
+    border: 0;
+    border-radius: 5px;
+    height: 2rem;
+    width: 2rem;
+    background: 0;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    margin-left: .5rem;
+}
+
+.edit-supplier-btn:hover {
+    background: var(--hover-gray-color);
+}
+
+.edit-supplier-icon {
+    height: 1.3rem;
+    width: 1.3rem;
+}
