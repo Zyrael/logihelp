@@ -44,11 +44,11 @@
     overflow-x: hidden;
 }
 
-.supplier-tab-main > * + * {
+.supplier-info > * + * {
     border-top: 1px solid var(--border-color);
 }
 
-.supplier-name-container {
+.supplier-header {
     display: flex;
     align-items: center;
     padding: 1.5rem 1.2rem .7rem;

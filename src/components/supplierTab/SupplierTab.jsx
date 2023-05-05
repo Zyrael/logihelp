@@ -17,6 +17,11 @@ export function SupplierTab() {
 
   const dispatch = useDispatch();
 
+  const handleClose = () => {
+    dispatch(closeSupplierInfo());
+    setMode("browse");
+  };
+
   return (
     <div
       className={cn("supplier-tab", {
@@ -29,7 +34,7 @@ export function SupplierTab() {
           name="close-supplier-tab"
           type="button"
           className="close-supplier-tab"
-          onClick={() => dispatch(closeSupplierInfo())}
+          onClick={handleClose}
         >
           <BackSVG className="close-supplier-icon" />
         </button>
@@ -39,7 +44,7 @@ export function SupplierTab() {
         {mode === "browse" ? (
           <SupplierInfo supplierData={supplierData} setMode={setMode} />
         ) : (
-          <SupplierForm setMode={setMode} />
+          <SupplierForm supplierData={supplierData} setMode={setMode} />
         )}
       </div>
     </div>

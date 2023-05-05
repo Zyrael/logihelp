@@ -28,7 +28,7 @@ export function SupplierInfo({ supplierData, setMode }) {
   return (
     <div className="supplier-info">
       <div
-        className="supplier-name-container"
+        className="supplier-header"
         onMouseEnter={() => setShowEdit(true)}
         onMouseLeave={() => setShowEdit(false)}
       >

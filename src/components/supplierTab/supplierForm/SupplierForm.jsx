@@ -9,19 +9,16 @@ import cn from "classnames";
 //   DELETE_SUPPLIER,
 // } from "../../../graphql";
 // import { DeletePrompt } from "./deletePrompt";
+import { ReactComponent as PinSVG } from "../../../assets/icons/pin.svg";
+import { ReactComponent as ContactSVG } from "../../../assets/icons/contact1.svg";
+import { ReactComponent as InfoSVG } from "../../../assets/icons/exclamation.svg";
+import { ReactComponent as UrlSVG } from "../../../assets/icons/url.svg";
 import "./SupplierForm.css";
 
-export function SupplierForm({ setMode }) {
+export function SupplierForm({ supplierData, setMode }) {
   const [validated, setValidated] = useState(true);
 
-  const [formData, setFormData] = useState({
-    id: "",
-    name: "",
-    url: "",
-    address: "",
-    contacts: "",
-    additionalData: "",
-  });
+  const [formData, setFormData] = useState(supplierData);
 
   // const trimData = () => {
   //   const keys = Object.keys(formData);
@@ -95,67 +92,88 @@ export function SupplierForm({ setMode }) {
   // };
 
   return (
-    <div className="supplier-form-container">
-      <form className="supplier-form" onSubmit={() => setMode("browse")}>
-        <input
-          type="text"
-          placeholder="Имя"
-          name="name"
-          value={formData.name}
-          onChange={handleNameChange}
-          onBlur={() => validate(formData.name)}
-          className={cn("name-input", { unvalidated: !validated })}
-          required
-          autoComplete="off"
-        />
-        {!validated && <span className="unvalidated-span">Введите имя</span>}
-        <input
-          type="url"
-          placeholder="Сайт"
-          name="url"
-          value={formData.url}
-          onChange={handleChange}
-          autoComplete="off"
-        />
+    <form className="supplier-form" onSubmit={() => setMode("browse")}>
+      <div className="supplier-header">
+        <div className="supplier-name">
+          <input
+            type="text"
+            name="name"
+            placeholder="Название"
+            value={formData.name}
+            onChange={handleNameChange}
+            onBlur={() => validate(formData.name)}
+            className={cn("supplier-name-input", { unvalidated: !validated })}
+            required
+            autoComplete="off"
+          />
+        </div>
+        <div className="supplier-url">
+          <UrlSVG className="supplier-url-icon" />
+          <input
+            type="url"
+            placeholder="Сайт"
+            name="url"
+            className="supplier-url-input"
+            value={formData.url ?? ""}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+        </div>
+      </div>
+      <div className="supplier-info-text">
+        <div className="icon-container">
+          <PinSVG className="supplier-info-icon" />
+        </div>
+
         <textarea
           name="address"
           id="address"
           placeholder="Адрес"
-          value={formData.address}
+          className="supplier-textarea"
+          value={formData.address ?? ""}
           onChange={handleChange}
         />
+      </div>
+      <div className="supplier-info-text">
+        <div className="icon-container">
+          <ContactSVG className="supplier-info-icon" />
+        </div>
         <textarea
           name="contacts"
           id="contacts"
           placeholder="Контакты"
-          value={formData.contacts}
+          className="supplier-textarea"
+          value={formData.contacts ?? ""}
           onChange={handleChange}
         />
+      </div>
+      <div className="supplier-info-text">
+        <div className="icon-container">
+          <InfoSVG className="supplier-info-icon" />
+        </div>
         <textarea
           name="additionalData"
           id="additional-data"
           placeholder="Дополнительно"
-          value={formData.additionalData}
+          className="supplier-textarea"
+          value={formData.additionalData ?? ""}
           onChange={handleChange}
         />
-        <div className="footer">
-          {/* {mode === "edit" && ( */}
-          {/*  <button */}
-          {/*    type="button" */}
-          {/*    className="text-btn delete" */}
-          {/*    onClick={() => setDeleting(true)} */}
-          {/*  > */}
-          {/*    Удалить */}
-          {/*  </button> */}
-          {/* )} */}
-          <button type="submit" className="text-btn submit">
-            Сохранить
-          </button>
-        </div>
-      </form>
-      {/* {deleting && ( */}
-      {/*  <DeletePrompt handleDelete={handleDelete} setDeleting={setDeleting} /> */}
-      {/* )} */}
-    </div>
+      </div>
+      <div className="footer">
+        {/* {mode === "edit" && ( */}
+        {/*  <button */}
+        {/*    type="button" */}
+        {/*    className="text-btn delete" */}
+        {/*    onClick={() => setDeleting(true)} */}
+        {/*  > */}
+        {/*    Удалить */}
+        {/*  </button> */}
+        {/* )} */}
+        <button type="submit" className="text-btn submit">
+          Сохранить
+        </button>
+      </div>
+    </form>
   );
 }
