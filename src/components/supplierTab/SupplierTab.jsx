@@ -44,7 +44,11 @@ export function SupplierTab() {
         {mode === "browse" ? (
           <SupplierInfo supplierData={supplierData} setMode={setMode} />
         ) : (
-          <SupplierForm supplierData={supplierData} setMode={setMode} />
+          <SupplierForm
+            supplierData={supplierData}
+            mode={mode}
+            setMode={setMode}
+          />
         )}
       </div>
     </div>

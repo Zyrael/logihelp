@@ -35,6 +35,8 @@
 .route-list-container {
     padding-right: .7rem;
     overflow: auto;
+    height: 100%;
+    width: 100%;
 }
 
 .route-list {

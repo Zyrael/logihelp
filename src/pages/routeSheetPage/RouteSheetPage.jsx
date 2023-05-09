@@ -1,23 +1,18 @@
 import React from "react";
-import {
-  SupplierList,
-  LeftContainer,
-  RightContainer,
-  RouteSheet,
-} from "../../components";
+import { SupplierList, RouteSheet } from "../../components";
 import "./RouteSheetPage.css";
 import { SupplierTab } from "../../components/supplierTab";
 
 export function RouteSheetPage() {
   return (
     <div className="route-sheet-page">
-      <LeftContainer>
+      <div className="content-container content-container--left">
         <SupplierList />
         <SupplierTab />
-      </LeftContainer>
-      <RightContainer>
+      </div>
+      <div className="content-container content-container--right">
         <RouteSheet />
-      </RightContainer>
+      </div>
       {/* {!(modalMode === "closed") && <Modal />} */}
     </div>
   );

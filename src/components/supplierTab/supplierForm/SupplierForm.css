@@ -7,13 +7,30 @@
     align-items: flex-start;
 }
 
-.supplier-form > .supplier-header > * {
-    margin: 0;
+.supplier-form input {
+    padding: .2rem .5rem;
+    border: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.supplier-form input:focus {
+    outline: none;
+    border: 1px solid var(--main-blue);
 }
 
 .supplier-name-input {
     font-size: 1.5rem;
     width: 100%;
+}
+
+.supplier-form .supplier-url-icon {
+    height: 2rem;
+    width: 2rem;
+}
+
+.supplier-url-input {
+    margin-left: 1rem;
+    font-size: 1.2rem;
 }
 
 .supplier-textarea {
@@ -29,4 +46,42 @@
 .supplier-textarea:focus {
     border: 1px solid var(--main-blue);
     outline: none;
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center;
+    background: var(--main-blue);
+    border: 0;
+    border-radius: 5px;
+    padding-left: .5rem;
+    cursor: pointer;
+    transition: background-color .1s ease-in-out;
+}
+
+.submit-btn:hover {
+    background: var(--hover-blue);
+}
+
+.submit-btn:active {
+    background: var(--hover-blue-dark);
+}
+
+.submit-btn span {
+    font-size: 1.5rem;
+    color: white;
+    border-left: 1px solid white;
+    margin-left: .5rem;
+    padding: .5rem;
+}
+
+.submit-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    fill: white;
+}
+
+.supplier-form-footer {
+    border: 0;
+    padding: 0 1.2rem;
 }

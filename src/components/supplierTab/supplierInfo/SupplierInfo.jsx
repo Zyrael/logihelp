@@ -32,16 +32,19 @@ export function SupplierInfo({ supplierData, setMode }) {
         onMouseEnter={() => setShowEdit(true)}
         onMouseLeave={() => setShowEdit(false)}
       >
-        <h3 className="supplier-name">{name}</h3>
-        <button
-          type="button"
-          className={cn("edit-supplier-btn", {
-            visible: showEdit,
-          })}
-          onClick={() => setMode("edit")}
-        >
-          <EditSVG className="edit-supplier-icon" />
-        </button>
+        <div className="supplier-name">
+          <h3>{name}</h3>
+          <button
+            type="button"
+            className={cn("edit-supplier-btn", {
+              visible: showEdit,
+            })}
+            onClick={() => setMode("edit")}
+          >
+            <EditSVG className="edit-supplier-icon" />
+          </button>
+        </div>
+
         {url && (
           <div className="supplier-url">
             <UrlSVG className="supplier-url-icon" />

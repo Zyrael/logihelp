@@ -109,17 +109,17 @@
 
 .error {
     padding-top: 2rem;
-    color: #d00000;
+    color: hsl(0, 100%, 41%);
     display: flex;
     height: 100%;
     justify-content: center;
 }
 
 .supplier-list-main {
-    padding-right: .7rem;
+    /*padding-right: .7rem;*/
     display: flex;
     justify-content: center;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
 }

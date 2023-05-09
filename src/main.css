@@ -1,14 +1,34 @@
 :root {
-    --main-background: rgb(231, 234, 235);
-    --main-blue: rgb(45, 156, 225);
-    --hover-blue: rgb(88, 181, 236);
-    --hover-blue-dark: rgb(22, 136, 203);
-    --disabled-blue: rgb(155, 208, 245);
-    --element-background: rgb(231, 234, 235);
-    --element-hover: rgba(29, 161, 242, 0.1);
-    --font-color: rgb(0, 0, 0);
-    --border-color: rgb(211, 211, 211);
-    --hover-gray-color: rgba(73, 73, 73, 0.2)
+    --main-background: hsl(195 9% 91%);
+    --main-blue: hsl(205 65% 50%);
+    --hover-blue: hsl(200 75% 60%);
+    --hover-blue-dark: hsl(202 80% 44%);
+    --disabled-blue: hsl(205 82% 78%);
+    --element-background: hsl(195 9% 91%);
+    --element-hover: hsla(203 89% 53% / 0.1);
+    --font-color: hsl(0 0% 0%);
+    --border-color: hsl(0 0% 83%);
+    --hover-gray-color: hsla(0 0% 29% / 0.2);
+}
+
+::-webkit-scrollbar {
+    width: .5rem;
+    height: .5rem;
+    transition: width .2s ease-in-out;
+}
+
+::-webkit-scrollbar:hover {
+    width: .7rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 0% / 25%);
+    border-radius: 20px;
+    width: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 0% / 35%);
 }
 
 @font-face {

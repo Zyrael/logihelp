@@ -8,14 +8,15 @@ import cn from "classnames";
 //   UPDATE_SUPPLIER,
 //   DELETE_SUPPLIER,
 // } from "../../../graphql";
-// import { DeletePrompt } from "./deletePrompt";
+import { DeletePrompt } from "./deletePrompt";
 import { ReactComponent as PinSVG } from "../../../assets/icons/pin.svg";
 import { ReactComponent as ContactSVG } from "../../../assets/icons/contact1.svg";
 import { ReactComponent as InfoSVG } from "../../../assets/icons/exclamation.svg";
 import { ReactComponent as UrlSVG } from "../../../assets/icons/url.svg";
+import { ReactComponent as SaveSVG } from "../../../assets/icons/save.svg";
 import "./SupplierForm.css";
 
-export function SupplierForm({ supplierData, setMode }) {
+export function SupplierForm({ supplierData, mode, setMode }) {
   const [validated, setValidated] = useState(true);
 
   const [formData, setFormData] = useState(supplierData);
@@ -34,7 +35,7 @@ export function SupplierForm({ supplierData, setMode }) {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  // const [deleting, setDeleting] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const validate = (value) => setValidated(value.trim() !== "");
 
@@ -160,18 +161,19 @@ export function SupplierForm({ supplierData, setMode }) {
           onChange={handleChange}
         />
       </div>
-      <div className="footer">
-        {/* {mode === "edit" && ( */}
-        {/*  <button */}
-        {/*    type="button" */}
-        {/*    className="text-btn delete" */}
-        {/*    onClick={() => setDeleting(true)} */}
-        {/*  > */}
-        {/*    Удалить */}
-        {/*  </button> */}
-        {/* )} */}
-        <button type="submit" className="text-btn submit">
-          Сохранить
+      <div className="supplier-form-footer">
+        {mode === "edit" && (
+          <button
+            type="button"
+            className="text-btn delete"
+            onClick={() => setDeleting(true)}
+          >
+            Удалить
+          </button>
+        )}
+        <button type="submit" className="submit-btn">
+          <SaveSVG className="submit-icon" />
+          <span>Сохранить</span>
         </button>
       </div>
     </form>

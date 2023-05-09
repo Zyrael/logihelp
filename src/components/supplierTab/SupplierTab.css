@@ -23,19 +23,18 @@
 
 .supplier-tab-header {
     color: white;
-    background: #60b7ef;
+    background: hsl(203, 82%, 66%);
     padding: 0 .625rem;
     min-height: 60px;
     display: flex;
     align-items: center;
     /*border-bottom: 1px solid var(--border-color);*/
-    transition: box-shadow .2s ease-in-out;
-
+    /*transition: box-shadow .2s ease-in-out;*/
 }
 
-.supplier-tab--active > .supplier-tab-header {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
+/*.supplier-tab--active > .supplier-tab-header {*/
+/*    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);*/
+/*}*/
 
 .supplier-tab-main {
     padding-right: 1.5rem;
@@ -49,12 +48,18 @@
 }
 
 .supplier-header {
-    display: flex;
-    align-items: center;
-    padding: 1.5rem 1.2rem .7rem;
+    padding: 1.5rem 0 .7rem 1.2rem;
+}
+
+.supplier-header > * {
+    width: 100%;
 }
 
 .supplier-name {
+    display: flex;
+}
+
+.supplier-name > h3 {
     font-size: 1.5rem;
 }
 
@@ -69,8 +74,7 @@
     border: 0;
     display: flex;
     align-items: center;
-    margin-left: auto;
-
+    margin-top: .5rem;
 }
 
 .supplier-url > p {
