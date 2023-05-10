@@ -33,7 +33,7 @@ export function SupplierInfo({ supplierData, setMode }) {
         onMouseLeave={() => setShowEdit(false)}
       >
         <div className="supplier-name">
-          <h3>{name}</h3>
+          <span>{name}</span>
           <button
             type="button"
             className={cn("edit-supplier-btn", {
@@ -47,9 +47,9 @@ export function SupplierInfo({ supplierData, setMode }) {
 
         {url && (
           <div className="supplier-url">
-            <UrlSVG className="supplier-url-icon" />
             <p>
               <a href={url} target="_blank" rel="noreferrer" className="url">
+                <UrlSVG className="supplier-url-icon" />
                 {url}
               </a>
             </p>

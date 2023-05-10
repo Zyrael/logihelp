@@ -19,6 +19,7 @@
 
 .content-container--left {
     flex: 2;
+    min-width: 380px;
 }
 
 .content-container--right {

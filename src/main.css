@@ -1,7 +1,7 @@
 :root {
     --main-background: hsl(195 9% 91%);
     --main-blue: hsl(205 65% 50%);
-    --hover-blue: hsl(200 75% 60%);
+    --hover-blue: hsl(205 65% 55%);
     --hover-blue-dark: hsl(202 80% 44%);
     --disabled-blue: hsl(205 82% 78%);
     --element-background: hsl(195 9% 91%);
@@ -9,26 +9,6 @@
     --font-color: hsl(0 0% 0%);
     --border-color: hsl(0 0% 83%);
     --hover-gray-color: hsla(0 0% 29% / 0.2);
-}
-
-::-webkit-scrollbar {
-    width: .5rem;
-    height: .5rem;
-    transition: width .2s ease-in-out;
-}
-
-::-webkit-scrollbar:hover {
-    width: .7rem;
-}
-
-::-webkit-scrollbar-thumb {
-    background: hsl(0 0% 0% / 25%);
-    border-radius: 20px;
-    width: 2rem;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: hsl(0 0% 0% / 35%);
 }
 
 @font-face {
@@ -56,6 +36,18 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
+}
+
+::-webkit-scrollbar {
+    width: .4rem;
+    height: .4rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 0% / 25%);
+    border-radius: 20px;
 }
 
 #root {

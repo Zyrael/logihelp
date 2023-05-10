@@ -26,7 +26,6 @@
     min-height: 60px;
     border-bottom: 1px solid rgb(211, 211, 211);
     transition: box-shadow 0.15s ease-in-out;
-    /*z-index: 10;*/
 }
 
 .supplier-list-header--shadow {
@@ -116,12 +115,24 @@
 }
 
 .supplier-list-main {
-    /*padding-right: .7rem;*/
     display: flex;
     justify-content: center;
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
+    scrollbar-color: transparent transparent;
+}
+
+.supplier-list-main:hover {
+    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
+}
+
+.supplier-list-main::-webkit-scrollbar-thumb {
+    background: 0;
+}
+
+.supplier-list-main:hover::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 0% / 25%);
 }
 
 .supplier-list {

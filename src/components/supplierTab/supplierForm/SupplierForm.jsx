@@ -8,12 +8,11 @@ import cn from "classnames";
 //   UPDATE_SUPPLIER,
 //   DELETE_SUPPLIER,
 // } from "../../../graphql";
-import { DeletePrompt } from "./deletePrompt";
 import { ReactComponent as PinSVG } from "../../../assets/icons/pin.svg";
 import { ReactComponent as ContactSVG } from "../../../assets/icons/contact1.svg";
 import { ReactComponent as InfoSVG } from "../../../assets/icons/exclamation.svg";
 import { ReactComponent as UrlSVG } from "../../../assets/icons/url.svg";
-import { ReactComponent as SaveSVG } from "../../../assets/icons/save.svg";
+import { ReactComponent as SaveSVG } from "../../../assets/icons/save1.svg";
 import "./SupplierForm.css";
 
 export function SupplierForm({ supplierData, mode, setMode }) {
@@ -109,7 +108,9 @@ export function SupplierForm({ supplierData, mode, setMode }) {
           />
         </div>
         <div className="supplier-url">
-          <UrlSVG className="supplier-url-icon" />
+          <div className="icon-container">
+            <UrlSVG className="supplier-url-icon" />{" "}
+          </div>
           <input
             type="url"
             placeholder="Сайт"
