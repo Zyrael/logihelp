@@ -37,7 +37,7 @@
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
     scrollbar-width: thin;
-    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
+    scrollbar-color: transparent transparent;
 }
 
 ::-webkit-scrollbar {
@@ -45,7 +45,11 @@
     height: .4rem;
 }
 
-::-webkit-scrollbar-thumb {
+:hover {
+    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
+}
+
+:hover::-webkit-scrollbar-thumb {
     background: hsl(0 0% 0% / 25%);
     border-radius: 20px;
 }

@@ -34,8 +34,8 @@
 }
 
 .route-list-container {
-    padding-right: .7rem;
-    overflow: auto;
+    padding-right: .625rem;
+    overflow-y: scroll;
     height: 100%;
     width: 100%;
 }

@@ -119,20 +119,8 @@
     justify-content: center;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding-right: .625rem;
     width: 100%;
-    scrollbar-color: transparent transparent;
-}
-
-.supplier-list-main:hover {
-    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
-}
-
-.supplier-list-main::-webkit-scrollbar-thumb {
-    background: 0;
-}
-
-.supplier-list-main:hover::-webkit-scrollbar-thumb {
-    background: hsl(0 0% 0% / 25%);
 }
 
 .supplier-list {
