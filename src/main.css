@@ -1,8 +1,8 @@
 :root {
     --main-background: hsl(195 9% 91%);
-    --main-blue: hsl(205 65% 50%);
-    --hover-blue: hsl(205 65% 55%);
-    --hover-blue-dark: hsl(202 80% 44%);
+    --main-blue: hsl(203, 82%, 66%);
+    --hover-blue: hsl(203, 82%, 74%);
+    --hover-blue-dark: hsl(203, 82%, 58%);
     --disabled-blue: hsl(205 82% 78%);
     --element-background: hsl(195 9% 91%);
     --element-hover: hsla(203 89% 53% / 0.1);

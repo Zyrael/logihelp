@@ -8,10 +8,9 @@ import cn from "classnames";
 //   UPDATE_SUPPLIER,
 //   DELETE_SUPPLIER,
 // } from "../../../graphql";
-import { ReactComponent as PinSVG } from "../../../assets/icons/pin.svg";
-import { ReactComponent as ContactSVG } from "../../../assets/icons/contact1.svg";
-import { ReactComponent as InfoSVG } from "../../../assets/icons/exclamation.svg";
-import { ReactComponent as UrlSVG } from "../../../assets/icons/url.svg";
+import { ReactComponent as NavSVG } from "../../../assets/iconpack/navigation-ne.svg";
+import { ReactComponent as ContactSVG } from "../../../assets/iconpack/user.svg";
+import { ReactComponent as InfoSVG } from "../../../assets/iconpack/alert-square.svg";
 import { ReactComponent as SaveSVG } from "../../../assets/icons/save1.svg";
 import "./SupplierForm.css";
 
@@ -108,9 +107,6 @@ export function SupplierForm({ supplierData, mode, setMode }) {
           />
         </div>
         <div className="supplier-url">
-          <div className="icon-container">
-            <UrlSVG className="supplier-url-icon" />{" "}
-          </div>
           <input
             type="url"
             placeholder="Сайт"
@@ -124,7 +120,7 @@ export function SupplierForm({ supplierData, mode, setMode }) {
       </div>
       <div className="supplier-info-text">
         <div className="icon-container">
-          <PinSVG className="supplier-info-icon" />
+          <NavSVG className="supplier-info-icon" />
         </div>
 
         <textarea

@@ -3,7 +3,7 @@ import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../routeSheet/routeSheetSlice";
 import { openSupplierInfo } from "../../supplierTab/supplierInfoSlice";
-import { ReactComponent as InfoSVG } from "../../../assets/icons/info.svg";
+import { ReactComponent as InfoSVG } from "../../../assets/iconpack/info-circle.svg";
 import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {

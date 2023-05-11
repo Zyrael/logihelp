@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import { ReactComponent as CopySVG } from "../../../assets/icons/copy.svg";
-import { ReactComponent as PinSVG } from "../../../assets/icons/pin.svg";
-import { ReactComponent as ContactSVG } from "../../../assets/icons/contact1.svg";
-import { ReactComponent as InfoSVG } from "../../../assets/icons/exclamation.svg";
-import { ReactComponent as UrlSVG } from "../../../assets/icons/url.svg";
-import { ReactComponent as EditSVG } from "../../../assets/icons/pencil.svg";
+import { ReactComponent as NavSVG } from "../../../assets/iconpack/navigation-ne.svg";
+import { ReactComponent as ContactSVG } from "../../../assets/iconpack/user.svg";
+import { ReactComponent as InfoSVG } from "../../../assets/iconpack/alert-square.svg";
+import { ReactComponent as EditSVG } from "../../../assets/iconpack/edit.svg";
 import "./SupplierInfo.css";
 
 export function SupplierInfo({ supplierData, setMode }) {
@@ -49,7 +48,6 @@ export function SupplierInfo({ supplierData, setMode }) {
           <div className="supplier-url">
             <p>
               <a href={url} target="_blank" rel="noreferrer" className="url">
-                <UrlSVG className="supplier-url-icon" />
                 {url}
               </a>
             </p>
@@ -63,7 +61,7 @@ export function SupplierInfo({ supplierData, setMode }) {
           onMouseLeave={handleMouseLeave}
         >
           <div className="icon-container">
-            <PinSVG className="supplier-info-icon" />
+            <NavSVG className="supplier-info-icon" />
           </div>
 
           <p>{address}</p>

@@ -3,7 +3,7 @@ import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import "./SupplierTab.css";
 import { closeSupplierInfo } from "./supplierInfoSlice";
-import { ReactComponent as BackSVG } from "../../assets/icons/back.svg";
+import { ReactComponent as BackSVG } from "../../assets/iconpack/chevron-left.svg";
 import { SupplierInfo } from "./supplierInfo";
 import { SupplierForm } from "./supplierForm";
 
