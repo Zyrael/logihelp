@@ -61,7 +61,7 @@
 
 .supplier-name > span {
     font-size: 1.5rem;
-    margin-left: .25rem;
+    margin: .25rem 0 0 .25rem;
 }
 
 .supplier-info-text {
@@ -75,7 +75,7 @@
     border: 0;
     display: flex;
     align-items: center;
-    margin-top: .5rem;
+    margin-top: .125rem;
 }
 
 .url {
@@ -88,7 +88,7 @@
 }
 
 .supplier-url > p {
-    margin-left: .5rem;
+    margin: .5rem 0 0 .25rem;
 }
 
 .supplier-info-text > p {

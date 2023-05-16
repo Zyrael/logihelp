@@ -11,6 +11,7 @@ import cn from "classnames";
 import { ReactComponent as NavSVG } from "../../../assets/iconpack/navigation-ne.svg";
 import { ReactComponent as ContactSVG } from "../../../assets/iconpack/user.svg";
 import { ReactComponent as InfoSVG } from "../../../assets/iconpack/alert-square.svg";
+import { ReactComponent as XSVG } from "../../../assets/iconpack/x-circle.svg";
 import { ReactComponent as SaveSVG } from "../../../assets/icons/save1.svg";
 import "./SupplierForm.css";
 
@@ -162,10 +163,11 @@ export function SupplierForm({ supplierData, mode, setMode }) {
         {mode === "edit" && (
           <button
             type="button"
-            className="text-btn delete"
+            className="delete-btn"
             onClick={() => setDeleting(true)}
           >
-            Удалить
+            <XSVG className="x-icon" />
+            <span>Удалить</span>
           </button>
         )}
         <button type="submit" className="submit-btn">
