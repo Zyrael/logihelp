@@ -54,6 +54,13 @@
     border-radius: 20px;
 }
 
+@media (max-width: 768px) {
+    ::-webkit-scrollbar-thumb {
+        background: hsl(0 0% 0% / 25%);
+        border-radius: 20px;
+    }
+}
+
 #root {
     height: 100vh;
 }

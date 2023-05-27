@@ -7,10 +7,24 @@
     align-items: flex-start;
 }
 
+.supplier-form > .supplier-info-text {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.supplier-form .supplier-info-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
 .supplier-form input {
     padding: .2rem;
     border: 1px solid var(--border-color);
     width: 100%;
+}
+
+.supplier-form .supplier-name {
+    position: relative;
 }
 
 .supplier-form input:focus {
@@ -20,6 +34,23 @@
 
 .supplier-name-input {
     font-size: 1.5rem;
+}
+
+.supplier-name-input::placeholder {
+    font-weight: 300;
+}
+
+.supplier-name-input.unvalidated {
+    border: 1px solid hsl(0, 100%, 54%) !important;
+}
+
+.unvalidated-danger {
+    color: hsl(0, 100%, 54%);
+    position: absolute;
+    right: .625rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .supplier-url-input {
@@ -33,7 +64,7 @@
     font-size: 1rem;
     border: 1px solid var(--border-color);
     padding: .2rem;
-    margin-left: 1rem;
+    margin-top: .5rem;
 }
 
 .supplier-textarea:focus {
@@ -41,34 +72,85 @@
     outline: none;
 }
 
-.delete-btn {
+.supplier-form-footer {
+    border: 0;
+    padding-right: .7rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    bottom: 0;
+}
+
+.supplier-form-footer > * + * {
+    margin-left: 0.5rem;
+}
+
+.form-footer-btn {
     display: flex;
     align-items: center;
-    background: var(--main-blue);
     border: 0;
-    border-radius: 5px;
-    padding-left: .5rem;
+    background: 0;
+    border-radius: 7px;
+    width: 150px;
+    height: 40px;
     cursor: pointer;
     transition: background-color .1s ease-in-out;
-    position: relative;
     overflow: hidden;
 }
 
-.delete-btn:hover {
-    background: var(--hover-blue);
-}
-
-.delete-btn:active {
-    background: var(--hover-blue);
-}
-
-.delete-btn span {
-    font-size: 1.5rem;
+.form-footer-btn span {
+    font-size: 1.2rem;
     font-weight: 300;
     color: white;
+}
+
+@media (max-width: 768px) {
+    .supplier-form-footer {
+        flex-direction: column;
+    }
+
+    .supplier-form-footer > * + * {
+        margin-top: 1rem;
+    }
+
+    .form-footer-btn {
+        width: 100%;
+    }
+}
+
+.footer-icon {
+    min-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: min-width .2s ease-in-out;
+}
+
+.footer-text {
     border-left: 1px solid white;
-    margin-left: .5rem;
-    padding: .5rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .2s ease-in-out;
+    transform-origin: right;
+}
+
+.form-footer-btn:hover .footer-text {
+    transform: scaleX(0);
+}
+
+.form-footer-btn:hover .footer-icon {
+    min-width: 150px;
+}
+
+.form-delete-btn {
+    background: hsl(0, 100%, 63%);
+}
+
+.form-delete-btn:active {
+    background: hsl(0, 100%, 68%);
 }
 
 .x-icon {
@@ -77,25 +159,22 @@
     stroke: white;
 }
 
-.submit-btn {
-    display: flex;
-    align-items: center;
+.form-submit-btn {
     background: var(--main-blue);
-    border: 0;
-    border-radius: 5px;
-    padding-left: .5rem;
-    cursor: pointer;
-    transition: background-color .1s ease-in-out;
-    position: relative;
-    overflow: hidden;
 }
 
-.submit-btn:hover {
-    background: var(--hover-blue);
-}
+/*.form-submit-btn:hover {*/
+/*    background: var(--hover-blue);*/
+/*}*/
 
-.submit-btn:active {
-    background: var(--hover-blue);
+/*.form-submit-btn:active {*/
+/*    background: var(--hover-blue);*/
+/*}*/
+
+.submit-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    fill: white;
 }
 
 /*.submit-btn::before {*/
@@ -114,24 +193,3 @@
 /*.submit-btn:active::before {*/
 /*    animation: .4s linear close-supplier;*/
 /*}*/
-
-.submit-btn span {
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: white;
-    border-left: 1px solid white;
-    margin-left: .5rem;
-    padding: .5rem;
-}
-
-.submit-icon {
-    height: 1.5rem;
-    width: 1.5rem;
-    fill: white;
-}
-
-.supplier-form-footer {
-    border: 0;
-    padding: 0 1.2rem;
-    display: flex;
-}

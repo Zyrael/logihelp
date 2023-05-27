@@ -10,7 +10,7 @@ export function SupplierElement({ supplier }) {
   const dispatch = useDispatch();
   const handleEditButton = (e) => {
     e.stopPropagation();
-    dispatch(openSupplierInfo({ supplier }));
+    dispatch(openSupplierInfo({ mode: "browse", supplier }));
   };
 
   const handleSupplierClick = () => {

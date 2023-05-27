@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import cn from "classnames";
+import { useDispatch } from "react-redux";
 import { ReactComponent as CopySVG } from "../../../assets/icons/copy.svg";
 import { ReactComponent as NavSVG } from "../../../assets/iconpack/navigation-ne.svg";
 import { ReactComponent as ContactSVG } from "../../../assets/iconpack/user.svg";
 import { ReactComponent as InfoSVG } from "../../../assets/iconpack/alert-square.svg";
 import { ReactComponent as EditSVG } from "../../../assets/iconpack/edit.svg";
+import { setMode } from "../supplierInfoSlice";
 import "./SupplierInfo.css";
 
-export function SupplierInfo({ supplierData, setMode }) {
+export function SupplierInfo({ supplierData }) {
   const { name, url, address, contacts, additionalData } = supplierData;
+
+  const dispatch = useDispatch();
 
   const [showCopy, setShowCopy] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -38,7 +42,7 @@ export function SupplierInfo({ supplierData, setMode }) {
             className={cn("edit-supplier-btn", {
               visible: showEdit,
             })}
-            onClick={() => setMode("edit")}
+            onClick={() => dispatch(setMode("edit"))}
           >
             <EditSVG className="edit-supplier-icon" />
           </button>

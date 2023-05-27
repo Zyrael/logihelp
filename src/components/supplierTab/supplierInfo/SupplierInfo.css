@@ -18,3 +18,96 @@
     height: 1.5rem;
     width: 1.5rem;
 }
+
+@media (max-width: 768px) {
+    .edit-supplier-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.supplier-info > * + * {
+    border-top: 1px solid var(--border-color);
+}
+
+.supplier-header {
+    padding: 1.5rem .7rem .7rem 1rem;
+}
+
+.supplier-header > * {
+    width: 100%;
+}
+
+.supplier-name {
+    display: flex;
+}
+
+.supplier-name > span {
+    font-size: 1.5rem;
+    margin: .25rem 0 0 .25rem;
+}
+
+.supplier-info-text {
+    padding: .7rem .7rem .7rem 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.supplier-url {
+    margin-top: .125rem;
+}
+
+.url {
+    align-items: center;
+}
+
+.supplier-url > p {
+    margin: .6875rem 0 0 .25rem;
+}
+
+.supplier-info-text > p {
+    padding-right: 3rem;
+    margin-left: 1rem;
+    text-align: justify;
+}
+
+.supplier-info-icon {
+    height: 2rem;
+    width: 2rem;
+}
+
+.copy-btn {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    cursor: pointer;
+    background: var(--main-blue);
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    padding-top: .1rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s ease-in-out, opacity .2s ease-in-out, width .1s ease-in-out;
+    width: 2rem;
+    height: 2rem;
+}
+
+.copy-icon {
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-bottom: .2rem;
+    stroke: white;
+}
+
+.copy-btn--shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.copy-btn--copied {
+    width: 8.5rem;
+    color: white;
+}

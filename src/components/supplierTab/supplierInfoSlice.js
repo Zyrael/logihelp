@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   opened: true,
+  mode: "browse",
   supplier: {
     name: "test",
     url: "http://test.test",
@@ -19,9 +20,13 @@ export const supplierInfoSlice = createSlice({
   initialState,
   reducers: {
     openSupplierInfo: (state, action) => {
-      const { supplier } = action.payload;
-      state.opened = true;
+      const { mode, supplier } = action.payload;
+      state.mode = mode;
       state.supplier = supplier;
+      state.opened = true;
+    },
+    setMode: (state, action) => {
+      state.mode = action.payload;
     },
     closeSupplierInfo: (state) => {
       state.opened = false;
@@ -29,7 +34,7 @@ export const supplierInfoSlice = createSlice({
   },
 });
 
-export const { openSupplierInfo, closeSupplierInfo } =
+export const { openSupplierInfo, setMode, closeSupplierInfo } =
   supplierInfoSlice.actions;
 
 export default supplierInfoSlice.reducer;

@@ -40,7 +40,7 @@ export const ADD_SUPPLIER = gql`
 
 export const UPDATE_SUPPLIER = gql`
   mutation Mutation(
-    $updateSupplierId: ID!
+    $id: ID!
     $name: String
     $url: String
     $address: String
@@ -48,7 +48,7 @@ export const UPDATE_SUPPLIER = gql`
     $additionalData: String
   ) {
     updateSupplier(
-      id: $updateSupplierId
+      id: $id
       name: $name
       url: $url
       address: $address
@@ -66,8 +66,8 @@ export const UPDATE_SUPPLIER = gql`
 `;
 
 export const DELETE_SUPPLIER = gql`
-  mutation Mutation($deleteSupplierId: ID!) {
-    deleteSupplier(id: $deleteSupplierId)
+  mutation Mutation($id: ID!) {
+    deleteSupplier(id: $id)
   }
 `;
 

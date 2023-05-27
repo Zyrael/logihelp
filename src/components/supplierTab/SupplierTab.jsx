@@ -8,18 +8,28 @@ import { SupplierInfo } from "./supplierInfo";
 import { SupplierForm } from "./supplierForm";
 
 export function SupplierTab() {
-  const { opened, supplier } = useSelector((state) => state.supplierInfo);
+  const { opened, mode, supplier } = useSelector((state) => state.supplierInfo);
 
   const [supplierData, setSupplierData] = useState({});
 
-  useEffect(() => setSupplierData(supplier), [supplier]);
-  const [mode, setMode] = useState("browse");
+  useEffect(() => {
+    setSupplierData(
+      mode === "create"
+        ? {
+            name: "",
+            url: "",
+            address: "",
+            contacts: "",
+            additionalData: "",
+          }
+        : supplier
+    );
+  }, [supplier]);
 
   const dispatch = useDispatch();
 
   const handleClose = () => {
     dispatch(closeSupplierInfo());
-    setMode("browse");
   };
 
   return (
@@ -42,12 +52,11 @@ export function SupplierTab() {
       </div>
       <div className="supplier-tab-main">
         {mode === "browse" ? (
-          <SupplierInfo supplierData={supplierData} setMode={setMode} />
+          <SupplierInfo supplierData={supplierData} />
         ) : (
           <SupplierForm
             supplierData={supplierData}
-            mode={mode}
-            setMode={setMode}
+            setSupplierData={setSupplierData}
           />
         )}
       </div>

@@ -1,40 +1,52 @@
 import React, { useState } from "react";
 import cn from "classnames";
-// import { useMutation } from "@apollo/client";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   ADD_SUPPLIER,
-//   refetchSuppliers,
-//   UPDATE_SUPPLIER,
-//   DELETE_SUPPLIER,
-// } from "../../../graphql";
+import { useMutation } from "@apollo/client";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  ADD_SUPPLIER,
+  refetchSuppliers,
+  UPDATE_SUPPLIER,
+  DELETE_SUPPLIER,
+} from "../../../graphql";
 import { ReactComponent as NavSVG } from "../../../assets/iconpack/navigation-ne.svg";
 import { ReactComponent as ContactSVG } from "../../../assets/iconpack/user.svg";
 import { ReactComponent as InfoSVG } from "../../../assets/iconpack/alert-square.svg";
 import { ReactComponent as XSVG } from "../../../assets/iconpack/x-circle.svg";
 import { ReactComponent as SaveSVG } from "../../../assets/icons/save1.svg";
+import { ReactComponent as LoadingSVG } from "../../../assets/icons/loading.svg";
+import { setMode, closeSupplierInfo } from "../supplierInfoSlice";
 import "./SupplierForm.css";
 
-export function SupplierForm({ supplierData, mode, setMode }) {
-  const [validated, setValidated] = useState(true);
+export function SupplierForm({ supplierData, setSupplierData }) {
+  const dispatch = useDispatch();
 
+  const [validated, setValidated] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [formData, setFormData] = useState(supplierData);
 
-  // const trimData = () => {
-  //   const keys = Object.keys(formData);
-  //   keys.forEach((key) => {
-  //     if (!formData[key] || key === "id") return;
-  //
-  //     formData[key] = formData[key]
-  //       .replace(/\n/g, " ")
-  //       .replace(/\s+/g, " ")
-  //       .trim();
-  //   });
-  // };
+  const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
+  const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
+  const [deleteSupplier] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
+
+  const { mode } = useSelector((state) => state.supplierInfo);
+
+  const trimData = (data) => {
+    const keys = Object.keys(data);
+    const trimmed = {};
+    keys.forEach((key) => {
+      if (!data[key] || key === "id") {
+        trimmed[key] = data[key];
+        return;
+      }
+      trimmed[key] = data[key].replace(/\n/g, " ").replace(/\s+/g, " ").trim();
+    });
+    return trimmed;
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const [deleting, setDeleting] = useState(false);
 
   const validate = (value) => setValidated(value.trim() !== "");
 
@@ -43,56 +55,42 @@ export function SupplierForm({ supplierData, mode, setMode }) {
     handleChange(e);
   };
 
-  // const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
-  // const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
-  // const [deleteSupplier] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
-  //
-  // const mode = useSelector((state) => state.modal.mode);
-  //
-  // const submitAction = {
-  //   create: () =>
-  //     addSupplier({
-  //       variables: {
-  //         name: formData.name,
-  //         url: formData.url,
-  //         address: formData.address,
-  //         contacts: formData.contacts,
-  //         additionalData: formData.additionalData,
-  //       },
-  //     }),
-  //   edit: () =>
-  //     updateSupplier({
-  //       variables: {
-  //         updateSupplierId: formData.id,
-  //         name: formData.name,
-  //         url: formData.url,
-  //         address: formData.address,
-  //         contacts: formData.contacts,
-  //         additionalData: formData.additionalData,
-  //       },
-  //     }),
-  // };
+  const submitAction = {
+    create: (data) =>
+      addSupplier({
+        variables: data,
+      }),
+    edit: (data) =>
+      updateSupplier({
+        variables: data,
+      }),
+  };
 
-  // const dispatch = useDispatch();
+  const handleDelete = () => {
+    if (!confirm("Вы уверены?")) return;
+    setDeleting(true);
+    deleteSupplier({
+      variables: formData,
+    }).then(() => {
+      setDeleting(false);
+      dispatch(closeSupplierInfo());
+    });
+  };
 
-  // const handleDelete = () => {
-  //   deleteSupplier({
-  //     variables: {
-  //       deleteSupplierId: formData.id,
-  //     },
-  //   });
-  //   dispatch(setMode({ mode: "closed" }));
-  // };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (!validated) return;
-  //   trimData();
-  //   submitAction[mode]();
-  //   dispatch(setMode({ mode: "closed" }));
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validated) return;
+    setSubmitting(true);
+    const trimmedData = trimData(formData);
+    submitAction[mode](trimmedData).then(() => {
+      setSubmitting(false);
+      setSupplierData(trimmedData);
+      dispatch(setMode("browse"));
+    });
+  };
 
   return (
-    <form className="supplier-form" onSubmit={() => setMode("browse")}>
+    <form className="supplier-form" onSubmit={handleSubmit}>
       <div className="supplier-header">
         <div className="supplier-name">
           <input
@@ -106,6 +104,9 @@ export function SupplierForm({ supplierData, mode, setMode }) {
             required
             autoComplete="off"
           />
+          {!validated && (
+            <div className="unvalidated-danger">Введите название</div>
+          )}
         </div>
         <div className="supplier-url">
           <input
@@ -153,7 +154,7 @@ export function SupplierForm({ supplierData, mode, setMode }) {
         <textarea
           name="additionalData"
           id="additional-data"
-          placeholder="Дополнительно"
+          placeholder="Примечание"
           className="supplier-textarea"
           value={formData.additionalData ?? ""}
           onChange={handleChange}
@@ -163,16 +164,32 @@ export function SupplierForm({ supplierData, mode, setMode }) {
         {mode === "edit" && (
           <button
             type="button"
-            className="delete-btn"
-            onClick={() => setDeleting(true)}
+            className="form-footer-btn form-delete-btn"
+            onClick={() => handleDelete()}
           >
-            <XSVG className="x-icon" />
-            <span>Удалить</span>
+            <div className="footer-icon">
+              {deleting ? (
+                <LoadingSVG className="submit-icon" />
+              ) : (
+                <XSVG className="x-icon" />
+              )}
+            </div>
+            <div className="footer-text">
+              <span>Удалить</span>
+            </div>
           </button>
         )}
-        <button type="submit" className="submit-btn">
-          <SaveSVG className="submit-icon" />
-          <span>Сохранить</span>
+        <button type="submit" className="form-footer-btn form-submit-btn">
+          <div className="footer-icon">
+            {submitting ? (
+              <LoadingSVG className="submit-icon" />
+            ) : (
+              <SaveSVG className="submit-icon" />
+            )}
+          </div>
+          <div className="footer-text">
+            <span>Сохранить</span>
+          </div>
         </button>
       </div>
     </form>
