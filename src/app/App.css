@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1em;
-    background: var(--main-background);
+    /*padding: 1em;*/
+    background: var(--background-color);
     height: 100vh;
 }
 

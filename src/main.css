@@ -1,14 +1,21 @@
 :root {
+    --background-color: linear-gradient(to bottom right, hsla(262, 47%, 83%, 0.4), hsla(262, 47%, 83%, 0.2));
+    --primary-color: hsl(262, 47%, 63%);
+    --primary-color-light: hsl(262, 47%, 73%);
     --main-background: hsl(195 9% 91%);
     --main-blue: hsl(203, 82%, 66%);
     --hover-blue: hsl(203, 82%, 74%);
     --hover-blue-dark: hsl(203, 82%, 58%);
     --disabled-blue: hsl(205 82% 78%);
     --element-background: hsl(195 9% 91%);
-    --element-hover: hsla(203 89% 53% / 0.1);
-    --font-color: hsl(0 0% 0%);
+    --element-hover-color: hsla(236, 21%, 14%, 0.1);
+    --font-color: hsl(199, 18%, 33%);
     --border-color: hsl(0 0% 83%);
     --hover-gray-color: hsla(0 0% 29% / 0.2);
+}
+
+body {
+    overflow: hidden;
 }
 
 @font-face {
@@ -41,8 +48,8 @@
 }
 
 ::-webkit-scrollbar {
-    width: .4rem;
-    height: .4rem;
+    width: .375rem;
+    height: .375rem;
 }
 
 :hover {
@@ -68,18 +75,20 @@
 .blue-btn {
     min-width: 40px;
     min-height: 40px;
-    background: var(--main-blue);
+    background: var(--primary-color);
     cursor: pointer;
     border: 0;
+    border-radius: 50%;
+    box-shadow: 0 2px 2px 0 hsla(0, 0%, 0%, 0.14), 0 3px 1px -2px hsla(0, 0%, 0%, 0.12), 0 1px 5px 0 hsla(0, 0%, 0%, 0.2);
     transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.blue-btn:enabled:hover {
-    background: var(--hover-blue);
-}
+/*.blue-btn:enabled:hover {*/
+/*    background: var(--primary-color-light);*/
+/*}*/
 
 .blue-btn:disabled {
     cursor: initial;

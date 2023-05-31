@@ -6,15 +6,22 @@
     display: flex;
     align-items: center;
     padding: .6rem .8rem;
+    border-radius: 8px;
+    /*border: 1px solid rgb(211, 211, 211);*/
+}
+
+@media (max-width: 768px) {
+    .supplier {
+        border-radius: 0;
+    }
 }
 
 .supplier + .supplier {
-    border-top: 1px solid rgb(211, 211, 211);
-
+    /*border-top: 1px solid rgb(211, 211, 211);*/
 }
 
 .supplier:hover {
-    background: var(--element-hover);
+    background: var(--element-hover-color);
 }
 
 .show-supplier-btn {
