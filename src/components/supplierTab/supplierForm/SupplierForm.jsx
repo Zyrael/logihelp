@@ -15,6 +15,7 @@ import { ReactComponent as XSVG } from "../../../assets/iconpack/x-circle.svg";
 import { ReactComponent as SaveSVG } from "../../../assets/icons/save1.svg";
 import { ReactComponent as LoadingSVG } from "../../../assets/icons/loading.svg";
 import { setMode, closeSupplierInfo } from "../supplierInfoSlice";
+import { SupplierInput } from "./supplierInput";
 import "./SupplierForm.css";
 
 export function SupplierForm({ supplierData, setSupplierData }) {
@@ -89,25 +90,36 @@ export function SupplierForm({ supplierData, setSupplierData }) {
     });
   };
 
+  const onChange = (key) => (data) => {
+    console.log(data);
+    setFormData({ ...formData, [key]: data });
+  };
+
   return (
     <form className="supplier-form" onSubmit={handleSubmit}>
       <div className="supplier-header">
-        <div className="supplier-name">
-          <input
-            type="text"
-            name="name"
-            placeholder="Название"
-            value={formData.name}
-            onChange={handleNameChange}
-            onBlur={() => validate(formData.name)}
-            className={cn("supplier-name-input", { unvalidated: !validated })}
-            required
-            autoComplete="off"
-          />
-          {!validated && (
-            <div className="unvalidated-danger">Введите название</div>
-          )}
-        </div>
+        {/* <div className="supplier-name"> */}
+        {/*  <input */}
+        {/*    type="text" */}
+        {/*    name="name" */}
+        {/*    placeholder="Название" */}
+        {/*    value={formData.name} */}
+        {/*    onChange={handleNameChange} */}
+        {/*    onBlur={() => validate(formData.name)} */}
+        {/*    className={cn("supplier-name-input", { unvalidated: !validated })} */}
+        {/*    required */}
+        {/*    autoComplete="off" */}
+        {/*  /> */}
+        {/*  {!validated && ( */}
+        {/*    <div className="unvalidated-danger">Введите название</div> */}
+        {/*  )} */}
+        {/* </div> */}
+        <SupplierInput
+          data={formData.name}
+          label="Название"
+          onChange={onChange("name")}
+          required
+        />
         <div className="supplier-url">
           <input
             type="url"

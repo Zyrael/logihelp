@@ -24,7 +24,7 @@
 
 .supplier-tab-header {
     color: white;
-    background: var(--main-blue);
+    background: var(--primary-color);
     padding: 0 .625rem;
     min-height: 60px;
     display: flex;
