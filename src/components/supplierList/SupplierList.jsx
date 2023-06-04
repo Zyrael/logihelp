@@ -29,8 +29,8 @@ export function SupplierList() {
       supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
     )
     .sort((supplierA, supplierB) => {
-      const nameA = supplierA.name;
-      const nameB = supplierB.name;
+      const nameA = supplierA.name.toLowerCase();
+      const nameB = supplierB.name.toLowerCase();
       if (nameA < nameB) return -1;
       if (nameA > nameB) return 1;
       return 0;
