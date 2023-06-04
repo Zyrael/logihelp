@@ -1,13 +1,13 @@
 .route-element {
-    color: var(--font-color);
-    padding: 0.625rem;
+    padding: 0.625rem .625rem .625rem 1.25rem;
     display: flex;
     align-items: center;
     font-size: 1.2rem;
+    color: var(--font-color);
 }
 
 .route-element + .route-element {
-    border-top: 1px solid rgb(211, 211, 211);
+    border-top: 1px solid var(--border-color);
 }
 
 .remove-btn {
@@ -29,13 +29,4 @@
 
 .remove-icon:hover {
     stroke: #e51010;
-}
-
-.url {
-    text-decoration: none;
-    color: var(--main-blue);
-}
-
-.url:hover {
-    text-decoration: underline;
 }

@@ -9,8 +9,8 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
-import roboto from "../../fonts/roboto/Roboto-Regular.ttf";
-import robotoBold from "../../fonts/roboto/Roboto-Bold.ttf";
+import roboto from "../../assets/fonts/roboto/Roboto-Regular.ttf";
+import robotoBold from "../../assets/fonts/roboto/Roboto-Bold.ttf";
 import "./PDFView.css";
 
 Font.register({
@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
 });
 
 export function PDFView() {
-  const routes = useSelector((state) => state.routeList.routes);
+  const routes = useSelector((state) => state.routeSheet.routes);
 
   const document = (
-    <Document>
+    <Document title="Маршрутный лист">
       <Page style={styles.page} wrap size="A4">
         <Text style={styles.header}>Маршрутный лист</Text>
         {routes.map(

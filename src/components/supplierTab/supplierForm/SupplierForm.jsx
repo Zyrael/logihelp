@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import cn from "classnames";
 import { useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,29 +7,31 @@ import {
   UPDATE_SUPPLIER,
   DELETE_SUPPLIER,
 } from "../../../graphql";
-import { ReactComponent as NavSVG } from "../../../assets/iconpack/navigation-ne.svg";
-import { ReactComponent as ContactSVG } from "../../../assets/iconpack/user.svg";
-import { ReactComponent as InfoSVG } from "../../../assets/iconpack/alert-square.svg";
-import { ReactComponent as XSVG } from "../../../assets/iconpack/x-circle.svg";
-import { ReactComponent as SaveSVG } from "../../../assets/icons/save1.svg";
-import { ReactComponent as LoadingSVG } from "../../../assets/icons/loading.svg";
-import { setMode, closeSupplierInfo } from "../supplierInfoSlice";
+import { ReactComponent as XSVG } from "../../../assets/icons/close.svg";
+import { ReactComponent as CheckSVG } from "../../../assets/icons/check.svg";
+import { setMode, closeSupplierTab } from "../supplierTabSlice";
 import { SupplierInput } from "./supplierInput";
+import { updateRoute } from "../../routeSheet/routeSheetSlice";
 import "./SupplierForm.css";
+import { Loading } from "../../loading";
 
 export function SupplierForm({ supplierData, setSupplierData }) {
-  const dispatch = useDispatch();
+  const urlRegex =
+    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
-  const [validated, setValidated] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-  const [formData, setFormData] = useState(supplierData);
+  const dispatch = useDispatch();
+  const { mode } = useSelector((state) => state.supplierTab);
+
+  const [nameError, setNameError] = useState(false);
+  const [urlError, setUrlError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState(
+    mode === "createSupplier" ? {} : supplierData
+  );
 
   const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
   const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
   const [deleteSupplier] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
-
-  const { mode } = useSelector((state) => state.supplierInfo);
 
   const trimData = (data) => {
     const keys = Object.keys(data);
@@ -45,23 +46,17 @@ export function SupplierForm({ supplierData, setSupplierData }) {
     return trimmed;
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const validate = (value) => setValidated(value.trim() !== "");
-
-  const handleNameChange = (e) => {
-    setValidated(true);
-    handleChange(e);
+  const validateForm = () => {
+    setNameError(formData.name.trim() === "");
+    setUrlError(!!formData.url && !urlRegex.test(formData.url));
   };
 
   const submitAction = {
-    create: (data) =>
+    createSupplier: (data) =>
       addSupplier({
         variables: data,
       }),
-    edit: (data) =>
+    editSupplier: (data) =>
       updateSupplier({
         variables: data,
       }),
@@ -69,141 +64,96 @@ export function SupplierForm({ supplierData, setSupplierData }) {
 
   const handleDelete = () => {
     if (!confirm("Вы уверены?")) return;
-    setDeleting(true);
+    setLoading(true);
     deleteSupplier({
       variables: formData,
     }).then(() => {
-      setDeleting(false);
-      dispatch(closeSupplierInfo());
+      setLoading(false);
+      dispatch(closeSupplierTab());
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validated) return;
-    setSubmitting(true);
+    if (nameError || urlError) return;
+    setLoading(true);
     const trimmedData = trimData(formData);
-    submitAction[mode](trimmedData).then(() => {
-      setSubmitting(false);
+    submitAction[mode](trimmedData).then(({ data }) => {
+      if (mode === "editSupplier") dispatch(updateRoute(data.updateSupplier));
+      setLoading(false);
       setSupplierData(trimmedData);
-      dispatch(setMode("browse"));
+      dispatch(setMode("browseSupplier"));
     });
   };
 
-  const onChange = (key) => (data) => {
-    console.log(data);
-    setFormData({ ...formData, [key]: data });
+  const onChange = (key) => (e) => {
+    validateForm();
+    setFormData({ ...formData, [key]: e.currentTarget.value });
   };
+
+  const onBlur = () => validateForm();
 
   return (
     <form className="supplier-form" onSubmit={handleSubmit}>
-      <div className="supplier-header">
-        {/* <div className="supplier-name"> */}
-        {/*  <input */}
-        {/*    type="text" */}
-        {/*    name="name" */}
-        {/*    placeholder="Название" */}
-        {/*    value={formData.name} */}
-        {/*    onChange={handleNameChange} */}
-        {/*    onBlur={() => validate(formData.name)} */}
-        {/*    className={cn("supplier-name-input", { unvalidated: !validated })} */}
-        {/*    required */}
-        {/*    autoComplete="off" */}
-        {/*  /> */}
-        {/*  {!validated && ( */}
-        {/*    <div className="unvalidated-danger">Введите название</div> */}
-        {/*  )} */}
-        {/* </div> */}
-        <SupplierInput
-          data={formData.name}
-          label="Название"
-          onChange={onChange("name")}
-          required
-        />
-        <div className="supplier-url">
-          <input
-            type="url"
-            placeholder="Сайт"
-            name="url"
-            className="supplier-url-input"
-            value={formData.url ?? ""}
-            onChange={handleChange}
-            autoComplete="off"
-          />
-        </div>
-      </div>
-      <div className="supplier-info-text">
-        <div className="icon-container">
-          <NavSVG className="supplier-info-icon" />
-        </div>
-
-        <textarea
-          name="address"
-          id="address"
-          placeholder="Адрес"
-          className="supplier-textarea"
-          value={formData.address ?? ""}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="supplier-info-text">
-        <div className="icon-container">
-          <ContactSVG className="supplier-info-icon" />
-        </div>
-        <textarea
-          name="contacts"
-          id="contacts"
-          placeholder="Контакты"
-          className="supplier-textarea"
-          value={formData.contacts ?? ""}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="supplier-info-text">
-        <div className="icon-container">
-          <InfoSVG className="supplier-info-icon" />
-        </div>
-        <textarea
-          name="additionalData"
-          id="additional-data"
-          placeholder="Примечание"
-          className="supplier-textarea"
-          value={formData.additionalData ?? ""}
-          onChange={handleChange}
-        />
-      </div>
+      <SupplierInput
+        data={formData.name ?? ""}
+        label="Название"
+        onChange={onChange("name")}
+        onBlur={onBlur}
+        danger={!!nameError}
+        required
+      />
+      {nameError && <div className="danger-text">Введите имя</div>}
+      <SupplierInput
+        data={formData.url ?? ""}
+        label="Сайт"
+        onChange={onChange("url")}
+        onBlur={onBlur}
+        danger={!!urlError}
+        required
+      />
+      {urlError && <div className="danger-text">Введите корректный URL</div>}
+      <SupplierInput
+        data={formData.address ?? ""}
+        label="Адрес"
+        onChange={onChange("address")}
+        onBlur={onBlur}
+        required
+      />
+      <SupplierInput
+        data={formData.contacts ?? ""}
+        label="Контакты"
+        onChange={onChange("contacts")}
+        onBlur={onBlur}
+        required
+      />
+      <SupplierInput
+        data={formData.additionalData ?? ""}
+        label="Примечание"
+        onChange={onChange("additionalData")}
+        onBlur={onBlur}
+        required
+      />
       <div className="supplier-form-footer">
-        {mode === "edit" && (
+        {mode === "editSupplier" && (
           <button
             type="button"
-            className="form-footer-btn form-delete-btn"
+            className="supplier-form-btn supplier-form-delete"
             onClick={() => handleDelete()}
+            title="Удалить"
           >
-            <div className="footer-icon">
-              {deleting ? (
-                <LoadingSVG className="submit-icon" />
-              ) : (
-                <XSVG className="x-icon" />
-              )}
-            </div>
-            <div className="footer-text">
-              <span>Удалить</span>
-            </div>
+            <XSVG className="submit-icon" />
           </button>
         )}
-        <button type="submit" className="form-footer-btn form-submit-btn">
-          <div className="footer-icon">
-            {submitting ? (
-              <LoadingSVG className="submit-icon" />
-            ) : (
-              <SaveSVG className="submit-icon" />
-            )}
-          </div>
-          <div className="footer-text">
-            <span>Сохранить</span>
-          </div>
+        <button
+          type="submit"
+          className="supplier-form-btn supplier-form-submit"
+          title="Сохранить"
+        >
+          <CheckSVG className="submit-icon" />
         </button>
       </div>
+      {loading && <Loading />}
     </form>
   );
 }

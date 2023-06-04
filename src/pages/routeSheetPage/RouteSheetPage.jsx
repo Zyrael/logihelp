@@ -3,7 +3,7 @@ import { SupplierList, RouteSheet } from "../../components";
 import "./RouteSheetPage.css";
 import { SupplierTab } from "../../components/supplierTab";
 
-export function RouteSheetPage() {
+export function RouteSheetPage({ logout }) {
   return (
     <div className="route-sheet-page">
       <div className="content-container content-container--left">
@@ -13,7 +13,14 @@ export function RouteSheetPage() {
       <div className="content-container content-container--right">
         <RouteSheet />
       </div>
-      {/* {!(modalMode === "closed") && <Modal />} */}
+      <div className="logout-window">
+        <div className="logout-button-container">
+          <button type="button" className="logout" onClick={logout}>
+            Выйти
+          </button>
+        </div>
+        <div className="arrow-down" />
+      </div>
     </div>
   );
 }

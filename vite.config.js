@@ -12,6 +12,7 @@ export default defineConfig({
     proxy: {
       "/graphql": serverUrl,
       "/login": serverUrl,
+      "/logout": serverUrl,
       "/auth": serverUrl,
     },
     open: true,

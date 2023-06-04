@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
-import { setMode } from "../modal/modalslice";
-import { ReactComponent as Glass } from "../../assets/icons/glass.svg";
-import { ReactComponent as Times } from "../../assets/icons/times.svg";
+import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
+import { ReactComponent as GlassSVG } from "../../assets/icons/glass.svg";
+import { ReactComponent as ClearSVG } from "../../assets/icons/close.svg";
+import { ReactComponent as AddSVG } from "../../assets/icons/add.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
@@ -23,22 +24,30 @@ export function SupplierList() {
     if (!loading && !error) setSuppliers(data.getSuppliers);
   }, [loading, error, data]);
 
-  const showSuppliers = suppliers.filter((supplier) =>
-    supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
-  );
+  const showSuppliers = suppliers
+    .filter((supplier) =>
+      supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
+    )
+    .sort((supplierA, supplierB) => {
+      const nameA = supplierA.name;
+      const nameB = supplierB.name;
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    });
 
   const handleChangeSearch = (e) => {
     setShowClear(e.currentTarget.value !== "");
     setSearchValue(e.currentTarget.value);
   };
 
-  const opened = useSelector((state) => state.supplierInfo.opened);
+  const { supplierTabOpened } = useSelector((state) => state.supplierTab);
 
   const searchRef = useRef(null);
   useEffect(() => {
-    if (opened === true) return;
+    if (supplierTabOpened) return;
     searchRef.current.focus();
-  }, [showClear, opened]);
+  }, [showClear, supplierTabOpened]);
 
   const handleClearButton = () => {
     setSearchValue("");
@@ -47,7 +56,8 @@ export function SupplierList() {
 
   const dispatch = useDispatch();
   const handleCreateSupplier = () => {
-    dispatch(setMode({ mode: "create" }));
+    dispatch(setMode("createSupplier"));
+    dispatch(openSupplierTab());
   };
 
   const handleScroll = (e) => {
@@ -57,7 +67,7 @@ export function SupplierList() {
   return (
     <div
       className={cn("supplier-list-container", {
-        "supplier-list-container--active": !opened,
+        "supplier-list-container--active": !supplierTabOpened,
       })}
     >
       <div
@@ -66,10 +76,10 @@ export function SupplierList() {
         })}
       >
         <div className="search-container">
-          <Glass
+          <GlassSVG
             className={cn({
               glass: true,
-              "glass--active": searchFocus,
+              active: searchFocus,
             })}
           />
           <input
@@ -89,17 +99,17 @@ export function SupplierList() {
               className="clear-input"
               onClick={handleClearButton}
             >
-              <Times className="clear-input-icon" />
+              <ClearSVG className="clear-input-icon" />
             </button>
           )}
         </div>
-
         <button
           type="button"
           className="blue-btn add"
           onClick={handleCreateSupplier}
+          title="Добавить поставщика"
         >
-          +
+          <AddSVG className="add-icon" />
         </button>
       </div>
       {loading && <Loading />}

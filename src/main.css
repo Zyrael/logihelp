@@ -2,16 +2,13 @@
     --background-color: linear-gradient(to bottom right, hsla(262, 47%, 83%, 0.4), hsla(262, 47%, 83%, 0.2));
     --primary-color: hsl(262, 47%, 63%);
     --primary-color-light: hsl(262, 47%, 73%);
-    --main-background: hsl(195 9% 91%);
-    --main-blue: hsl(203, 82%, 66%);
-    --hover-blue: hsl(203, 82%, 74%);
-    --hover-blue-dark: hsl(203, 82%, 58%);
-    --disabled-blue: hsl(205 82% 78%);
-    --element-background: hsl(195 9% 91%);
-    --element-hover-color: hsla(236, 21%, 14%, 0.1);
-    --font-color: hsl(199, 18%, 33%);
-    --border-color: hsl(0 0% 83%);
-    --hover-gray-color: hsla(0 0% 29% / 0.2);
+    --primary-color-transparent: hsl(262, 0%, 20%, 0.9);
+    --main-background: hsl(195, 9%, 91%);
+    --element-hover-color: hsla(236, 21%, 14%, 0.2);
+    --font-color: hsl(199, 18%, 20%);
+    --border-color: hsl(0, 0%, 83%);
+    --danger-color: hsl(0, 100%, 63%);
+    --link-color: hsl(219, 76%, 44%)
 }
 
 body {
@@ -20,19 +17,19 @@ body {
 
 @font-face {
     font-family: Roboto;
-    src: url("./fonts/roboto/Roboto-Regular.ttf");
+    src: url("assets/fonts/roboto/Roboto-Regular.ttf");
     font-weight: normal;
 }
 
 @font-face {
     font-family: Roboto;
-    src: url("./fonts/roboto/Roboto-Bold.ttf");
+    src: url("assets/fonts/roboto/Roboto-Bold.ttf");
     font-weight: 700;
 }
 
 @font-face {
     font-family: Roboto;
-    src: url("./fonts/roboto/Roboto-Light.ttf");
+    src: url("assets/fonts/roboto/Roboto-Light.ttf");
     font-weight: 300;
 }
 
@@ -45,6 +42,10 @@ body {
     font-family: Roboto, sans-serif;
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
+}
+
+a, a:visited {
+    color: var(--link-color);
 }
 
 ::-webkit-scrollbar {
@@ -86,13 +87,9 @@ body {
     align-items: center;
 }
 
-/*.blue-btn:enabled:hover {*/
-/*    background: var(--primary-color-light);*/
-/*}*/
-
 .blue-btn:disabled {
     cursor: initial;
-    background: var(--disabled-blue);
+    background: var(--primary-color-light);
 }
 
 .visible {

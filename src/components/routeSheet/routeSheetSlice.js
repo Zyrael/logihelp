@@ -20,13 +20,21 @@ export const routeSheetSlice = createSlice({
       );
     },
 
+    updateRoute: (state, action) => {
+      const updated = action.payload;
+      const currentIndex = state.routes.findIndex(
+        (route) => route.id === updated.id
+      );
+      state.routes[currentIndex] = updated;
+    },
+
     removeAllRoutes: (state) => {
       state.routes = [];
     },
   },
 });
 
-export const { addRoute, removeRoute, removeAllRoutes } =
+export const { addRoute, removeRoute, updateRoute, removeAllRoutes } =
   routeSheetSlice.actions;
 
 export default routeSheetSlice.reducer;

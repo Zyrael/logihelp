@@ -2,40 +2,37 @@ import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import "./SupplierTab.css";
-import { closeSupplierInfo } from "./supplierInfoSlice";
-import { ReactComponent as BackSVG } from "../../assets/iconpack/chevron-left.svg";
+import { closeSupplierTab, setMode } from "./supplierTabSlice";
+import { ReactComponent as BackSVG } from "../../assets/icons/chevron-left.svg";
+import { ReactComponent as EditSVG } from "../../assets/icons/edit.svg";
 import { SupplierInfo } from "./supplierInfo";
 import { SupplierForm } from "./supplierForm";
 
 export function SupplierTab() {
-  const { opened, mode, supplier } = useSelector((state) => state.supplierInfo);
+  const { supplierTabOpened, mode, currentSupplier } = useSelector(
+    (state) => state.supplierTab
+  );
 
   const [supplierData, setSupplierData] = useState({});
 
   useEffect(() => {
-    setSupplierData(
-      mode === "create"
-        ? {
-            name: "",
-            url: "",
-            address: "",
-            contacts: "",
-            additionalData: "",
-          }
-        : supplier
-    );
-  }, [supplier]);
+    setSupplierData(currentSupplier);
+  }, [currentSupplier]);
 
   const dispatch = useDispatch();
 
-  const handleClose = () => {
-    dispatch(closeSupplierInfo());
+  const handleBackButton = () => {
+    if (mode === "editSupplier") {
+      dispatch(setMode("browseSupplier"));
+      return;
+    }
+    dispatch(closeSupplierTab());
   };
 
   return (
     <div
       className={cn("supplier-tab", {
-        "supplier-tab--active": opened,
+        "supplier-tab--active": supplierTabOpened,
       })}
     >
       <div className="supplier-tab-header">
@@ -44,20 +41,35 @@ export function SupplierTab() {
           name="close-supplier-tab"
           type="button"
           className="close-supplier-tab"
-          onClick={handleClose}
+          onClick={handleBackButton}
+          title="Назад"
         >
           <BackSVG className="close-supplier-icon" />
         </button>
-        <p className="supplier-tab-title">Информация</p>
+        <p className="supplier-tab-title">
+          {mode === "browseSupplier" && "Информация"}
+          {mode === "editSupplier" && "Изменить"}
+          {mode === "createSupplier" && "Добавить поставщика"}
+        </p>
+        {mode === "browseSupplier" && (
+          <button
+            type="button"
+            className="edit-supplier-btn"
+            onClick={() => dispatch(setMode("editSupplier"))}
+            title="Изменить"
+          >
+            <EditSVG className="edit-supplier-icon" />
+          </button>
+        )}
       </div>
       <div className="supplier-tab-main">
-        {mode === "browse" ? (
-          <SupplierInfo supplierData={supplierData} />
-        ) : (
+        {mode !== "browseSupplier" ? (
           <SupplierForm
             supplierData={supplierData}
             setSupplierData={setSupplierData}
           />
+        ) : (
+          <SupplierInfo supplierData={supplierData} />
         )}
       </div>
     </div>

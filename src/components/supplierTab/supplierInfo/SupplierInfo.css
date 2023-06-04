@@ -1,31 +1,3 @@
-.edit-supplier-btn {
-    border: 0;
-    border-radius: 5px;
-    height: 2rem;
-    width: 2rem;
-    background: 0;
-    opacity: 0;
-    visibility: hidden;
-    cursor: pointer;
-    margin-left: .5rem;
-}
-
-.edit-supplier-btn:hover {
-    background: var(--hover-gray-color);
-}
-
-.edit-supplier-icon {
-    height: 1.5rem;
-    width: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .edit-supplier-btn {
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
 .supplier-info > * + * {
     border-top: 1px solid var(--border-color);
 }
@@ -40,6 +12,7 @@
 
 .supplier-name {
     display: flex;
+    color: var(--font-color);
 }
 
 .supplier-name > span {
@@ -52,14 +25,11 @@
     display: flex;
     align-items: center;
     position: relative;
+    color: var(--font-color);
 }
 
 .supplier-url {
     margin-top: .125rem;
-}
-
-.url {
-    align-items: center;
 }
 
 .supplier-url > p {
@@ -73,8 +43,9 @@
 }
 
 .supplier-info-icon {
-    height: 2rem;
-    width: 2rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    stroke: var(--font-color);
 }
 
 .copy-btn {
@@ -82,7 +53,7 @@
     right: 2px;
     top: 2px;
     cursor: pointer;
-    background: var(--main-blue);
+    background: var(--primary-color-transparent);
     border: 0;
     border-radius: 5px;
     font-size: 1.2rem;
@@ -93,12 +64,15 @@
     transition: visibility .2s ease-in-out, opacity .2s ease-in-out, width .1s ease-in-out;
     width: 2rem;
     height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .copy-icon {
-    width: 1.7rem;
-    height: 1.7rem;
-    margin-bottom: .2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: -2px;
     stroke: white;
 }
 

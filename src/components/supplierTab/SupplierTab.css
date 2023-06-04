@@ -23,22 +23,21 @@
 }
 
 .supplier-tab-header {
-    color: white;
     background: var(--primary-color);
     padding: 0 .625rem;
     min-height: 60px;
     display: flex;
     align-items: center;
-    /*border-bottom: 1px solid var(--border-color);*/
-    /*transition: box-shadow .2s ease-in-out;*/
 }
 
-/*.supplier-tab--active > .supplier-tab-header {*/
-/*    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);*/
-/*}*/
+.supplier-tab-title {
+    color: white;
+    margin-left: .25rem;
+    font-size: 1.25rem;
+    user-select: none;
+}
 
 .supplier-tab-main {
-    /*padding-right: 1.5rem;*/
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -48,16 +47,16 @@
     overflow: hidden;
     background: 0;
     border-radius: 50%;
-    height: 2.3rem;
-    width: 2.3rem;
+    height: 2.25rem;
+    width: 2.25rem;
     border: 0;
     cursor: pointer;
     position: relative;
-    transition: background-color .2s ease-in-out;
+    transition: background-color .2s;
 }
 
 .close-supplier-tab:hover {
-    background: var(--hover-gray-color);
+    background: var(--element-hover-color);
 }
 
 .close-supplier-tab:focus {
@@ -65,24 +64,36 @@
 }
 
 .close-supplier-tab:active {
-    background: var(--hover-gray-color);
+    background: var(--element-hover-color);
 }
 
 .close-supplier-icon {
     position: absolute;
-    left: calc(50% - 1.125rem);
-    top: calc(50% - 1rem);
-    height: 2rem;
-    width: 2rem;
+    left: calc(50% - 1rem);
+    top: calc(50% - .875rem);
+    height: 1.75rem;
+    width: 1.75rem;
     transition: fill .2s ease-in-out;
     stroke: white;
 }
 
-/*.close-supplier-info:hover > .close-supplier-icon {*/
-/*    fill: var(--main-blue);*/
-/*}*/
+.edit-supplier-btn {
+    border: 0;
+    border-radius: 2rem;
+    height: 2.25rem;
+    width: 2.25rem;
+    background: 0;
+    cursor: pointer;
+    margin-left: auto;
+    transition: background-color .2s;
+}
 
-.supplier-tab-title {
-    margin-left: 0.2rem;
-    font-size: 1.5rem;
+.edit-supplier-btn:hover {
+    background: var(--element-hover-color);
+}
+
+.edit-supplier-icon {
+    height: 1.75rem;
+    width: 1.75rem;
+    stroke: white;
 }

@@ -4460,6 +4460,7 @@ __metadata:
     fastify: ^4.15.0
     graphql: ^16.6.0
     jsonwebtoken: ^9.0.0
+    lodash: ^4.17.21
     nodemon: ^2.0.22
     prettier: ^2.8.3
     prisma: ^4.12.0

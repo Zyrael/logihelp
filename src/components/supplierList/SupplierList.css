@@ -40,6 +40,12 @@
     margin-left: .5rem;
 }
 
+.add-icon {
+    stroke: white;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
 .search-container {
     position: relative;
     width: 100%;
@@ -56,19 +62,8 @@
     transition: fill .2s;
 }
 
-.glass--active {
+.glass.active {
     fill: var(--primary-color);
-}
-
-.clear-input {
-    position: absolute;
-    top: 13px;
-    right: 1rem;
-    background: 0;
-    border: 0;
-    cursor: pointer;
-    width: 0.75rem;
-    height: 0.75rem;
 }
 
 .search-bar {
@@ -90,25 +85,23 @@
 .search-bar:focus {
     border: 2px solid var(--primary-color);
     padding-left: calc(2.5rem - 1px);
-    /*outline: 1px solid var(--primary-color);*/
 }
 
-.search-bar::placeholder {
-    /*color: rgb(79, 114, 138);*/
-    /*position: absolute;*/
-    /*top: calc(50% - .5rem);*/
-}
-
-.span-container {
-    display: flex;
-    justify-content: center;
-    padding: 1.5em;
+.clear-input {
+    position: absolute;
+    top: calc(50% - .875rem);
+    right: .5rem;
+    background: 0;
+    border: 0;
+    cursor: pointer;
+    width: 1.75rem;
+    height: 1.75rem;
 }
 
 .clear-input-icon {
-    fill: rgb(79, 79, 79);
-    width: 0.75rem;
-    height: 0.75rem;
+    stroke: var(--font-color);
+    width: 1.75rem;
+    height: 1.75rem;
 }
 
 .exclamation {
@@ -118,7 +111,7 @@
 
 .error {
     padding-top: 2rem;
-    color: hsl(0, 100%, 41%);
+    color: var(--danger-color);
     display: flex;
     height: 100%;
     justify-content: center;

@@ -63,6 +63,14 @@ fastify.post("/login", async (request, reply) => {
     .send({ token });
 });
 
+fastify.get("/logout", async (request, reply) => {
+  reply
+    .cookie("refresh-token", "", {
+      maxAge: -1,
+    })
+    .send({ logout: "ok" });
+});
+
 fastify.post("/auth", async (request, reply) => {
   const { token } = request.body;
   try {
