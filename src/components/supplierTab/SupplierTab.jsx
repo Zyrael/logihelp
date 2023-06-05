@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import "./SupplierTab.css";
-import { closeSupplierTab, setMode } from "./supplierTabSlice";
+import {
+  clearSupplierTab,
+  closeSupplierTab,
+  setMode,
+} from "./supplierTabSlice";
 import { ReactComponent as BackSVG } from "../../assets/icons/chevron-left.svg";
 import { ReactComponent as EditSVG } from "../../assets/icons/edit.svg";
 import { SupplierInfo } from "./supplierInfo";
 import { SupplierForm } from "./supplierForm";
 
+const contentMap = {
+  browseSupplier: <SupplierInfo />,
+  createSupplier: <SupplierForm />,
+  editSupplier: <SupplierForm />,
+};
+
 export function SupplierTab() {
-  const { supplierTabOpened, mode, currentSupplier } = useSelector(
-    (state) => state.supplierTab
-  );
-
-  const [supplierData, setSupplierData] = useState({});
-
-  useEffect(() => {
-    setSupplierData(currentSupplier);
-  }, [currentSupplier]);
+  const { supplierTabOpened, mode } = useSelector((state) => state.supplierTab);
 
   const dispatch = useDispatch();
 
@@ -27,6 +29,9 @@ export function SupplierTab() {
       return;
     }
     dispatch(closeSupplierTab());
+    setTimeout(() => {
+      dispatch(clearSupplierTab());
+    }, 200);
   };
 
   return (
@@ -62,16 +67,7 @@ export function SupplierTab() {
           </button>
         )}
       </div>
-      <div className="supplier-tab-main">
-        {mode !== "browseSupplier" ? (
-          <SupplierForm
-            supplierData={supplierData}
-            setSupplierData={setSupplierData}
-          />
-        ) : (
-          <SupplierInfo supplierData={supplierData} />
-        )}
-      </div>
+      <div className="supplier-tab-main">{contentMap[mode] ?? null}</div>
     </div>
   );
 }

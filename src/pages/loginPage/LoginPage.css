@@ -76,28 +76,21 @@
 
 .login-input-label {
     color: #aaa;
-    font-size: 1.2rem;
     display: flex;
     align-items: center;
     height: 1.5rem;
     pointer-events: none;
-    font-weight: 200;
+    font-weight: 300;
     position: absolute;
-    top: calc(50% - (1.5rem / 2));
+    top: calc(-1.625rem / 2);
     padding: 0 0.375rem;
     transform-origin: left center;
     transition: top .2s, transform .2s, color .2s;
-    cursor: text;
     background: white;
 }
 
 .login-input:hover > .login-input-label {
     color: var(--primary-color);
-}
-
-.login-input-label.active {
-    top: calc(-1.625rem / 2);
-    transform: scale(.75);
 }
 
 .login-input-label.focused {
@@ -121,5 +114,5 @@
 }
 
 .login-error {
-    color: red;
+    color: var(--danger-color);
 }

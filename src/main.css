@@ -4,7 +4,8 @@
     --primary-color-light: hsl(262, 47%, 73%);
     --primary-color-transparent: hsl(262, 0%, 20%, 0.9);
     --main-background: hsl(195, 9%, 91%);
-    --element-hover-color: hsla(236, 21%, 14%, 0.2);
+    --element-hover-color: hsla(236, 21%, 10%, 0.2);
+    --supplier-hover-color: hsla(236, 21%, 50%, 0.2);
     --font-color: hsl(199, 18%, 20%);
     --border-color: hsl(0, 0%, 83%);
     --danger-color: hsl(0, 100%, 63%);
@@ -73,7 +74,7 @@ a, a:visited {
     height: 100vh;
 }
 
-.blue-btn {
+.round-btn {
     min-width: 40px;
     min-height: 40px;
     background: var(--primary-color);
@@ -87,7 +88,7 @@ a, a:visited {
     align-items: center;
 }
 
-.blue-btn:disabled {
+.round-btn:disabled {
     cursor: initial;
     background: var(--primary-color-light);
 }

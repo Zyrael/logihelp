@@ -60,8 +60,7 @@
 }
 
 .logout-button-container {
-    height: 4rem;
-    width: 12rem;
+    padding: .625rem 1.25rem;
     background: white;
     border: 1px solid var(--border-color);
     border-radius: 10px;

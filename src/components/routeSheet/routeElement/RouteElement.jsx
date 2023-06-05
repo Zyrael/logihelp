@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { removeRoute } from "../routeSheetSlice";
-import { ReactComponent as RemoveIcon } from "../../../assets/icons/close.svg";
+import { ReactComponent as RemoveIcon } from "../../../assets/icons/cross.svg";
 import "./RouteElement.css";
 
 export function RouteElement({ route }) {

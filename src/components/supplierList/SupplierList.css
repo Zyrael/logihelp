@@ -89,19 +89,19 @@
 
 .clear-input {
     position: absolute;
-    top: calc(50% - .875rem);
-    right: .5rem;
+    top: calc(50% - .5625rem);
+    right: .75rem;
     background: 0;
     border: 0;
     cursor: pointer;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.125rem;
+    height: 1.125rem;
 }
 
 .clear-input-icon {
-    stroke: var(--font-color);
-    width: 1.75rem;
-    height: 1.75rem;
+    fill: var(--font-color);
+    width: 1.125rem;
+    height: 1.125rem;
 }
 
 .exclamation {

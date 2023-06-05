@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,27 +7,30 @@ import {
   UPDATE_SUPPLIER,
   DELETE_SUPPLIER,
 } from "../../../graphql";
-import { ReactComponent as XSVG } from "../../../assets/icons/close.svg";
+import { ReactComponent as XSVG } from "../../../assets/icons/cross.svg";
 import { ReactComponent as CheckSVG } from "../../../assets/icons/check.svg";
-import { setMode, closeSupplierTab } from "../supplierTabSlice";
+import {
+  setMode,
+  closeSupplierTab,
+  setCurrentSupplier,
+  clearSupplierTab,
+} from "../supplierTabSlice";
 import { SupplierInput } from "./supplierInput";
-import { updateRoute } from "../../routeSheet/routeSheetSlice";
+import { removeRoute, updateRoute } from "../../routeSheet/routeSheetSlice";
 import "./SupplierForm.css";
 import { Loading } from "../../loading";
 
-export function SupplierForm({ supplierData, setSupplierData }) {
+export function SupplierForm() {
   const urlRegex =
     /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
   const dispatch = useDispatch();
-  const { mode } = useSelector((state) => state.supplierTab);
+  const { mode, currentSupplier } = useSelector((state) => state.supplierTab);
 
   const [nameError, setNameError] = useState(false);
-  const [urlError, setUrlError] = useState(false);
+  const [urlError, setURLError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState(
-    mode === "createSupplier" ? {} : supplierData
-  );
+  const [formData, setFormData] = useState(currentSupplier);
 
   const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
   const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
@@ -47,8 +50,13 @@ export function SupplierForm({ supplierData, setSupplierData }) {
   };
 
   const validateForm = () => {
-    setNameError(formData.name.trim() === "");
-    setUrlError(!!formData.url && !urlRegex.test(formData.url));
+    const nameValidated = formData.name.trim() === "";
+    setNameError(nameValidated);
+
+    const URLValidated = !!formData.url && !urlRegex.test(formData.url);
+    setURLError(URLValidated);
+
+    return !nameValidated && !URLValidated;
   };
 
   const submitAction = {
@@ -63,53 +71,69 @@ export function SupplierForm({ supplierData, setSupplierData }) {
   };
 
   const handleDelete = () => {
-    if (!confirm("Вы уверены?")) return;
+    if (!confirm("Удалить поставщика?")) return;
     setLoading(true);
     deleteSupplier({
       variables: formData,
     }).then(() => {
+      dispatch(removeRoute(formData));
       setLoading(false);
+      setTimeout(() => {
+        dispatch(clearSupplierTab());
+      }, 200);
       dispatch(closeSupplierTab());
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (nameError || urlError) return;
+    const validated = validateForm();
+    if (!validated) return;
     setLoading(true);
     const trimmedData = trimData(formData);
     submitAction[mode](trimmedData).then(({ data }) => {
-      if (mode === "editSupplier") dispatch(updateRoute(data.updateSupplier));
+      const newData = data.updateSupplier || data.addSupplier;
+      if (mode === "editSupplier") dispatch(updateRoute(newData));
       setLoading(false);
-      setSupplierData(trimmedData);
+      dispatch(setCurrentSupplier(newData));
       dispatch(setMode("browseSupplier"));
     });
   };
 
   const onChange = (key) => (e) => {
-    validateForm();
     setFormData({ ...formData, [key]: e.currentTarget.value });
   };
 
   const onBlur = () => validateForm();
 
+  const onKeyDown = (e) => {
+    if (!e.shiftKey && e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
-    <form className="supplier-form" onSubmit={handleSubmit}>
+    <form
+      className="supplier-form"
+      onSubmit={handleSubmit}
+      onKeyDown={onKeyDown}
+    >
       <SupplierInput
         data={formData.name ?? ""}
         label="Название"
         onChange={onChange("name")}
         onBlur={onBlur}
-        danger={!!nameError}
+        danger={nameError}
         required
       />
-      {nameError && <div className="danger-text">Введите имя</div>}
+      {nameError && <div className="danger-text">Введите название</div>}
       <SupplierInput
         data={formData.url ?? ""}
         label="Сайт"
         onChange={onChange("url")}
         onBlur={onBlur}
-        danger={!!urlError}
+        danger={urlError}
         required
       />
       {urlError && <div className="danger-text">Введите корректный URL</div>}
@@ -142,7 +166,7 @@ export function SupplierForm({ supplierData, setSupplierData }) {
             onClick={() => handleDelete()}
             title="Удалить"
           >
-            <XSVG className="submit-icon" />
+            <XSVG className="delete-supplier-icon" />
           </button>
         )}
         <button
@@ -150,7 +174,7 @@ export function SupplierForm({ supplierData, setSupplierData }) {
           className="supplier-form-btn supplier-form-submit"
           title="Сохранить"
         >
-          <CheckSVG className="submit-icon" />
+          <CheckSVG className="submit-supplier-icon" />
         </button>
       </div>
       {loading && <Loading />}

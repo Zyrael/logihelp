@@ -48,6 +48,10 @@
     stroke: var(--font-color);
 }
 
+.supplier-additional-icon {
+    transform: rotateZ(180deg);
+}
+
 .copy-btn {
     position: absolute;
     right: 2px;

@@ -15,7 +15,7 @@
 }
 
 .supplier:hover {
-    background: var(--element-hover-color);
+    background: var(--supplier-hover-color);
 }
 
 .show-supplier-btn {
@@ -35,7 +35,8 @@
     fill: black;
     width: 2rem;
     height: 2rem;
-    stroke: black;
+    stroke: var(--font-color);
+    transition: stroke .2s;
 }
 
 .show-supplier-btn:hover > .show-supplier-icon {

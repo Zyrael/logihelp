@@ -1,5 +1,5 @@
 .supplier-form {
-    padding: 2rem .5rem 0 .875rem;
+    padding: 2rem .875rem 0 1.25rem;
     position: relative;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .supplier-form > * + * {
-    margin-top: .875rem;
+    margin-top: 1.5rem;
 }
 
 .supplier-form > .supplier-header {
@@ -38,7 +38,7 @@
 }
 
 .supplier-form-footer {
-    margin-top: 2rem;
+    margin-top: 3.5rem;
     border: 0;
     display: flex;
     gap: 1rem;
@@ -66,10 +66,16 @@
     background: var(--primary-color);
 }
 
-.submit-icon {
+.submit-supplier-icon {
     height: 2.5rem;
     width: 2.5rem;
     stroke: white;
+}
+
+.delete-supplier-icon {
+    height: 1.75rem;
+    width: 1.75rem;
+    fill: white;
 }
 
 .supplier-form > .loading {

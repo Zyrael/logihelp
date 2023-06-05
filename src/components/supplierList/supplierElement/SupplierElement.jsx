@@ -3,9 +3,9 @@ import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { addRoute } from "../../routeSheet/routeSheetSlice";
 import {
-  setMode,
   setCurrentSupplier,
   openSupplierTab,
+  setMode,
 } from "../../supplierTab/supplierTabSlice";
 import { ReactComponent as InfoSVG } from "../../../assets/icons/info-circle.svg";
 import "./SupplierElement.css";

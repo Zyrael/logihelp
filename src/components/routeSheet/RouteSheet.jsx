@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RouteElement } from "./routeElement/index";
 import "./RouteSheet.css";
-import { ReactComponent as Times } from "../../assets/icons/close.svg";
+import { ReactComponent as Times } from "../../assets/icons/cross.svg";
 import { ReactComponent as Print } from "../../assets/icons/file.svg";
 import { ReactComponent as LeftSVG } from "../../assets/icons/arrow-left.svg";
 import { removeAllRoutes } from "./routeSheetSlice";
@@ -27,7 +27,7 @@ export function RouteSheet() {
           <>
             <button
               type="button"
-              className="blue-btn clear"
+              className="round-btn clear"
               onClick={handleRemoveRoutes}
               disabled={routes.length === 0}
               title="Очистить список"
@@ -36,7 +36,7 @@ export function RouteSheet() {
             </button>
             <button
               type="button"
-              className="blue-btn print"
+              className="round-btn print"
               onClick={() => setPrint(true)}
               disabled={routes.length === 0}
               title="Печать"
@@ -48,7 +48,7 @@ export function RouteSheet() {
         {print && (
           <button
             type="button"
-            className="blue-btn cancel-print"
+            className="round-btn cancel-print"
             onClick={() => setPrint(false)}
             title="Отмена"
           >

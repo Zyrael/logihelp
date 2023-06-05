@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import { ReactComponent as CopySVG } from "../../../assets/icons/copy.svg";
-import { ReactComponent as NavSVG } from "../../../assets/icons/navigation-ne.svg";
-import { ReactComponent as ContactSVG } from "../../../assets/icons/user.svg";
-import { ReactComponent as InfoSVG } from "../../../assets/icons/alert.svg";
+import { ReactComponent as NavSVG } from "../../../assets/icons/map.svg";
+import { ReactComponent as ContactSVG } from "../../../assets/icons/phone.svg";
+import { ReactComponent as InfoSVG } from "../../../assets/icons/info-circle.svg";
 import "./SupplierInfo.css";
+import { useSelector } from "react-redux";
 
-export function SupplierInfo({ supplierData }) {
+export function SupplierInfo() {
   const [showCopy, setShowCopy] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const { currentSupplier } = useSelector((state) => state.supplierTab);
 
   const handleCopy = (text) => () => {
     navigator.clipboard.writeText(text);
@@ -24,25 +27,25 @@ export function SupplierInfo({ supplierData }) {
     <div className="supplier-info">
       <div className="supplier-header">
         <div className="supplier-name">
-          <span>{supplierData.name}</span>
+          <span>{currentSupplier.name}</span>
         </div>
 
-        {supplierData.url && (
+        {currentSupplier.url && (
           <div className="supplier-url">
             <p>
               <a
-                href={supplierData.url}
+                href={currentSupplier.url}
                 target="_blank"
                 rel="noreferrer"
                 className="url"
               >
-                {supplierData.url}
+                {currentSupplier.url}
               </a>
             </p>
           </div>
         )}
       </div>
-      {supplierData.address && (
+      {currentSupplier.address && (
         <div
           className="supplier-info-text"
           onMouseEnter={() => setShowCopy(true)}
@@ -52,33 +55,33 @@ export function SupplierInfo({ supplierData }) {
             <NavSVG className="supplier-info-icon" />
           </div>
 
-          <p>{supplierData.address}</p>
+          <p>{currentSupplier.address}</p>
           <button
             type="button"
             className={cn("copy-btn", {
               "copy-btn--shown": showCopy,
               "copy-btn--copied": copied,
             })}
-            onClick={handleCopy(supplierData.address)}
+            onClick={handleCopy(currentSupplier.address)}
           >
             {copied ? "Скопировано!" : <CopySVG className="copy-icon" />}
           </button>
         </div>
       )}
-      {supplierData.contacts && (
+      {currentSupplier.contacts && (
         <div className="supplier-info-text">
           <div className="icon-container">
             <ContactSVG className="supplier-info-icon" />
           </div>
-          <p>{supplierData.contacts}</p>
+          <p>{currentSupplier.contacts}</p>
         </div>
       )}
-      {supplierData.additionalData && (
+      {currentSupplier.additionalData && (
         <div className="supplier-info-text">
           <div className="icon-container">
-            <InfoSVG className="supplier-info-icon" />
+            <InfoSVG className="supplier-info-icon supplier-additional-icon" />
           </div>
-          <p>{supplierData.additionalData}</p>
+          <p>{currentSupplier.additionalData}</p>
         </div>
       )}
     </div>

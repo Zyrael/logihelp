@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
 import { ReactComponent as GlassSVG } from "../../assets/icons/glass.svg";
-import { ReactComponent as ClearSVG } from "../../assets/icons/close.svg";
-import { ReactComponent as AddSVG } from "../../assets/icons/add.svg";
+import { ReactComponent as XSVG } from "../../assets/icons/cross.svg";
+import { ReactComponent as AddSVG } from "../../assets/icons/user-add.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
 
 export function SupplierList() {
-  const { loading, error, data } = useQuery(GET_SUPPLIERS);
+  const { loading, error, data } = useQuery(GET_SUPPLIERS, {
+    pollInterval: 10000,
+  });
+
+  const dispatch = useDispatch();
 
   const [searchValue, setSearchValue] = useState("");
   const [showClear, setShowClear] = useState(false);
@@ -44,17 +48,17 @@ export function SupplierList() {
   const { supplierTabOpened } = useSelector((state) => state.supplierTab);
 
   const searchRef = useRef(null);
-  useEffect(() => {
-    if (supplierTabOpened) return;
-    searchRef.current.focus();
-  }, [showClear, supplierTabOpened]);
 
-  const handleClearButton = () => {
+  const clearSearch = () => {
     setSearchValue("");
     setShowClear(false);
   };
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (supplierTabOpened) return;
+    clearSearch();
+  }, [supplierTabOpened]);
+
   const handleCreateSupplier = () => {
     dispatch(setMode("createSupplier"));
     dispatch(openSupplierTab());
@@ -94,18 +98,14 @@ export function SupplierList() {
             onBlur={() => setSearchFocus(false)}
           />
           {showClear && (
-            <button
-              type="button"
-              className="clear-input"
-              onClick={handleClearButton}
-            >
-              <ClearSVG className="clear-input-icon" />
+            <button type="button" className="clear-input" onClick={clearSearch}>
+              <XSVG className="clear-input-icon" />
             </button>
           )}
         </div>
         <button
           type="button"
-          className="blue-btn add"
+          className="round-btn add"
           onClick={handleCreateSupplier}
           title="Добавить поставщика"
         >

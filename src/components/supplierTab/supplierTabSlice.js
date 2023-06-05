@@ -2,8 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   supplierTabOpened: false,
-  mode: "browseList",
-  currentSupplier: {},
+  mode: "browseSupplier",
+  currentSupplier: {
+    id: "",
+    name: "",
+    url: "",
+    address: "",
+    contacts: "",
+    additionalData: "",
+  },
 };
 
 export const supplierTabSlice = createSlice({
@@ -19,6 +26,17 @@ export const supplierTabSlice = createSlice({
     setCurrentSupplier: (state, action) => {
       state.currentSupplier = action.payload;
     },
+    clearSupplierTab: (state) => {
+      state.currentSupplier = {
+        id: "",
+        name: "",
+        url: "",
+        address: "",
+        contacts: "",
+        additionalData: "",
+      };
+      state.mode = null;
+    },
     setMode: (state, action) => {
       state.mode = action.payload;
     },
@@ -30,6 +48,7 @@ export const {
   closeSupplierTab,
   setMode,
   setCurrentSupplier,
+  clearSupplierTab,
 } = supplierTabSlice.actions;
 
 export default supplierTabSlice.reducer;
