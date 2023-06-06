@@ -3,20 +3,25 @@
     font-size: 1.2rem;
     display: flex;
     align-items: center;
-    padding: .625rem .875rem;
-    border-radius: 8px;
+    padding: 1rem 1rem 1rem 1.125rem;
+    /*border-radius: 8px;*/
     color: var(--font-color);
+    /*-webkit-tap-highlight-color: var(--element-hover-color);*/
 }
 
-@media (max-width: 768px) {
-    .supplier {
-        border-radius: 0;
-    }
-}
+/*@media (max-width: 768px) {*/
+/*    .supplier {*/
+/*        border-radius: 0;*/
+/*    }*/
+/*}*/
 
-.supplier:hover {
+.supplier:active {
     background: var(--supplier-hover-color);
 }
+
+/*.supplier:focus {*/
+/*    background: var(--supplier-hover-color);*/
+/*}*/
 
 .show-supplier-btn {
     margin-left: auto;
