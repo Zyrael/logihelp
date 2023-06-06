@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import cn from "classnames";
-import { ReactComponent as CopySVG } from "../../../assets/icons/copy.svg";
+import React from "react";
+// import cn from "classnames";
+// import { ReactComponent as CopySVG } from "../../../assets/icons/copy.svg";
+import { useSelector } from "react-redux";
 import { ReactComponent as NavSVG } from "../../../assets/icons/map.svg";
 import { ReactComponent as ContactSVG } from "../../../assets/icons/phone.svg";
 import { ReactComponent as InfoSVG } from "../../../assets/icons/info-circle.svg";
 import "./SupplierInfo.css";
-import { useSelector } from "react-redux";
 
 export function SupplierInfo() {
-  const [showCopy, setShowCopy] = useState(false);
-  const [copied, setCopied] = useState(false);
+  // const [showCopy, setShowCopy] = useState(false);
+  // const [copied, setCopied] = useState(false);
 
   const { currentSupplier } = useSelector((state) => state.supplierTab);
 
-  const handleCopy = (text) => () => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-  };
+  // const handleCopy = (text) => () => {
+  //   navigator.clipboard.writeText(text);
+  //   setCopied(true);
+  // };
 
-  const handleMouseLeave = () => {
-    setShowCopy(false);
-    setTimeout(() => setCopied(false), 200);
-  };
+  // const handleMouseLeave = () => {
+  //   setShowCopy(false);
+  //   setTimeout(() => setCopied(false), 200);
+  // };
 
   return (
     <div className="supplier-info">
@@ -48,24 +48,24 @@ export function SupplierInfo() {
       {currentSupplier.address && (
         <div
           className="supplier-info-text"
-          onMouseEnter={() => setShowCopy(true)}
-          onMouseLeave={handleMouseLeave}
+          // onMouseEnter={() => setShowCopy(true)}
+          // onMouseLeave={handleMouseLeave}
         >
           <div className="icon-container">
             <NavSVG className="supplier-info-icon" />
           </div>
 
           <p>{currentSupplier.address}</p>
-          <button
-            type="button"
-            className={cn("copy-btn", {
-              "copy-btn--shown": showCopy,
-              "copy-btn--copied": copied,
-            })}
-            onClick={handleCopy(currentSupplier.address)}
-          >
-            {copied ? "Скопировано!" : <CopySVG className="copy-icon" />}
-          </button>
+          {/* <button */}
+          {/*  type="button" */}
+          {/*  className={cn("copy-btn", { */}
+          {/*    "copy-btn--shown": showCopy, */}
+          {/*    "copy-btn--copied": copied, */}
+          {/*  })} */}
+          {/*  onClick={handleCopy(currentSupplier.address)} */}
+          {/* > */}
+          {/*  {copied ? "Скопировано!" : <CopySVG className="copy-icon" />} */}
+          {/* </button> */}
         </div>
       )}
       {currentSupplier.contacts && (
