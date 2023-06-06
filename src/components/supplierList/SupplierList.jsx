@@ -6,12 +6,13 @@ import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
 import { ReactComponent as GlassSVG } from "../../assets/icons/glass.svg";
 import { ReactComponent as XSVG } from "../../assets/icons/cross.svg";
 import { ReactComponent as AddSVG } from "../../assets/icons/user-add.svg";
+import { ReactComponent as HamburgerSVG } from "../../assets/icons/hamburger.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
 
-export function SupplierList() {
+export function SupplierList({ leftMenuOpened, setLeftMenuOpened }) {
   const { loading, error, data } = useQuery(GET_SUPPLIERS, {
     pollInterval: 10000,
   });
@@ -79,6 +80,13 @@ export function SupplierList() {
           "supplier-list-header--shadow": scrolled,
         })}
       >
+        <button
+          type="button"
+          className="open-left-menu-btn"
+          onClick={() => setLeftMenuOpened(!leftMenuOpened)}
+        >
+          <HamburgerSVG className="hamburger-icon" />
+        </button>
         <div className="search-container">
           <GlassSVG
             className={cn({

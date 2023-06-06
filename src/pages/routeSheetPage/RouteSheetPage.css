@@ -5,6 +5,8 @@
     height: 100%;
     border: 1px solid var(--border-color);
     position: relative;
+    margin: -1px;
+    overflow: hidden;
 }
 
 .content-container {
@@ -18,9 +20,15 @@
 }
 
 .content-container--left {
-    min-width: 380px;
-    width: 100%;
-    max-width: 28rem;
+    /*min-width: 20rem;*/
+    /*width: 100%;*/
+    min-width: 28rem;
+    transition: margin-left .2s;
+    box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.content-container--left.left-margin {
+    margin-left: 20rem;
 }
 
 .content-container--right {
@@ -34,7 +42,11 @@
     }
 
     .content-container--left {
-        max-width: 100%;
+        width: 100%;
+    }
+
+    .content-container--left.left-margin {
+        margin-left: 100%;
     }
 
     .content-container--right {
