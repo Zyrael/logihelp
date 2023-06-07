@@ -16,9 +16,15 @@
     --sidebar-width: 20rem;
 }
 
+html {
+    height: 100%;
+    width: 100%;
+}
+
 body {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
+    /*overflow: hidden;*/
 }
 
 @font-face {
@@ -46,23 +52,12 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    scrollbar-width: thin;
-    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
 }
 
 a, a:visited {
     color: var(--link-color);
 }
 
-::-webkit-scrollbar {
-    width: .375rem;
-    height: .375rem;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-color);
-    border-radius: 20px;
-}
 
 #root {
     height: 100%;
@@ -83,11 +78,6 @@ a, a:visited {
     align-items: center;
 }
 
-.round-btn:disabled {
-    cursor: initial;
-    background: var(--primary-color-disabled);
-}
-
 .visible {
     opacity: 1 !important;
     visibility: visible !important;
@@ -97,7 +87,17 @@ a, a:visited {
     *,
     *::before,
     *::after {
+        scrollbar-width: thin;
         scrollbar-color: transparent transparent;
+    }
+
+    .round-btn:disabled {
+        cursor: initial;
+        background: var(--primary-color-disabled);
+    }
+
+    .round-btn:disabled:hover {
+        background: var(--primary-color-disabled);
     }
 
     .round-btn:hover {
@@ -108,8 +108,15 @@ a, a:visited {
         scrollbar-color: var(--scrollbar-color) transparent;
     }
 
+    ::-webkit-scrollbar {
+        width: .375rem;
+        height: .375rem;
+    }
+
+
     ::-webkit-scrollbar-thumb {
         background: transparent;
+        border-radius: 20px;
     }
 
     :hover::-webkit-scrollbar-thumb {

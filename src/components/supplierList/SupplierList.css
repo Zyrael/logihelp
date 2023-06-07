@@ -145,7 +145,8 @@
 .supplier-list-main {
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
+    /*overflow-y: overlay;*/
+    overflow-y: auto;
     overflow-x: hidden;
     padding-top: .5rem;
     height: 100%;
