@@ -20,9 +20,9 @@
 /*    }*/
 /*}*/
 
-.supplier:active {
-    background: var(--supplier-hover-color);
-}
+/* .supplier:active { */
+/*     background: var(--supplier-hover-color); */
+/* } */
 
 /*.supplier:focus {*/
 /*    background: var(--supplier-hover-color);*/
