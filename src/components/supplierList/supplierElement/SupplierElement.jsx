@@ -11,6 +11,8 @@ import { ReactComponent as InfoSVG } from "../../../assets/icons/info-circle.svg
 import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {
+  const [chosen, setChosen] = useState(false);
+
   const dispatch = useDispatch();
   const handleEditButton = (e) => {
     e.stopPropagation();
@@ -20,21 +22,22 @@ export function SupplierElement({ supplier }) {
   };
 
   const handleSupplierClick = () => {
-    if (window.matchMedia("(max-width: 768px)").matches) {
-      dispatch(setCurrentSupplier(supplier));
-      dispatch(setMode("browseSupplier"));
-      dispatch(openSupplierTab());
+    if (window.matchMedia("(min-width: 45rem)").matches) {
+      dispatch(addRoute(supplier));
       return;
     }
-    dispatch(addRoute(supplier));
+    setChosen(true);
+    setTimeout(() => setChosen(false), 200);
+    dispatch(setCurrentSupplier(supplier));
+    dispatch(setMode("browseSupplier"));
+    dispatch(openSupplierTab());
   };
 
   const [showButton, setShowButton] = useState(false);
-  const showBtnClasses = cn("show-supplier-btn", { visible: showButton });
   return (
     <li
       tabIndex={0}
-      className="supplier"
+      className={cn("supplier", { chosen })}
       onClick={handleSupplierClick}
       onMouseEnter={() => setShowButton(true)}
       onMouseLeave={() => setShowButton(false)}
@@ -42,7 +45,7 @@ export function SupplierElement({ supplier }) {
       {supplier.name}
       <button
         type="button"
-        className={showBtnClasses}
+        className={cn("show-supplier-btn", { visible: showButton })}
         onClick={handleEditButton}
         title="Информация"
       >

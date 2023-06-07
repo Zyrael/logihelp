@@ -12,7 +12,7 @@ import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
 
-export function SupplierList({ leftMenuOpened, setLeftMenuOpened }) {
+export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   const { loading, error, data } = useQuery(GET_SUPPLIERS, {
     pollInterval: 10000,
   });
@@ -82,8 +82,8 @@ export function SupplierList({ leftMenuOpened, setLeftMenuOpened }) {
       >
         <button
           type="button"
-          className="open-left-menu-btn"
-          onClick={() => setLeftMenuOpened(!leftMenuOpened)}
+          className="open-sidebar-btn"
+          onClick={() => setSidebarOpened(!sidebarOpened)}
         >
           <HamburgerSVG className="hamburger-icon" />
         </button>

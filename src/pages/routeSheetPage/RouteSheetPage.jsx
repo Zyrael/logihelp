@@ -1,41 +1,42 @@
 import React, { useState } from "react";
-import { SupplierList, RouteSheet, LeftMenu } from "../../components";
-import "./RouteSheetPage.css";
-import { SupplierTab } from "../../components/supplierTab";
 import cn from "classnames";
+import { SupplierList, RouteSheet, Sidebar } from "../../components";
+import { SupplierTab } from "../../components/supplierTab";
+import "./RouteSheetPage.css";
 
 export function RouteSheetPage({ logout }) {
-  const [leftMenuOpened, setLeftMenuOpened] = useState(false);
+  const [sidebarOpened, setSidebarOpened] = useState(false);
+  console.log(sidebarOpened);
 
   return (
     <div className="route-sheet-page">
-      <LeftMenu
-        leftMenuOpened={leftMenuOpened}
-        setLeftMenuOpened={setLeftMenuOpened}
+      <Sidebar
+        sidebarOpened={sidebarOpened}
+        setSidebarOpened={setSidebarOpened}
         logout={logout}
       />
       <div
         className={cn("content-container content-container--left", {
-          "left-margin": leftMenuOpened,
+          "left-margin": sidebarOpened,
         })}
       >
         <SupplierList
-          leftMenuOpened={leftMenuOpened}
-          setLeftMenuOpened={setLeftMenuOpened}
+          sidebarOpened={sidebarOpened}
+          setSidebarOpened={setSidebarOpened}
         />
         <SupplierTab />
       </div>
       <div className="content-container content-container--right">
         <RouteSheet />
       </div>
-      <div className="logout-window">
-        <div className="logout-button-container">
-          <button type="button" className="logout" onClick={logout}>
-            Выйти
-          </button>
-        </div>
-        <div className="arrow-down" />
-      </div>
+      {/* <div className="logout-window"> */}
+      {/*  <div className="logout-button-container"> */}
+      {/*    <button type="button" className="logout" onClick={logout}> */}
+      {/*      Выйти */}
+      {/*    </button> */}
+      {/*  </div> */}
+      {/*  <div className="arrow-down" /> */}
+      {/* </div> */}
     </div>
   );
 }

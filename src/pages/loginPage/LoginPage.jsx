@@ -42,85 +42,87 @@ export function LoginPage({ login }) {
 
   return (
     <div className="login-page">
-      <p className="login-title">Вход</p>
-      <form onSubmit={handleSubmit} className="login-form">
-        <div
-          className={cn("login-input", {
-            focused: focusedInput === "username",
-          })}
-          onClick={() => {
-            usernameRef.current.focus();
-            setFocusedInput("username");
-            // setUsernameActive(true);
-          }}
-        >
-          <input
-            type="text"
-            name="username"
-            className="login-input-field"
-            value={formData.username}
-            onChange={onChange}
-            ref={usernameRef}
-            onBlur={() => {
-              setFocusedInput(null);
-              // setUsernameActive(!!formData.username);
-            }}
-            onFocus={() => {
-              // setUsernameActive(true);
-            }}
-            autoComplete="false"
-          />
-          <label
-            htmlFor="username"
-            className={cn("login-input-label", {
-              // active: usernameActive,
+      <div className="login-window">
+        <p className="login-title">Вход</p>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div
+            className={cn("login-input", {
               focused: focusedInput === "username",
             })}
+            onClick={() => {
+              usernameRef.current.focus();
+              setFocusedInput("username");
+              // setUsernameActive(true);
+            }}
           >
-            Логин
-          </label>
-        </div>
-        <div
-          className={cn("login-input", {
-            focused: focusedInput === "password",
-          })}
-          onClick={() => {
-            passwordRef.current.focus();
-            setFocusedInput("password");
-            // setPasswordActive(true);
-          }}
-        >
-          <input
-            type="password"
-            name="password"
-            className="login-input-field password-input-field"
-            value={formData.password}
-            onChange={onChange}
-            ref={passwordRef}
-            onBlur={() => {
-              setFocusedInput(null);
-              // setPasswordActive(!!formData.password);
-            }}
-            onFocus={() => {
-              // setPasswordActive(true);
-            }}
-            autoComplete="false"
-          />
-          <label
-            htmlFor="password"
-            className={cn("login-input-label", {
-              // active: passwordActive,
+            <input
+              type="text"
+              name="username"
+              className="login-input-field"
+              value={formData.username}
+              onChange={onChange}
+              ref={usernameRef}
+              onBlur={() => {
+                setFocusedInput(null);
+                // setUsernameActive(!!formData.username);
+              }}
+              // onFocus={() => {
+              //   setUsernameActive(true);
+              // }}
+              autoComplete="false"
+            />
+            <label
+              htmlFor="username"
+              className={cn("login-input-label", {
+                // active: usernameActive,
+                focused: focusedInput === "username",
+              })}
+            >
+              Логин
+            </label>
+          </div>
+          <div
+            className={cn("login-input", {
               focused: focusedInput === "password",
             })}
+            onClick={() => {
+              passwordRef.current.focus();
+              setFocusedInput("password");
+              // setPasswordActive(true);
+            }}
           >
-            Пароль
-          </label>
-        </div>
-        {errorText && <p className="login-error">{errorText}</p>}
-        <button type="submit" className="login-btn" disabled={loading}>
-          Войти
-        </button>
-      </form>
+            <input
+              type="password"
+              name="password"
+              className="login-input-field password-input-field"
+              value={formData.password}
+              onChange={onChange}
+              ref={passwordRef}
+              onBlur={() => {
+                setFocusedInput(null);
+                // setPasswordActive(!!formData.password);
+              }}
+              // onFocus={() => {
+              //   setPasswordActive(true);
+              // }}
+              autoComplete="false"
+            />
+            <label
+              htmlFor="password"
+              className={cn("login-input-label", {
+                // active: passwordActive,
+                focused: focusedInput === "password",
+              })}
+            >
+              Пароль
+            </label>
+          </div>
+          {errorText && <p className="login-error">{errorText}</p>}
+          <button type="submit" className="login-btn" disabled={loading}>
+            Войти
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

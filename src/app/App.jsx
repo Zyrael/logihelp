@@ -8,7 +8,7 @@ import "./App.css";
 export function App() {
   const { loading, token, login, logout } = useAuth();
 
-  const isAuthenticated = !!token || process.env.NODE_ENV === "development";
+  const isAuthenticated = !!token
 
   return (
     <div className="app">

@@ -1,15 +1,19 @@
 :root {
     --background-color: linear-gradient(to bottom right, hsla(262, 47%, 83%, 0.4), hsla(262, 47%, 83%, 0.2));
     --primary-color: hsl(262, 47%, 63%);
-    --primary-color-light: hsl(262, 47%, 73%);
+    --primary-color-hover: hsl(262, 47%, 67%);
+    --primary-color-disabled: hsl(262, 47%, 73%);
     --primary-color-transparent: hsl(262, 0%, 20%, 0.9);
     --main-background: hsl(195, 9%, 91%);
     --element-hover-color: hsla(236, 21%, 10%, 0.2);
-    --supplier-hover-color: hsla(236, 21%, 50%, 0.2);
+    --supplier-hover-color: hsla(236, 21%, 60%, 0.2);
     --font-color: hsl(199, 18%, 20%);
     --border-color: hsl(0, 0%, 83%);
     --danger-color: hsl(0, 100%, 63%);
-    --link-color: hsl(219, 76%, 44%)
+    --danger-color-hover: hsl(0, 100%, 68%);
+    --link-color: hsl(219, 76%, 44%);
+    --scrollbar-color: hsla(0, 0%, 0%, 0.25);
+    --sidebar-width: 20rem;
 }
 
 body {
@@ -43,7 +47,7 @@ body {
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
     scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
+    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
 }
 
 a, a:visited {
@@ -55,12 +59,8 @@ a, a:visited {
     height: .375rem;
 }
 
-:hover {
-    scrollbar-color: hsl(0 0% 0% / 25%) transparent;
-}
-
-:hover::-webkit-scrollbar-thumb {
-    background: hsl(0 0% 0% / 25%);
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
     border-radius: 20px;
 }
 
@@ -70,14 +70,14 @@ a, a:visited {
 }
 
 .round-btn {
-    min-width: 40px;
-    min-height: 40px;
+    min-height: 2.5rem;
+    min-width: 2.5rem;
     background: var(--primary-color);
     cursor: pointer;
     border: 0;
     border-radius: 50%;
     box-shadow: 0 2px 2px 0 hsla(0, 0%, 0%, 0.14), 0 3px 1px -2px hsla(0, 0%, 0%, 0.12), 0 1px 5px 0 hsla(0, 0%, 0%, 0.2);
-    transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background .2s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,10 +85,34 @@ a, a:visited {
 
 .round-btn:disabled {
     cursor: initial;
-    background: var(--primary-color-light);
+    background: var(--primary-color-disabled);
 }
 
 .visible {
     opacity: 1 !important;
     visibility: visible !important;
+}
+
+@media screen and (min-width: 45rem) {
+    *,
+    *::before,
+    *::after {
+        scrollbar-color: transparent transparent;
+    }
+
+    .round-btn:hover {
+        background: var(--primary-color-hover);
+    }
+
+    :hover {
+        scrollbar-color: var(--scrollbar-color) transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+    :hover::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-color);
+    }
 }

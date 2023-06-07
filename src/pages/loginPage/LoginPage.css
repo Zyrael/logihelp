@@ -1,23 +1,32 @@
 .login-page {
     background: white;
+    height: 100%;
     width: 100%;
-    max-width: 500px;
+    /*max-width: 500px;*/
+    /*border: 1px solid var(--border-color);*/
+    /*border-radius: 10px;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-window {
+    height: 100%;
+    width: 100%;
     padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-@media (max-width: 768px) {
-    .login-page {
-        height: 100%;
-        max-width: 100%;
-        border: 0;
-    }
-}
+/*@media (max-width: 768px) {*/
+/*    .login-page {*/
+/*        height: 100%;*/
+/*        max-width: 100%;*/
+/*        border: 0;*/
+/*    }*/
+/*}*/
 
 .login-title {
     font-size: 1.6rem;
@@ -39,7 +48,7 @@
 .login-input {
     min-height: 3rem;
     width: 100%;
-    padding: 1rem .75rem;
+    /*padding: 0 .75rem;*/
     border: 1px solid var(--border-color);
     border-radius: 10px;
     position: relative;
@@ -60,7 +69,10 @@
 
 .login-input-field {
     width: 100%;
+    height: 100%;
     border: 0;
+    border-radius: 10px;
+    padding: 0 1rem;
     font-size: 1rem;
     resize: none;
     overflow: hidden;
@@ -78,14 +90,14 @@
     color: #aaa;
     display: flex;
     align-items: center;
-    height: 1.5rem;
+    /*height: 1.5rem;*/
     pointer-events: none;
     font-weight: 300;
+    font-size: .875rem;
     position: absolute;
-    top: calc(-1.625rem / 2);
+    top: -.625rem;
+    left: .75rem;
     padding: 0 0.375rem;
-    transform-origin: left center;
-    transition: top .2s, transform .2s, color .2s;
     background: white;
 }
 
@@ -102,17 +114,30 @@
     border: 0;
     border-radius: 10px;
     min-height: 3rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     background: var(--primary-color);
     color: white;
     cursor: pointer;
-    transition: background .2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background .2s;
 }
 
-.login-btn:hover {
-    background: var(--primary-color-light);
-}
+/*.login-btn:hover {*/
+/*    background: var(--primary-color-light);*/
+/*}*/
 
 .login-error {
     color: var(--danger-color);
+}
+
+@media screen and (min-width: 45rem) {
+    .login-window {
+        height: initial;
+        max-width: 30rem;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+    }
+
+    .login-btn:hover {
+        background: var(--primary-color-hover);
+    }
 }
