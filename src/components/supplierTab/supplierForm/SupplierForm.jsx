@@ -101,6 +101,8 @@ export function SupplierForm() {
   };
 
   const onChange = (key) => (e) => {
+    if (key === "name") setNameError(false);
+    if (key === "url") setURLError(false);
     setFormData({ ...formData, [key]: e.currentTarget.value });
   };
 

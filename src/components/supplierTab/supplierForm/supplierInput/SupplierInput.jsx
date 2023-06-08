@@ -44,7 +44,6 @@ export function SupplierInput({
           setFocused(true);
           setActive(true);
         }}
-        rows="1"
         autoComplete="false"
       />
       <label

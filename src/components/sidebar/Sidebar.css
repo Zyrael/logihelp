@@ -58,7 +58,7 @@
     background: 0;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color .1s ease-in-out;
+    transition: background-color .2s;
     box-shadow: 1px 1px 2px 0 hsla(0, 0%, 0%, 0.14);
     background: var(--danger-color);
 }
@@ -66,5 +66,9 @@
 @media screen and (min-width: 45rem) {
     .sidebar {
         max-width: var(--sidebar-width);
+    }
+
+    .logout-btn:hover {
+        background: var(--danger-color-hover);
     }
 }

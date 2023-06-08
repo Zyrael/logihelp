@@ -81,7 +81,7 @@
     width: 1rem;
     height: 1rem;
     position: absolute;
-    fill: rgb(164, 164, 164);
+    fill: hsl(0, 0%, 64%);
     top: calc(50% - .5625rem);
     left: 1rem;
     transition: fill .2s;
@@ -97,7 +97,7 @@
     height: 100%;
     width: 100%;
     outline: none;
-    border: 1px solid rgb(211, 211, 211);
+    border: 1px solid var(--border-color);
     border-radius: 2rem;
     transition: border-color .2s, outline-width .2s;
     box-shadow: 1px 1px 2px 0 hsla(0, 0%, 0%, 0.14);
@@ -130,9 +130,14 @@
 }
 
 .clear-input-icon {
-    fill: var(--font-color);
+    fill: hsl(0, 0%, 64%);
+    transition: fill .2s;
     width: 1.125rem;
     height: 1.125rem;
+}
+
+.clear-input-icon.active {
+    fill: var(--primary-color);
 }
 
 .exclamation {
@@ -180,7 +185,7 @@
     border-radius: 50%;
     bottom: 1rem;
     right: 1rem;
-    background: hsla(0, 0%, 0%, 0.3);
+    background: var(--element-hover-color);
     transition: opacity .2s, visibility .2s;
 }
 
@@ -202,7 +207,7 @@
     }
 
     .clear-input:hover {
-        background: hsla(0, 0%, 0%, 0.2);
+        background: var(--supplier-hover-color);
     }
 
     .supplier-list-main {

@@ -112,7 +112,11 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
           />
           {showClear && (
             <button type="button" className="clear-input" onClick={clearSearch}>
-              <XSVG className="clear-input-icon" />
+              <XSVG
+                className={cn("clear-input-icon", {
+                  active: searchFocus,
+                })}
+              />
             </button>
           )}
         </div>
