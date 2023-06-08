@@ -114,13 +114,19 @@
 
 .clear-input {
     position: absolute;
-    top: calc(50% - .5625rem);
-    right: .75rem;
+    /*top: calc(50% - .5625rem);*/
+    right: .25rem;
     background: 0;
     border: 0;
+    border-radius: 50%;
     cursor: pointer;
-    width: 1.125rem;
-    height: 1.125rem;
+    max-width: 2rem;
+    max-height: 2rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .clear-input-icon {
@@ -151,12 +157,38 @@
     padding-top: .5rem;
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .supplier-list {
     height: 100%;
     width: 100%;
     list-style: none;
+}
+
+.scroll-top-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    border: 0;
+    border-radius: 50%;
+    bottom: 1rem;
+    right: 1rem;
+    background: hsla(0, 0%, 0%, 0.3);
+    transition: opacity .2s, visibility .2s;
+}
+
+.scroll-top-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    stroke: hsl(0, 0%, 10%);
+    transform: rotateZ(90deg);
 }
 
 .nothing-found {
@@ -169,7 +201,15 @@
         background: var(--element-hover-color);
     }
 
+    .clear-input:hover {
+        background: hsla(0, 0%, 0%, 0.2);
+    }
+
     .supplier-list-main {
         padding: .5rem .5rem 0;
+    }
+
+    .scroll-top-btn:hover {
+        border: 1px solid hsla(0, 0%, 0%, 0.4);
     }
 }

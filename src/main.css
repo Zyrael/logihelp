@@ -16,17 +16,6 @@
     --sidebar-width: 20rem;
 }
 
-html {
-    height: 100%;
-    width: 100%;
-}
-
-body {
-    height: 100%;
-    width: 100%;
-    /*overflow: hidden;*/
-}
-
 @font-face {
     font-family: Roboto;
     src: url("assets/fonts/roboto/Roboto-Regular.ttf");
@@ -45,6 +34,11 @@ body {
     font-weight: 300;
 }
 
+html, body, #root {
+    height: 100%;
+    width: 100%;
+}
+
 *,
 *::before,
 *::after {
@@ -56,12 +50,6 @@ body {
 
 a, a:visited {
     color: var(--link-color);
-}
-
-
-#root {
-    height: 100%;
-    width: 100%;
 }
 
 .round-btn {

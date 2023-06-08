@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
 
   header: {
     fontWeight: "bold",
-    fontSize: 20,
-    marginBottom: 10,
+    fontSize: 25,
+    letterSpacing: 0.5,
   },
 
   section: {

@@ -7,6 +7,7 @@ import { ReactComponent as GlassSVG } from "../../assets/icons/glass.svg";
 import { ReactComponent as XSVG } from "../../assets/icons/cross.svg";
 import { ReactComponent as AddSVG } from "../../assets/icons/user-add.svg";
 import { ReactComponent as HamburgerSVG } from "../../assets/icons/hamburger.svg";
+import { ReactComponent as ArrowSVG } from "../../assets/icons/arrow-left.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
@@ -24,6 +25,9 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   const [suppliers, setSuppliers] = useState([]);
   const [searchFocus, setSearchFocus] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  const supplierListRef = useRef(null);
 
   useEffect(() => {
     if (!loading && !error) setSuppliers(data.getSuppliers);
@@ -55,10 +59,10 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
     setShowClear(false);
   };
 
-  useEffect(() => {
-    if (supplierTabOpened) return;
-    clearSearch();
-  }, [supplierTabOpened]);
+  // useEffect(() => {
+  //   if (supplierTabOpened) return;
+  //   searchRe
+  // }, [supplierTabOpened]);
 
   const handleCreateSupplier = () => {
     dispatch(setMode("createSupplier"));
@@ -67,6 +71,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
 
   const handleScroll = (e) => {
     setScrolled(e.currentTarget.scrollTop > 30);
+    setShowScrollToTop(e.currentTarget.scrollTop > 300);
   };
 
   return (
@@ -127,7 +132,11 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
         </div>
       )}
       {!loading && !error && (
-        <div className="supplier-list-main" onScroll={handleScroll}>
+        <div
+          className="supplier-list-main"
+          onScroll={handleScroll}
+          ref={supplierListRef}
+        >
           {data.getSuppliers.length === 0 && (
             <div className="nothing-found">Добавьте первого поставщика</div>
           )}
@@ -143,6 +152,17 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
           )}
         </div>
       )}
+      <button
+        type="button"
+        className={cn("scroll-top-btn", {
+          visible: showScrollToTop,
+        })}
+        onClick={() => {
+          supplierListRef.current.scrollTo({ top: 0 });
+        }}
+      >
+        <ArrowSVG className="scroll-top-icon" />
+      </button>
     </div>
   );
 }
