@@ -14,7 +14,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "yarn nodemon server.js --ignore src",
-    "start:dev": "yarn concurrently \"yarn start\" \"yarn dev\""
+    "start:dev": "yarn concurrently \"yarn start\" \"yarn dev\"",
+    "start:dev--host": "yarn concurrently \"yarn start\" \"yarn dev\""
   },
   "dependencies": {
     "@apollo/client": "^3.7.5",

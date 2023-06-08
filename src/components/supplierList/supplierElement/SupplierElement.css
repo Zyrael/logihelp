@@ -69,6 +69,10 @@
         background: var(--supplier-hover-color);
     }
 
+    /*.supplier:focus {*/
+    /*    background: var(--supplier-hover-color);*/
+    /*    outline: 0;*/
+    /*}*/
     .show-supplier-btn {
         display: flex;
     }
