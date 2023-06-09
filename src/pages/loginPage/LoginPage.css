@@ -64,6 +64,14 @@
     font-size: 1rem;
     resize: none;
     overflow: hidden;
+    color: var(--font-color);
+}
+
+.login-input-field:-webkit-autofill,
+.login-input-field:-webkit-autofill:hover,
+.login-input-field:-webkit-autofill:focus,
+.login-input-field:-webkit-autofill:active {
+    transition: background-color 600000s 0s, color 600000s 0s;
 }
 
 .password-input-field {

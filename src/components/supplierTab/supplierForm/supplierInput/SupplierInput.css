@@ -30,7 +30,7 @@
 
 .supplier-input-field {
     width: 100%;
-    padding: 1rem .75rem;
+    padding: 1rem;
     border-radius: 10px;
     height: 3rem;
     border: 0;
@@ -54,7 +54,7 @@
     font-weight: 300;
     position: absolute;
     padding: 0 0.375rem;
-    margin-left: .5rem;
+    margin-left: .75rem;
     transform-origin: left center;
     transition: top .2s, transform .2s, color .2s;
     background: white;

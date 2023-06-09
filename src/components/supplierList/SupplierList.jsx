@@ -90,7 +90,11 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
           className="open-sidebar-btn"
           onClick={() => setSidebarOpened(!sidebarOpened)}
         >
-          <HamburgerSVG className="hamburger-icon" />
+          {sidebarOpened ? (
+            <ArrowSVG className="close-sidebar-icon" />
+          ) : (
+            <HamburgerSVG className="open-sidebar-icon" />
+          )}
         </button>
         <div className="search-container">
           <GlassSVG

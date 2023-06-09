@@ -47,9 +47,15 @@
     min-height: 40px;
 }
 
-.hamburger-icon {
+.open-sidebar-icon {
     height: 2rem;
     width: 2rem;
+    stroke: var(--font-color);
+}
+
+.close-sidebar-icon {
+    width: 2.5rem;
+    height: 2.5rem;
     stroke: var(--font-color);
 }
 

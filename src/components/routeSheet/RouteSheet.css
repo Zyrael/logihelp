@@ -12,13 +12,16 @@
     font-weight: 300;
     letter-spacing: 0.05rem;
     white-space: nowrap;
-    margin-right: auto;
     user-select: none;
     color: var(--font-color);
 }
 
+.clear {
+    margin-left: auto;
+}
+
 .print {
-    margin-left: 0.5rem;
+    margin-left: .5rem;
 }
 
 .times-icon {
@@ -33,9 +36,13 @@
     stroke: white;
 }
 
+.cancel-print {
+    margin-left: .5rem;
+}
+
 .cancel-print-icon {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     stroke: white;
 }
 

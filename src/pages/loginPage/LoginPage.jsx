@@ -18,8 +18,6 @@ export function LoginPage({ login }) {
   });
   const [errorText, setErrorText] = useState(null);
 
-  // const [usernameActive, setUsernameActive] = useState(null);
-  // const [passwordActive, setPasswordActive] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
 
   const onChange = (e) => {
@@ -52,7 +50,6 @@ export function LoginPage({ login }) {
             onClick={() => {
               usernameRef.current.focus();
               setFocusedInput("username");
-              // setUsernameActive(true);
             }}
           >
             <input
@@ -64,17 +61,12 @@ export function LoginPage({ login }) {
               ref={usernameRef}
               onBlur={() => {
                 setFocusedInput(null);
-                // setUsernameActive(!!formData.username);
               }}
-              // onFocus={() => {
-              //   setUsernameActive(true);
-              // }}
-              autoComplete="false"
+              autoComplete="username"
             />
             <label
               htmlFor="username"
               className={cn("login-input-label", {
-                // active: usernameActive,
                 focused: focusedInput === "username",
               })}
             >
@@ -88,7 +80,6 @@ export function LoginPage({ login }) {
             onClick={() => {
               passwordRef.current.focus();
               setFocusedInput("password");
-              // setPasswordActive(true);
             }}
           >
             <input
@@ -100,17 +91,12 @@ export function LoginPage({ login }) {
               ref={passwordRef}
               onBlur={() => {
                 setFocusedInput(null);
-                // setPasswordActive(!!formData.password);
               }}
-              // onFocus={() => {
-              //   setPasswordActive(true);
-              // }}
               autoComplete="false"
             />
             <label
               htmlFor="password"
               className={cn("login-input-label", {
-                // active: passwordActive,
                 focused: focusedInput === "password",
               })}
             >

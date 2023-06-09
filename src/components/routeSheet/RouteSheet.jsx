@@ -4,7 +4,7 @@ import { RouteElement } from "./routeElement/index";
 import "./RouteSheet.css";
 import { ReactComponent as Times } from "../../assets/icons/cross.svg";
 import { ReactComponent as Print } from "../../assets/icons/file.svg";
-import { ReactComponent as LeftSVG } from "../../assets/icons/arrow-left.svg";
+import { ReactComponent as LeftSVG } from "../../assets/icons/arrow-undo-up-left.svg";
 import { removeAllRoutes } from "./routeSheetSlice";
 import { PDFView } from "../pdfView";
 
@@ -27,21 +27,21 @@ export function RouteSheet() {
           <>
             <button
               type="button"
-              className="round-btn clear"
-              onClick={handleRemoveRoutes}
-              disabled={routes.length === 0}
-              title="Очистить список"
-            >
-              <Times className="times-icon" />
-            </button>
-            <button
-              type="button"
               className="round-btn print"
               onClick={() => setPrint(true)}
               disabled={routes.length === 0}
               title="Печать"
             >
               <Print className="print-icon" />
+            </button>
+            <button
+              type="button"
+              className="round-btn clear"
+              onClick={handleRemoveRoutes}
+              disabled={routes.length === 0}
+              title="Очистить список"
+            >
+              <Times className="times-icon" />
             </button>
           </>
         )}
