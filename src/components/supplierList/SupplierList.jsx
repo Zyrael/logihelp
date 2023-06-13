@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useDeferredValue } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
@@ -30,39 +30,44 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   const supplierListRef = useRef(null);
 
   useEffect(() => {
-    if (!loading && !error) setSuppliers(data.getSuppliers);
+    if (!loading && !error) {
+      const unsorted = [...data.getSuppliers];
+      setSuppliers(
+        unsorted.sort((supplierA, supplierB) => {
+          const nameA = supplierA.name.toLowerCase();
+          const nameB = supplierB.name.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        })
+      );
+    }
   }, [loading, error, data]);
 
-  const showSuppliers = suppliers
-    .filter((supplier) =>
-      supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
-    )
-    .sort((supplierA, supplierB) => {
-      const nameA = supplierA.name.toLowerCase();
-      const nameB = supplierB.name.toLowerCase();
-      if (nameA < nameB) return -1;
-      if (nameA > nameB) return 1;
-      return 0;
-    });
+  const deferredSearchValue = useDeferredValue(searchValue);
 
   const handleChangeSearch = (e) => {
-    setShowClear(e.currentTarget.value !== "");
-    setSearchValue(e.currentTarget.value);
+    setShowClear(e.target.value !== "");
+    setSearchValue(e.target.value);
   };
 
   const { supplierTabOpened } = useSelector((state) => state.supplierTab);
+
+  let showSuppliers = [...suppliers];
+
+  if (deferredSearchValue !== "") {
+    showSuppliers = suppliers.filter((supplier) =>
+      supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
+    );
+  }
 
   const searchRef = useRef(null);
 
   const clearSearch = () => {
     setSearchValue("");
+    searchRef.current.value = "";
     setShowClear(false);
   };
-
-  // useEffect(() => {
-  //   if (supplierTabOpened) return;
-  //   searchRe
-  // }, [supplierTabOpened]);
 
   const handleCreateSupplier = () => {
     dispatch(setMode("createSupplier"));

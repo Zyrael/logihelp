@@ -6,7 +6,6 @@ import "./RouteSheetPage.css";
 
 export function RouteSheetPage({ logout }) {
   const [sidebarOpened, setSidebarOpened] = useState(false);
-  console.log(sidebarOpened);
 
   return (
     <div className="route-sheet-page">
