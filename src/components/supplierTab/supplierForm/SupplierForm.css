@@ -34,7 +34,8 @@
 
 .danger-text {
     margin-top: .25rem;
-    color: var(--danger-color);
+    margin-bottom: -.75rem;
+    color: var(--error-color);
 }
 
 .supplier-form-footer {
@@ -53,13 +54,12 @@
     background: 0;
     border-radius: 10px;
     cursor: pointer;
-    transition: background .2s;
     overflow: hidden;
     box-shadow: 1px 1px 2px 0 hsla(0, 0%, 0%, 0.14)
 }
 
 .supplier-form-delete {
-    background: var(--danger-color);
+    background: var(--error-color);
 }
 
 .supplier-form-submit {
@@ -67,7 +67,7 @@
 }
 
 .supplier-form-delete:hover {
-    background: var(--danger-color-hover);
+    background: var(--error-color-hover);
 }
 
 .supplier-form-submit:hover {

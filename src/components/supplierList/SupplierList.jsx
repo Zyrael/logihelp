@@ -8,6 +8,7 @@ import { ReactComponent as XSVG } from "../../assets/icons/cross.svg";
 import { ReactComponent as AddSVG } from "../../assets/icons/user-add.svg";
 import { ReactComponent as HamburgerSVG } from "../../assets/icons/hamburger.svg";
 import { ReactComponent as ArrowSVG } from "../../assets/icons/arrow-left.svg";
+import { ReactComponent as InfoSVG } from "../../assets/icons/info-circle.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
 import { GET_SUPPLIERS } from "../../graphql";
@@ -94,6 +95,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
           type="button"
           className="open-sidebar-btn"
           onClick={() => setSidebarOpened(!sidebarOpened)}
+          title={sidebarOpened ? "Закрыть меню" : "Открыть меню"}
         >
           {sidebarOpened ? (
             <ArrowSVG className="close-sidebar-icon" />
@@ -104,7 +106,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
         <div className="search-container">
           <GlassSVG
             className={cn({
-              glass: true,
+              "glass-icon": true,
               active: searchFocus,
             })}
           />
@@ -119,6 +121,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
             onFocus={() => setSearchFocus(true)}
             onBlur={() => setSearchFocus(false)}
           />
+          <div className={cn("search-border", { active: searchFocus })} />
           {showClear && (
             <button type="button" className="clear-input" onClick={clearSearch}>
               <XSVG
@@ -140,8 +143,9 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
       </div>
       {loading && <Loading />}
       {error && (
-        <div className="error">
-          <span className="exclamation">&#x24D8;</span>&nbsp;Произошла ошибка.
+        <div className="supplier-list-error">
+          <InfoSVG className="supplier-list-error-icon" />
+          Произошла ошибка.
         </div>
       )}
       {!loading && !error && (
@@ -150,12 +154,6 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
           onScroll={handleScroll}
           ref={supplierListRef}
         >
-          {data.getSuppliers.length === 0 && (
-            <div className="nothing-found">Добавьте первого поставщика</div>
-          )}
-          {data.getSuppliers.length !== 0 && showSuppliers.length === 0 && (
-            <div className="nothing-found">Ничего не найдено</div>
-          )}
           {showSuppliers.length !== 0 && (
             <ul className="supplier-list">
               {showSuppliers.map((supplier) => (
@@ -171,7 +169,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
           visible: showScrollToTop,
         })}
         onClick={() => {
-          supplierListRef.current.scrollTo({ top: 0 });
+          supplierListRef.current.scrollTo({ top: 0, behavior: "smooth" });
         }}
       >
         <ArrowSVG className="scroll-top-icon" />

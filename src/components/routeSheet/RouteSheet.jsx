@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RouteElement } from "./routeElement/index";
 import "./RouteSheet.css";
 import { ReactComponent as Times } from "../../assets/icons/cross.svg";
-import { ReactComponent as Print } from "../../assets/icons/file.svg";
+import { ReactComponent as Print } from "../../assets/icons/printer.svg";
 import { ReactComponent as LeftSVG } from "../../assets/icons/arrow-undo-up-left.svg";
 import { removeAllRoutes } from "./routeSheetSlice";
 import { PDFView } from "../pdfView";
@@ -57,7 +57,7 @@ export function RouteSheet() {
         )}
       </div>
       {!print && (
-        <div className="route-sheet-container">
+        <div className="route-sheet-main">
           <ul className="route-sheet">
             {routes.map((route) => (
               <RouteElement key={route.id} route={route} />

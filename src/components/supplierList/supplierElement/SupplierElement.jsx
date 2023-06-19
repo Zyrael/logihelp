@@ -1,56 +1,63 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addRoute } from "../../routeSheet/routeSheetSlice";
 import {
   setCurrentSupplier,
   openSupplierTab,
   setMode,
 } from "../../supplierTab/supplierTabSlice";
-import { ReactComponent as InfoSVG } from "../../../assets/icons/info-circle.svg";
+import { ReactComponent as InfoSVG } from "../../../assets/icons/add-plus-circle.svg";
+import { ReactComponent as CircleCheckSVG } from "../../../assets/icons/circle-check.svg";
 import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {
   const [chosen, setChosen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const routes = useSelector((state) => state.routeSheet.routes);
+  const isChosen = routes.find(({ id }) => supplier.id === id);
 
   const dispatch = useDispatch();
   const handleEditButton = (e) => {
     e.stopPropagation();
-    dispatch(setCurrentSupplier(supplier));
-    dispatch(setMode("browseSupplier"));
-    dispatch(openSupplierTab());
+    dispatch(addRoute(supplier));
   };
 
   const handleSupplierClick = () => {
-    if (window.matchMedia("(min-width: 45rem)").matches) {
-      dispatch(addRoute(supplier));
-      return;
+    if (window.matchMedia("(max-width: 45rem)").matches) {
+      setChosen(true);
+      setTimeout(() => setChosen(false), 200);
     }
-    setChosen(true);
-    setTimeout(() => setChosen(false), 200);
     dispatch(setCurrentSupplier(supplier));
     dispatch(setMode("browseSupplier"));
     dispatch(openSupplierTab());
   };
 
-  const [showButton, setShowButton] = useState(false);
   return (
     <li
       tabIndex={0}
       className={cn("supplier", { chosen })}
       onClick={handleSupplierClick}
-      onMouseEnter={() => setShowButton(true)}
-      onMouseLeave={() => setShowButton(false)}
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
     >
       {supplier.name}
-      <button
-        type="button"
-        className={cn("show-supplier-btn", { visible: showButton })}
-        onClick={handleEditButton}
-        title="Информация"
+      <div
+        className={cn("add-to-routes-container", { visible })}
+        title={isChosen ? "Добавлено" : "Добавить в маршрутный лист"}
       >
-        <InfoSVG className="show-supplier-icon" />
-      </button>
+        {!isChosen ? (
+          <button
+            type="button"
+            className="add-to-routes-btn"
+            onClick={handleEditButton}
+          >
+            <InfoSVG className="add-to-routes-icon" />
+          </button>
+        ) : (
+          <CircleCheckSVG className="add-to-routes-icon" />
+        )}
+      </div>
     </li>
   );
 }

@@ -1,46 +1,59 @@
 .supplier-input {
     min-height: 3rem;
     width: 100%;
-    border: 1px solid var(--border-color);
     border-radius: 10px;
-    position: relative;
     display: flex;
-    align-items: center;
+    position: relative;
     cursor: text;
-    transition: border-color .2s, outline-width 10s;
-}
-
-.supplier-input:hover {
-    border-color: var(--primary-color);
-}
-
-.supplier-input.focused {
-    border: 1px solid var(--primary-color);
-    outline: 1px solid var(--primary-color);
-}
-
-.supplier-input.danger {
-    border: 1px solid var(--danger-color);
-}
-
-.supplier-input.focused.danger {
-    border: 1px solid var(--danger-color);
-    outline: 1px solid var(--danger-color);
 }
 
 .supplier-input-field {
+    border: 1px solid var(--border-color);
     width: 100%;
+    height: 3rem;
     padding: 1rem;
     border-radius: 10px;
-    height: 3rem;
-    border: 0;
     font-size: 1rem;
     resize: none;
     overflow: hidden;
+    transition: border-color .2s;
+    caret-color: var(--primary-color);
+    z-index: 1;
+}
+
+
+.supplier-input-field:hover {
+    border-color: var(--primary-color);
 }
 
 .supplier-input-field:focus {
     outline: none;
+}
+
+.supplier-input-field.error {
+    border-color: var(--error-color);
+}
+
+.supplier-input-border {
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .2s;
+    pointer-events: none;
+}
+
+.supplier-input-border.focused {
+    opacity: 1;
+}
+
+.supplier-input-border.error {
+    border-color: var(--error-color);
 }
 
 .supplier-input-label {
@@ -58,6 +71,7 @@
     transform-origin: left center;
     transition: top .2s, transform .2s, color .2s;
     background: white;
+    z-index: 2;
 }
 
 .supplier-input:hover > .supplier-input-label {
@@ -65,7 +79,7 @@
 }
 
 .supplier-input-label.active {
-    top: calc(-1.625rem / 2);
+    top: calc(-1.5rem / 2);
     transform: scale(.75);
 }
 
@@ -73,6 +87,6 @@
     color: var(--primary-color);
 }
 
-.supplier-input-label.danger {
-    color: var(--danger-color) !important;
+.supplier-input-label.error {
+    color: var(--error-color) !important;
 }

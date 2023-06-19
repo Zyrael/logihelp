@@ -9,13 +9,13 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
-import roboto from "../../assets/fonts/roboto/Roboto-Regular.ttf";
-import robotoBold from "../../assets/fonts/roboto/Roboto-Bold.ttf";
+import rubik from "../../assets/fonts/Rubik/Rubik-Regular.ttf";
+import rubikBold from "../../assets/fonts/Rubik/Rubik-Bold.ttf";
 import "./PDFView.css";
 
 Font.register({
   family: "Roboto",
-  fonts: [{ src: roboto }, { src: robotoBold, fontWeight: 700 }],
+  fonts: [{ src: rubik }, { src: rubikBold, fontWeight: 700 }],
 });
 
 const styles = StyleSheet.create({

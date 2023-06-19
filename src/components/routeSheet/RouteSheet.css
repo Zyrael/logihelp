@@ -10,18 +10,17 @@
 .route-sheet-title {
     font-size: 1.5rem;
     font-weight: 300;
-    letter-spacing: 0.05rem;
     white-space: nowrap;
     user-select: none;
     color: var(--font-color);
 }
 
 .clear {
-    margin-left: auto;
+    margin-left: .5rem;
 }
 
 .print {
-    margin-left: .5rem;
+    margin-left: auto;
 }
 
 .times-icon {
@@ -37,7 +36,7 @@
 }
 
 .cancel-print {
-    margin-left: .5rem;
+    margin-left: auto;
 }
 
 .cancel-print-icon {
@@ -46,7 +45,7 @@
     stroke: white;
 }
 
-.route-sheet-container {
+.route-sheet-main {
     padding-right: .625rem;
     overflow-y: scroll;
     height: 100%;

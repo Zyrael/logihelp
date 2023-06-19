@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -126,7 +126,7 @@ export function SupplierForm() {
         label="Название"
         onChange={onChange("name")}
         onBlur={onBlur}
-        danger={nameError}
+        error={nameError}
         required
       />
       {nameError && <div className="danger-text">Введите название</div>}
@@ -135,7 +135,7 @@ export function SupplierForm() {
         label="Сайт"
         onChange={onChange("url")}
         onBlur={onBlur}
-        danger={urlError}
+        error={urlError}
         required
       />
       {urlError && <div className="danger-text">Введите корректный URL</div>}

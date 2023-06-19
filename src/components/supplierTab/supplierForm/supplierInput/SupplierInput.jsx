@@ -7,7 +7,7 @@ export function SupplierInput({
   label = "Введите текст",
   onChange,
   onBlur,
-  danger,
+  error,
 }) {
   const [active, setActive] = useState(!!data);
   const [focused, setFocused] = useState(false);
@@ -17,17 +17,10 @@ export function SupplierInput({
   }, []);
 
   return (
-    <div
-      className={cn("supplier-input", { focused, danger })}
-      onClick={() => {
-        inputRef.current.focus();
-        setFocused(true);
-        setActive(true);
-      }}
-    >
+    <div className="supplier-input">
       <textarea
         name="supplier-input"
-        className="supplier-input-field"
+        className={cn("supplier-input-field", { error })}
         value={data}
         onChange={(e) => {
           inputRef.current.style.height = "";
@@ -35,20 +28,21 @@ export function SupplierInput({
           onChange(e);
         }}
         ref={inputRef}
+        onFocus={() => {
+          setFocused(true);
+          setActive(true);
+        }}
         onBlur={() => {
           setFocused(false);
           setActive(!!data);
           onBlur();
         }}
-        onFocus={() => {
-          setFocused(true);
-          setActive(true);
-        }}
         autoComplete="false"
       />
+      <div className={cn("supplier-input-border", { focused, error })} />
       <label
         htmlFor="supplier-input"
-        className={cn("supplier-input-label", { active, focused, danger })}
+        className={cn("supplier-input-label", { active, focused, error })}
       >
         {label}
       </label>

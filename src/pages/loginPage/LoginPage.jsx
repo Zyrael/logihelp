@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import "./LoginPage.css";
 import cn from "classnames";
-import { useHttp } from "../../hooks/http.hook";
+import { useHttp } from "../../hooks";
+import { Loading } from "../../components";
 
 const errorMap = {
   "Login failed": "Неверный логин/пароль",
@@ -27,6 +28,7 @@ export function LoginPage({ login }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorText(null);
 
     try {
       const data = await request("/login", "POST", {
@@ -47,10 +49,6 @@ export function LoginPage({ login }) {
             className={cn("login-input", {
               focused: focusedInput === "username",
             })}
-            onClick={() => {
-              usernameRef.current.focus();
-              setFocusedInput("username");
-            }}
           >
             <input
               type="text"
@@ -59,10 +57,18 @@ export function LoginPage({ login }) {
               value={formData.username}
               onChange={onChange}
               ref={usernameRef}
+              onClick={() => {
+                setFocusedInput("username");
+              }}
               onBlur={() => {
                 setFocusedInput(null);
               }}
               autoComplete="username"
+            />
+            <div
+              className={cn("login-input-border", {
+                focused: focusedInput === "username",
+              })}
             />
             <label
               htmlFor="username"
@@ -77,10 +83,6 @@ export function LoginPage({ login }) {
             className={cn("login-input", {
               focused: focusedInput === "password",
             })}
-            onClick={() => {
-              passwordRef.current.focus();
-              setFocusedInput("password");
-            }}
           >
             <input
               type="password"
@@ -89,10 +91,18 @@ export function LoginPage({ login }) {
               value={formData.password}
               onChange={onChange}
               ref={passwordRef}
+              onClick={() => {
+                setFocusedInput("password");
+              }}
               onBlur={() => {
                 setFocusedInput(null);
               }}
               autoComplete="false"
+            />
+            <div
+              className={cn("login-input-border", {
+                focused: focusedInput === "password",
+              })}
             />
             <label
               htmlFor="password"
@@ -108,6 +118,7 @@ export function LoginPage({ login }) {
             Войти
           </button>
         </form>
+        {loading && <Loading />}
       </div>
     </div>
   );

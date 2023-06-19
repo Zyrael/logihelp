@@ -9,28 +9,28 @@
     --supplier-hover-color: hsla(236, 21%, 60%, 0.2);
     --font-color: hsl(199, 18%, 20%);
     --border-color: hsl(0, 0%, 83%);
-    --danger-color: hsl(0, 100%, 63%);
-    --danger-color-hover: hsl(0, 100%, 68%);
+    --error-color: hsl(0, 100%, 63%);
+    --error-color-hover: hsl(0, 100%, 68%);
     --link-color: hsl(219, 76%, 44%);
     --scrollbar-color: hsla(0, 0%, 0%, 0.25);
     --sidebar-width: 20rem;
 }
 
 @font-face {
-    font-family: Roboto;
-    src: url("assets/fonts/roboto/Roboto-Regular.ttf");
+    font-family: Rubik;
+    src: url("assets/fonts/Rubik/Rubik-Regular.ttf");
     font-weight: normal;
 }
 
 @font-face {
-    font-family: Roboto;
-    src: url("assets/fonts/roboto/Roboto-Bold.ttf");
+    font-family: Rubik;
+    src: url("assets/fonts/Rubik/Rubik-Bold.ttf");
     font-weight: 700;
 }
 
 @font-face {
-    font-family: Roboto;
-    src: url("assets/fonts/roboto/Roboto-Light.ttf");
+    font-family: Rubik;
+    src: url("assets/fonts/Rubik/Rubik-Light.ttf");
     font-weight: 300;
 }
 
@@ -45,7 +45,7 @@ html, body, #root {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Roboto, sans-serif;
+    font-family: Rubik, sans-serif;
 }
 
 a, a:visited {
@@ -60,7 +60,6 @@ a, a:visited {
     border: 0;
     border-radius: 50%;
     box-shadow: 0 2px 2px 0 hsla(0, 0%, 0%, 0.14), 0 3px 1px -2px hsla(0, 0%, 0%, 0.12), 0 1px 5px 0 hsla(0, 0%, 0%, 0.2);
-    transition: background .2s;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../hooks/auth.hook";
+import { useAuth } from "../hooks";
 import { LoginPage, RouteSheetPage } from "../pages";
 import { Loading } from "../components";
 import "./App.css";

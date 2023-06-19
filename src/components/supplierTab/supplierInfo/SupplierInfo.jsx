@@ -8,20 +8,7 @@ import { ReactComponent as InfoSVG } from "../../../assets/icons/info-circle.svg
 import "./SupplierInfo.css";
 
 export function SupplierInfo() {
-  // const [showCopy, setShowCopy] = useState(false);
-  // const [copied, setCopied] = useState(false);
-
   const { currentSupplier } = useSelector((state) => state.supplierTab);
-
-  // const handleCopy = (text) => () => {
-  //   navigator.clipboard.writeText(text);
-  //   setCopied(true);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setShowCopy(false);
-  //   setTimeout(() => setCopied(false), 200);
-  // };
 
   return (
     <div className="supplier-info">
@@ -32,40 +19,23 @@ export function SupplierInfo() {
 
         {currentSupplier.url && (
           <div className="supplier-url">
-            <p>
-              <a
-                href={currentSupplier.url}
-                target="_blank"
-                rel="noreferrer"
-                className="url"
-              >
-                {currentSupplier.url}
-              </a>
-            </p>
+            <a
+              href={currentSupplier.url}
+              target="_blank"
+              rel="noreferrer"
+              className="url"
+            >
+              {new URL(currentSupplier.url).hostname}
+            </a>
           </div>
         )}
       </div>
       {currentSupplier.address && (
-        <div
-          className="supplier-info-text"
-          // onMouseEnter={() => setShowCopy(true)}
-          // onMouseLeave={handleMouseLeave}
-        >
+        <div className="supplier-info-text">
           <div className="icon-container">
             <NavSVG className="supplier-info-icon" />
           </div>
-
           <p>{currentSupplier.address}</p>
-          {/* <button */}
-          {/*  type="button" */}
-          {/*  className={cn("copy-btn", { */}
-          {/*    "copy-btn--shown": showCopy, */}
-          {/*    "copy-btn--copied": copied, */}
-          {/*  })} */}
-          {/*  onClick={handleCopy(currentSupplier.address)} */}
-          {/* > */}
-          {/*  {copied ? "Скопировано!" : <CopySVG className="copy-icon" />} */}
-          {/* </button> */}
         </div>
       )}
       {currentSupplier.contacts && (

@@ -11,13 +11,6 @@
     padding-bottom: .5rem;
 }
 
-/*@media (max-width: 768px) {*/
-/*    .supplier-tab {*/
-/*        width: 100vw;*/
-/*        left: 100vw;*/
-/*    }*/
-/*}*/
-
 .supplier-tab--active {
     left: 0;
 }
@@ -53,7 +46,6 @@
     border: 0;
     cursor: pointer;
     position: relative;
-    transition: background-color .2s;
 }
 
 
@@ -75,7 +67,9 @@
     background: 0;
     cursor: pointer;
     margin-left: auto;
-    transition: background-color .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .edit-supplier-icon {
