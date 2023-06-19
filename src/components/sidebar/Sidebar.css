@@ -1,49 +1,50 @@
 .sidebar {
-    height: 100%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    box-shadow: inset -5px 2px 20px -10px hsla(0, 0%, 0%, .25);
-    background: hsl(262, 47%, 83%);
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  box-shadow: inset -5px 2px 20px -10px hsla(0, 0%, 0%, 0.25);
+  background: hsl(262, 47%, 83%);
 }
 
 .logout-btn-container {
-    margin: auto 1rem 2rem 1rem;
-    height: 100%;
-    max-height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin: auto 1rem 3rem 1rem;
+  height: 100%;
+  max-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logout-btn {
-    color: white;
-    font-size: 1rem;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: 0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color .2s;
-    box-shadow: 1px 1px 2px 0 hsla(0, 0%, 0%, 0.14);
-    background: var(--error-color);
+  color: white;
+  font-size: 1rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 1px 1px 2px 0 hsla(0, 0%, 0%, 0.14);
+  background: var(--error-color);
 }
 
 @media screen and (min-width: 45rem) {
-    .sidebar {
-        max-width: var(--sidebar-width);
-    }
+  .sidebar {
+    max-width: var(--sidebar-width);
+  }
 
-    .logout-btn-container {
-        margin-bottom: 1rem;
-    }
+  .logout-btn-container {
+    margin-bottom: 1rem;
+    max-height: 2.5rem;
+  }
 
-    .logout-btn:hover {
-        background: var(--error-color-hover);
-    }
+  .logout-btn:hover {
+    background: var(--error-color-hover);
+  }
 }

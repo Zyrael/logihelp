@@ -76,7 +76,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   };
 
   const handleScroll = (e) => {
-    setScrolled(e.currentTarget.scrollTop > 30);
+    setScrolled(e.currentTarget.scrollTop > 0);
     setShowScrollToTop(e.currentTarget.scrollTop > 300);
   };
 
