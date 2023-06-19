@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./LoginPage.css";
 import cn from "classnames";
-import { useHttp } from "../../hooks";
+import { useHttp, useDebounce } from "../../hooks";
 import { Loading } from "../../components";
 
 const errorMap = {
@@ -26,8 +26,7 @@ export function LoginPage({ login }) {
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const submitFunction = async () => {
     setErrorText(null);
 
     try {
@@ -38,6 +37,13 @@ export function LoginPage({ login }) {
     } catch (err) {
       setErrorText(errorMap[err.message]);
     }
+  };
+
+  const debouncedSubmit = useDebounce(submitFunction);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    debouncedSubmit();
   };
 
   return (
