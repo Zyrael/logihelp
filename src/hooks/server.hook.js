@@ -48,6 +48,10 @@ let suppliers = [
 ];
 
 export function useServer() {
+  const [addf] = useMutation(ADD_SUPPLIER, refetchSuppliers);
+  const [updatef] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
+  const [deletef] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
+
   const getSuppliers = (pollInterval = 10000) => {
     if (import.meta.env.MODE === "mock") {
       return {
@@ -64,32 +68,33 @@ export function useServer() {
 
   const addSupplier = (data) => {
     if (import.meta.env.MODE === "mock")
-      return new Promise(() => {
-        suppliers.push(data);
+      return new Promise((resolve) => {
+        suppliers.push({ id: uniqid(), ...data });
+        resolve({ data: { addSupplier: data } });
       });
 
-    const [addf] = useMutation(ADD_SUPPLIER, refetchSuppliers);
     return addf({ variables: data });
   };
 
   const updateSupplier = (data) => {
     if (import.meta.env.MODE === "mock") {
-      return new Promise(() => {
-        suppliers.push(data);
+      return new Promise((resolve) => {
+        const current = suppliers.findIndex(({ id }) => data.id === id);
+        suppliers[current] = { ...suppliers[current], ...data };
+        resolve({ data: { updateSupplier: data } });
       });
     }
 
-    const [updatef] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
     return updatef({ variables: data });
   };
 
   const deleteSupplier = (data) => {
     if (import.meta.env.MODE === "mock")
-      return new Promise(() => {
+      return new Promise((resolve) => {
         suppliers = suppliers.filter(({ id }) => data.id !== id);
+        resolve({ data: { deleteSupplier: true } });
       });
 
-    const [deletef] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
     return deletef({ variables: data });
   };
 

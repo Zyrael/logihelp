@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState, useDeferredValue } from "react";
+import React, { useRef, useState, useDeferredValue, useContext } from "react";
 // import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
+// import { useQuery } from "@apollo/client";
 import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
 import { ReactComponent as GlassSVG } from "../../assets/icons/glass.svg";
 import { ReactComponent as XSVG } from "../../assets/icons/cross.svg";
@@ -13,14 +14,10 @@ import { Loading } from "../loading";
 import "./SupplierList.css";
 // import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
-import { useServer } from "../../hooks";
+import { ServerContext } from "../../ServerContext";
 
 export function SupplierList({ sidebarOpened, setSidebarOpened }) {
-  // const { loading, error, data } = useQuery(GET_SUPPLIERS, {
-  //   pollInterval: 10000,
-  // });
-
-  const { getSuppliers } = useServer();
+  const { getSuppliers } = useContext(ServerContext);
 
   const { loading, error, data } = getSuppliers();
 
@@ -28,27 +25,13 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
 
   const [searchValue, setSearchValue] = useState("");
   const [showClear, setShowClear] = useState(false);
-  const [suppliers, setSuppliers] = useState([]);
   const [searchFocus, setSearchFocus] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const supplierListRef = useRef(null);
 
-  useEffect(() => {
-    if (!loading && !error) {
-      const unsorted = [...data.getSuppliers];
-      setSuppliers(
-        unsorted.sort((supplierA, supplierB) => {
-          const nameA = supplierA.name.toLowerCase();
-          const nameB = supplierB.name.toLowerCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
-        })
-      );
-    }
-  }, [loading, error, data]);
+  const suppliers = data?.getSuppliers;
 
   const deferredSearchValue = useDeferredValue(searchValue);
 
@@ -59,13 +42,11 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
 
   const { supplierTabOpened } = useSelector((state) => state.supplierTab);
 
-  let showSuppliers = [...suppliers];
-
-  if (deferredSearchValue !== "") {
-    showSuppliers = suppliers.filter((supplier) =>
-      supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
-    );
-  }
+  const showSuppliers = suppliers?.filter((supplier) =>
+    supplier.name
+      .toLowerCase()
+      .includes(deferredSearchValue.trim().toLowerCase())
+  );
 
   const searchRef = useRef(null);
 
