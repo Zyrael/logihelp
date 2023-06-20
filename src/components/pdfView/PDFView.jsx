@@ -9,13 +9,13 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
-import rubik from "../../assets/fonts/Rubik/Rubik-Regular.ttf";
-import rubikBold from "../../assets/fonts/Rubik/Rubik-Bold.ttf";
+import openSans from "../../assets/fonts/OpenSans/OpenSans-Regular.ttf";
+import openSansBold from "../../assets/fonts/OpenSans/OpenSans-Bold.ttf";
 import "./PDFView.css";
 
 Font.register({
-  family: "Roboto",
-  fonts: [{ src: rubik }, { src: rubikBold, fontWeight: 700 }],
+  family: "OpenSans",
+  fonts: [{ src: openSans }, { src: openSansBold, fontWeight: 700 }],
 });
 
 const styles = StyleSheet.create({
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     padding: 30,
     paddingRight: 70,
     fontSize: 16,
-    fontFamily: "Roboto",
+    fontFamily: "OpenSans",
     flexDirection: "column",
     justifyContent: "flex-start",
   },

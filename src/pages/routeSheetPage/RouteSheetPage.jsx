@@ -28,14 +28,6 @@ export function RouteSheetPage({ logout }) {
       <div className="content-container content-container--right">
         <RouteSheet />
       </div>
-      {/* <div className="logout-window"> */}
-      {/*  <div className="logout-button-container"> */}
-      {/*    <button type="button" className="logout" onClick={logout}> */}
-      {/*      Выйти */}
-      {/*    </button> */}
-      {/*  </div> */}
-      {/*  <div className="arrow-down" /> */}
-      {/* </div> */}
     </div>
   );
 }

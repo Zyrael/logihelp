@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useDeferredValue } from "react";
-import { useQuery } from "@apollo/client";
+// import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
@@ -11,13 +11,18 @@ import { ReactComponent as ArrowSVG } from "../../assets/icons/arrow-left.svg";
 import { ReactComponent as InfoSVG } from "../../assets/icons/info-circle.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
-import { GET_SUPPLIERS } from "../../graphql";
+// import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
+import { useServer } from "../../hooks";
 
 export function SupplierList({ sidebarOpened, setSidebarOpened }) {
-  const { loading, error, data } = useQuery(GET_SUPPLIERS, {
-    pollInterval: 10000,
-  });
+  // const { loading, error, data } = useQuery(GET_SUPPLIERS, {
+  //   pollInterval: 10000,
+  // });
+
+  const { getSuppliers } = useServer();
+
+  const { loading, error, data } = getSuppliers();
 
   const dispatch = useDispatch();
 

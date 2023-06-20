@@ -22,7 +22,7 @@ import { Loading } from "../../loading";
 
 export function SupplierForm() {
   const urlRegex =
-    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
 
   const dispatch = useDispatch();
   const { mode, currentSupplier } = useSelector((state) => state.supplierTab);
