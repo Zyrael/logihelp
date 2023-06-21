@@ -1,68 +1,67 @@
 .supplier {
-    cursor: pointer;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    padding: 1rem 1rem 1rem 1.125rem;
-    color: var(--font-color);
-    user-select: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem 1rem 1.125rem;
+  color: var(--font-color);
+  user-select: none;
 }
 
-
 .supplier.chosen {
-    background: var(--supplier-hover-color);
+  background: var(--supplier-hover-color);
 }
 
 .add-to-routes-container {
-    display: none;
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-left: auto;
-    opacity: 0;
-    visibility: hidden;
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: auto;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .add-to-routes-btn {
-    border: 0;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    background: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  cursor: pointer;
+  background: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-to-routes-btn:hover {
-    background: var(--element-hover-color);
+  background: var(--element-hover-color);
 }
 
 .add-to-routes-icon {
-    padding: 0;
-    width: 2rem;
-    height: 2rem;
-    stroke: var(--font-color);
-    transition: stroke .2s;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  stroke: var(--font-color);
+  transition: stroke 0.2s;
 }
 
 @media screen and (min-width: 45rem) {
-    .supplier {
-        border-radius: 10px;
-        padding: .5rem .625rem .5rem .625rem;
-    }
+  .supplier {
+    border-radius: 10px;
+    padding: 0.5rem 0.625rem 0.5rem 0.625rem;
+  }
 
-    .supplier:hover {
-        background: var(--supplier-hover-color);
-    }
+  .supplier:hover {
+    background: var(--supplier-hover-color);
+  }
 
-    .add-to-routes-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .add-to-routes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .add-to-routes-btn {
-        display: flex;
-    }
+  .add-to-routes-btn {
+    display: flex;
+  }
 }

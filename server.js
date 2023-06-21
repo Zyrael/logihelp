@@ -174,7 +174,7 @@ await apollo.start();
 await fastify.register(fastifyApollo(apollo));
 const start = async () => {
   try {
-    await fastify.listen({ port: process.env.PORT, host: "0.0.0.0" });
+    await fastify.listen({ port: 80, host: "0.0.0.0" });
   } catch (e) {
     fastify.log.error(e);
     process.exit(1);
