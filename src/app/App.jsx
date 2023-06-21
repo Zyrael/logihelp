@@ -20,7 +20,7 @@ export function App() {
           (isAuthenticated ? (
             <RouteSheetPage logout={logout} />
           ) : (
-            <LoginPage login={login} />
+            <LoginPage loading={loading} login={login} />
           ))}
       </div>
     </ServerContext.Provider>

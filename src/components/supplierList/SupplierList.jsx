@@ -1,8 +1,6 @@
 import React, { useRef, useState, useDeferredValue, useContext } from "react";
-// import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
-// import { useQuery } from "@apollo/client";
 import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
 import { ReactComponent as GlassSVG } from "../../assets/icons/glass.svg";
 import { ReactComponent as XSVG } from "../../assets/icons/cross.svg";
@@ -12,7 +10,6 @@ import { ReactComponent as ArrowSVG } from "../../assets/icons/arrow-left.svg";
 import { ReactComponent as InfoSVG } from "../../assets/icons/info-circle.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
-// import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
 import { ServerContext } from "../../ServerContext";
 
@@ -24,36 +21,43 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   const dispatch = useDispatch();
 
   const [searchValue, setSearchValue] = useState("");
-  const [showClear, setShowClear] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
   const supplierListRef = useRef(null);
 
-  const suppliers = data?.getSuppliers;
+  const unsortedSuppliers = data?.getSuppliers;
+
+  const suppliers = unsortedSuppliers.sort((supplierA, supplierB) => {
+    const nameA = supplierA.name;
+    const nameB = supplierB.name;
+    if (nameA > nameB) return 1;
+    if (nameA < nameB) return -1;
+    return 0;
+  });
 
   const deferredSearchValue = useDeferredValue(searchValue);
 
   const handleChangeSearch = (e) => {
-    setShowClear(e.target.value !== "");
     setSearchValue(e.target.value);
   };
 
   const { supplierTabOpened } = useSelector((state) => state.supplierTab);
 
-  const showSuppliers = suppliers?.filter((supplier) =>
-    supplier.name
-      .toLowerCase()
-      .includes(deferredSearchValue.trim().toLowerCase())
-  );
+  const showSuppliers =
+    deferredSearchValue === ""
+      ? suppliers
+      : suppliers.filter((supplier) =>
+          supplier.name
+            .toLowerCase()
+            .includes(deferredSearchValue.trim().toLowerCase())
+        );
 
   const searchRef = useRef(null);
 
   const clearSearch = () => {
     setSearchValue("");
     searchRef.current.value = "";
-    setShowClear(false);
   };
 
   const handleCreateSupplier = () => {
@@ -62,8 +66,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   };
 
   const handleScroll = (e) => {
-    setScrolled(e.currentTarget.scrollTop > 0);
-    setShowScrollToTop(e.currentTarget.scrollTop > 300);
+    setScrollOffset(e.target.scrollTop);
   };
 
   return (
@@ -74,7 +77,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
     >
       <div
         className={cn("supplier-list-header", {
-          "supplier-list-header--shadow": scrolled,
+          "supplier-list-header--shadow": scrollOffset > 0,
         })}
       >
         <button
@@ -108,7 +111,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
             onBlur={() => setSearchFocus(false)}
           />
           <div className={cn("search-border", { active: searchFocus })} />
-          {showClear && (
+          {deferredSearchValue !== "" && (
             <button type="button" className="clear-input" onClick={clearSearch}>
               <XSVG
                 className={cn("clear-input-icon", {
@@ -152,7 +155,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
       <button
         type="button"
         className={cn("scroll-top-btn", {
-          visible: showScrollToTop,
+          visible: scrollOffset > 300,
         })}
         onClick={() => {
           supplierListRef.current.scrollTo({ top: 0, behavior: "smooth" });

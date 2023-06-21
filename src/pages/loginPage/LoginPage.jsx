@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./LoginPage.css";
 import cn from "classnames";
-import { useHttp, useDebounce } from "../../hooks";
+import { useDebounce } from "../../hooks";
 import { Loading } from "../../components";
 
 const errorMap = {
@@ -9,41 +9,39 @@ const errorMap = {
   "Something went wrong": "Произошла какая-то ошибка",
 };
 
-export function LoginPage({ login }) {
-  const { loading, request } = useHttp();
+export function LoginPage({ loading, login }) {
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-  const [errorText, setErrorText] = useState(null);
-
+  const [error, setError] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
 
+  console.log(error);
+
   const onChange = (e) => {
-    setErrorText(null);
+    setError(null);
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const submitFunction = async () => {
-    setErrorText(null);
+  const debouncedSubmit = useDebounce(() => {
+    setError(null);
+    login(formData).catch((err) => setError(err.message));
 
-    try {
-      const data = await request("/login", "POST", {
-        ...formData,
-      });
-      login(data.token);
-    } catch (err) {
-      setErrorText(errorMap[err.message]);
-    }
-  };
-
-  const debouncedSubmit = useDebounce(submitFunction);
+    // try {
+    //   login(formData)
+    // } catch (err) {
+    //   setError(err.message)
+    // }
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    debouncedSubmit();
+    // debouncedSubmit();
+    login(formData).catch((err) => setError(err.message));
   };
 
   return (
@@ -63,7 +61,7 @@ export function LoginPage({ login }) {
               value={formData.username}
               onChange={onChange}
               ref={usernameRef}
-              onClick={() => {
+              onFocus={() => {
                 setFocusedInput("username");
               }}
               onBlur={() => {
@@ -97,7 +95,7 @@ export function LoginPage({ login }) {
               value={formData.password}
               onChange={onChange}
               ref={passwordRef}
-              onClick={() => {
+              onFocus={() => {
                 setFocusedInput("password");
               }}
               onBlur={() => {
@@ -119,7 +117,7 @@ export function LoginPage({ login }) {
               Пароль
             </label>
           </div>
-          {errorText && <p className="login-error">{errorText}</p>}
+          {error && <p className="login-error">{errorMap[error]}</p>}
           <button type="submit" className="login-btn" disabled={loading}>
             Войти
           </button>

@@ -69,8 +69,9 @@ export function useServer() {
   const addSupplier = (data) => {
     if (import.meta.env.MODE === "mock")
       return new Promise((resolve) => {
-        suppliers.push({ id: uniqid(), ...data });
-        resolve({ data: { addSupplier: data } });
+        const newSupplier = { ...data, id: uniqid() };
+        suppliers.push(newSupplier);
+        resolve({ data: { addSupplier: newSupplier } });
       });
 
     return addf({ variables: data });

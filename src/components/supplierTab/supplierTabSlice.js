@@ -28,7 +28,6 @@ export const supplierTabSlice = createSlice({
     },
     clearSupplierTab: (state) => {
       state.currentSupplier = {
-        id: "",
         name: "",
         url: "",
         address: "",

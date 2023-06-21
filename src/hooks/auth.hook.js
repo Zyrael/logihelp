@@ -5,9 +5,15 @@ export const useAuth = () => {
   const [token, setToken] = useState(null);
   const { loading, request } = useHttp();
 
-  const login = useCallback((jwtToken) => {
-    setToken(jwtToken);
-    localStorage.setItem("token", jwtToken);
+  const login = useCallback(async (loginData) => {
+    const data = await request("/login", "POST", {
+      ...loginData,
+    });
+
+    if (data.token) {
+      setToken(data.token);
+      localStorage.setItem("token", data.token);
+    }
   }, []);
 
   const logout = useCallback(() => {
@@ -27,7 +33,8 @@ export const useAuth = () => {
     })
       .then((data) => {
         if (data.token) {
-          login(data.token);
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
         }
       })
       .catch((err) => {
