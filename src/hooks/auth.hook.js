@@ -5,15 +5,28 @@ export const useAuth = () => {
   const [token, setToken] = useState(null);
   const { loading, request } = useHttp();
 
-  const login = useCallback(async (loginData) => {
-    const data = await request("/login", "POST", {
-      ...loginData,
-    });
+  const login = useCallback((loginData) => {
+    // const data = await request("/login", "POST", {
+    //   ...loginData,
+    // });
 
-    if (data.token) {
-      setToken(data.token);
-      localStorage.setItem("token", data.token);
-    }
+    // if (data.token) {
+    //   setToken(data.token);
+    //   localStorage.setItem("token", data.token);
+    // }
+
+    request("/login", "POST", {
+      ...loginData,
+    })
+      .then((data) => {
+        if (data.token) {
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
+        }
+      })
+      .catch((e) => {
+        throw e;
+      });
   }, []);
 
   const logout = useCallback(() => {

@@ -20,8 +20,6 @@ export function LoginPage({ loading, login }) {
   const [error, setError] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
 
-  console.log(error);
-
   const onChange = (e) => {
     setError(null);
     setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value });
@@ -40,8 +38,8 @@ export function LoginPage({ loading, login }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // debouncedSubmit();
-    login(formData).catch((err) => setError(err.message));
+    debouncedSubmit();
+    // login(formData).catch((err) => setError(err.message));
   };
 
   return (

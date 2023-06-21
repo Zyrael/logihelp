@@ -60,8 +60,7 @@ export function SupplierForm() {
   const handleDelete = () => {
     if (!confirm("Удалить поставщика?")) return;
     setLoading(true);
-    deleteSupplier(formData).then((data) => {
-      console.log(data);
+    deleteSupplier(formData).then(() => {
       dispatch(removeRoute(formData));
       setLoading(false);
       setTimeout(() => {
