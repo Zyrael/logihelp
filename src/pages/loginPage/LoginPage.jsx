@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./LoginPage.css";
 import cn from "classnames";
-import { useDebounce } from "../../hooks";
+import { useDebounce, useHttp } from "../../hooks";
 import { Loading } from "../../components";
 
 const errorMap = {
@@ -9,9 +9,11 @@ const errorMap = {
   "Something went wrong": "Произошла какая-то ошибка",
 };
 
-export function LoginPage({ loading, login }) {
+export function LoginPage({ login }) {
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const { loading, request } = useHttp();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -26,14 +28,21 @@ export function LoginPage({ loading, login }) {
   };
 
   const debouncedSubmit = useDebounce(() => {
-    setError(null);
-    login(formData).catch((err) => setError(err.message));
-
+    // setError(null);
+    // login(formData).catch((err) => setError(err.message));
     // try {
     //   login(formData)
     // } catch (err) {
     //   setError(err.message)
     // }
+
+    request("/login", "POST", {
+      ...formData,
+    })
+      .then((data) => {
+        if (data.token) login(data.token);
+      })
+      .catch((err) => setError(err.message));
   });
 
   const handleSubmit = (e) => {

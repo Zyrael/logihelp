@@ -5,7 +5,7 @@ export const useAuth = () => {
   const [token, setToken] = useState(null);
   const { loading, request } = useHttp();
 
-  const login = useCallback((loginData) => {
+  const login = useCallback((jwtToken) => {
     // const data = await request("/login", "POST", {
     //   ...loginData,
     // });
@@ -15,18 +15,21 @@ export const useAuth = () => {
     //   localStorage.setItem("token", data.token);
     // }
 
-    request("/login", "POST", {
-      ...loginData,
-    })
-      .then((data) => {
-        if (data.token) {
-          setToken(data.token);
-          localStorage.setItem("token", data.token);
-        }
-      })
-      .catch((e) => {
-        throw e;
-      });
+    // request("/login", "POST", {
+    //   ...loginData,
+    // })
+    //   .then((data) => {
+    //     if (data.token) {
+    //       setToken(data.token);
+    //       localStorage.setItem("token", data.token);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     throw e;
+    //   });
+
+    setToken(jwtToken);
+    localStorage.setItem("token", jwtToken);
   }, []);
 
   const logout = useCallback(() => {
@@ -46,8 +49,9 @@ export const useAuth = () => {
     })
       .then((data) => {
         if (data.token) {
-          setToken(data.token);
-          localStorage.setItem("token", data.token);
+          // setToken(data.token);
+          // localStorage.setItem("token", data.token);
+          login(data.token);
         }
       })
       .catch((err) => {
