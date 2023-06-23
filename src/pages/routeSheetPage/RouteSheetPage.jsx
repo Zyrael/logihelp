@@ -3,6 +3,7 @@ import cn from "classnames";
 import { SupplierList, RouteSheet, Sidebar } from "../../components";
 import { SupplierTab } from "../../components/supplierTab";
 import "./RouteSheetPage.css";
+// import { useServer } from "../../hooks";
 
 export function RouteSheetPage({ logout }) {
   const [sidebarOpened, setSidebarOpened] = useState(false);
@@ -28,14 +29,6 @@ export function RouteSheetPage({ logout }) {
       <div className="content-container content-container--right">
         <RouteSheet />
       </div>
-      {/* <div className="logout-window"> */}
-      {/*  <div className="logout-button-container"> */}
-      {/*    <button type="button" className="logout" onClick={logout}> */}
-      {/*      Выйти */}
-      {/*    </button> */}
-      {/*  </div> */}
-      {/*  <div className="arrow-down" /> */}
-      {/* </div> */}
     </div>
   );
 }

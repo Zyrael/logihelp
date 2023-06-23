@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState, useDeferredValue } from "react";
-import { useQuery } from "@apollo/client";
+import React, { useRef, useState, useDeferredValue, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
@@ -11,63 +10,44 @@ import { ReactComponent as ArrowSVG } from "../../assets/icons/arrow-left.svg";
 import { ReactComponent as InfoSVG } from "../../assets/icons/info-circle.svg";
 import { Loading } from "../loading";
 import "./SupplierList.css";
-import { GET_SUPPLIERS } from "../../graphql";
 import { SupplierElement } from "./supplierElement";
+import { ServerContext } from "../../ServerContext";
 
 export function SupplierList({ sidebarOpened, setSidebarOpened }) {
-  const { loading, error, data } = useQuery(GET_SUPPLIERS, {
-    pollInterval: 10000,
-  });
-
   const dispatch = useDispatch();
 
+  const [sort, setSort] = useState("asc");
   const [searchValue, setSearchValue] = useState("");
-  const [showClear, setShowClear] = useState(false);
-  const [suppliers, setSuppliers] = useState([]);
   const [searchFocus, setSearchFocus] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
   const supplierListRef = useRef(null);
 
-  useEffect(() => {
-    if (!loading && !error) {
-      const unsorted = [...data.getSuppliers];
-      setSuppliers(
-        unsorted.sort((supplierA, supplierB) => {
-          const nameA = supplierA.name.toLowerCase();
-          const nameB = supplierB.name.toLowerCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
-        })
-      );
-    }
-  }, [loading, error, data]);
+  const { getSuppliers } = useContext(ServerContext);
+
+  const { loading, error, data } = getSuppliers({ sort });
+
+  const suppliers = data?.getSuppliers;
 
   const deferredSearchValue = useDeferredValue(searchValue);
 
   const handleChangeSearch = (e) => {
-    setShowClear(e.target.value !== "");
     setSearchValue(e.target.value);
   };
 
   const { supplierTabOpened } = useSelector((state) => state.supplierTab);
 
-  let showSuppliers = [...suppliers];
-
-  if (deferredSearchValue !== "") {
-    showSuppliers = suppliers.filter((supplier) =>
-      supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase())
-    );
-  }
+  const showSuppliers = suppliers?.filter((supplier) =>
+    supplier.name
+      .toLowerCase()
+      .includes(deferredSearchValue.trim().toLowerCase())
+  );
 
   const searchRef = useRef(null);
 
   const clearSearch = () => {
     setSearchValue("");
     searchRef.current.value = "";
-    setShowClear(false);
   };
 
   const handleCreateSupplier = () => {
@@ -76,8 +56,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   };
 
   const handleScroll = (e) => {
-    setScrolled(e.currentTarget.scrollTop > 0);
-    setShowScrollToTop(e.currentTarget.scrollTop > 300);
+    setScrollOffset(e.target.scrollTop);
   };
 
   return (
@@ -88,58 +67,82 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
     >
       <div
         className={cn("supplier-list-header", {
-          "supplier-list-header--shadow": scrolled,
+          "supplier-list-header--shadow": scrollOffset > 0,
         })}
       >
-        <button
-          type="button"
-          className="open-sidebar-btn"
-          onClick={() => setSidebarOpened(!sidebarOpened)}
-          title={sidebarOpened ? "Закрыть меню" : "Открыть меню"}
-        >
-          {sidebarOpened ? (
-            <ArrowSVG className="close-sidebar-icon" />
-          ) : (
-            <HamburgerSVG className="open-sidebar-icon" />
-          )}
-        </button>
-        <div className="search-container">
-          <GlassSVG
-            className={cn({
-              "glass-icon": true,
-              active: searchFocus,
-            })}
-          />
-          <input
-            id="search-bar"
-            className="search-bar"
-            type="text"
-            value={searchValue}
-            placeholder="Поиск"
-            onChange={handleChangeSearch}
-            ref={searchRef}
-            onFocus={() => setSearchFocus(true)}
-            onBlur={() => setSearchFocus(false)}
-          />
-          <div className={cn("search-border", { active: searchFocus })} />
-          {showClear && (
-            <button type="button" className="clear-input" onClick={clearSearch}>
-              <XSVG
-                className={cn("clear-input-icon", {
-                  active: searchFocus,
-                })}
-              />
-            </button>
-          )}
+        <div className="supplier-list-header-top">
+          <button
+            type="button"
+            className="open-sidebar-btn"
+            onClick={() => setSidebarOpened(!sidebarOpened)}
+            title={sidebarOpened ? "Закрыть меню" : "Открыть меню"}
+          >
+            {sidebarOpened ? (
+              <ArrowSVG className="close-sidebar-icon" />
+            ) : (
+              <HamburgerSVG className="open-sidebar-icon" />
+            )}
+          </button>
+          <div className="search-container">
+            <GlassSVG
+              className={cn({
+                "glass-icon": true,
+                active: searchFocus,
+              })}
+            />
+            <input
+              id="search-bar"
+              className="search-bar"
+              type="text"
+              value={searchValue}
+              placeholder="Поиск"
+              onChange={handleChangeSearch}
+              ref={searchRef}
+              onFocus={() => setSearchFocus(true)}
+              onBlur={() => setSearchFocus(false)}
+            />
+            <div className={cn("search-border", { active: searchFocus })} />
+            {deferredSearchValue !== "" && (
+              <button
+                type="button"
+                className="clear-input"
+                onClick={clearSearch}
+              >
+                <XSVG
+                  className={cn("clear-input-icon", {
+                    active: searchFocus,
+                  })}
+                />
+              </button>
+            )}
+          </div>
+          <button
+            type="button"
+            className="round-btn add"
+            onClick={handleCreateSupplier}
+            title="Добавить поставщика"
+          >
+            <AddSVG className="add-icon" />
+          </button>
         </div>
-        <button
+        <div className="supplier-list-header-bottom">
+          <button
+            type="button"
+            className="sort-btn"
+            onClick={() => setSort(sort === "asc" ? "desc" : "asc")}
+          >
+            {sort === "asc" ? "А-Я" : "Я-А"}
+          </button>
+        </div>
+
+        {/* <button
           type="button"
           className="round-btn add"
-          onClick={handleCreateSupplier}
+          onClick={() => setSort(sort === "asc" ? "desc" : "asc")}
           title="Добавить поставщика"
         >
-          <AddSVG className="add-icon" />
-        </button>
+          ^
+        </button> */}
       </div>
       {loading && <Loading />}
       {error && (
@@ -166,7 +169,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
       <button
         type="button"
         className={cn("scroll-top-btn", {
-          visible: showScrollToTop,
+          visible: scrollOffset > 300,
         })}
         onClick={() => {
           supplierListRef.current.scrollTo({ top: 0, behavior: "smooth" });

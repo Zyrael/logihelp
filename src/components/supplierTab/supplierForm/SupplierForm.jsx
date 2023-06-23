@@ -1,12 +1,5 @@
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import React, { useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ADD_SUPPLIER,
-  refetchSuppliers,
-  UPDATE_SUPPLIER,
-  DELETE_SUPPLIER,
-} from "../../../graphql";
 import { ReactComponent as XSVG } from "../../../assets/icons/cross.svg";
 import { ReactComponent as CheckSVG } from "../../../assets/icons/check.svg";
 import {
@@ -19,22 +12,22 @@ import { SupplierInput } from "./supplierInput";
 import { removeRoute, updateRoute } from "../../routeSheet/routeSheetSlice";
 import "./SupplierForm.css";
 import { Loading } from "../../loading";
+import { ServerContext } from "../../../ServerContext";
 
 export function SupplierForm() {
   const urlRegex =
-    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+    /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
 
   const dispatch = useDispatch();
   const { mode, currentSupplier } = useSelector((state) => state.supplierTab);
+
+  const { addSupplier, updateSupplier, deleteSupplier } =
+    useContext(ServerContext);
 
   const [nameError, setNameError] = useState(false);
   const [urlError, setURLError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(currentSupplier);
-
-  const [addSupplier] = useMutation(ADD_SUPPLIER, refetchSuppliers);
-  const [updateSupplier] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
-  const [deleteSupplier] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
 
   const trimData = (data) => {
     const keys = Object.keys(data);
@@ -44,7 +37,7 @@ export function SupplierForm() {
         trimmed[key] = data[key];
         return;
       }
-      trimmed[key] = data[key].replace(/\n/g, " ").replace(/\s+/g, " ").trim();
+      trimmed[key] = data[key].replace(/\s+/g, " ").trim();
     });
     return trimmed;
   };
@@ -60,22 +53,14 @@ export function SupplierForm() {
   };
 
   const submitAction = {
-    createSupplier: (data) =>
-      addSupplier({
-        variables: data,
-      }),
-    editSupplier: (data) =>
-      updateSupplier({
-        variables: data,
-      }),
+    createSupplier: (data) => addSupplier(data),
+    editSupplier: (data) => updateSupplier(data),
   };
 
   const handleDelete = () => {
     if (!confirm("Удалить поставщика?")) return;
     setLoading(true);
-    deleteSupplier({
-      variables: formData,
-    }).then(() => {
+    deleteSupplier(formData).then(() => {
       dispatch(removeRoute(formData));
       setLoading(false);
       setTimeout(() => {

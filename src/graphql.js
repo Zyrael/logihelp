@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_SUPPLIERS = gql`
-  query GetSuppliers {
-    getSuppliers {
+  query GetSuppliers($sort: String) {
+    getSuppliers(sort: $sort) {
       id
       name
       url

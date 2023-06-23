@@ -14,7 +14,7 @@ type User {
 }
 
 type Query {
-  getSuppliers: [Supplier]
+  getSuppliers(sort: String): [Supplier]
 
   getUserByName(username: String!): User
 }

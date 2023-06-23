@@ -6,6 +6,28 @@ export const useAuth = () => {
   const { loading, request } = useHttp();
 
   const login = useCallback((jwtToken) => {
+    // const data = await request("/login", "POST", {
+    //   ...loginData,
+    // });
+
+    // if (data.token) {
+    //   setToken(data.token);
+    //   localStorage.setItem("token", data.token);
+    // }
+
+    // request("/login", "POST", {
+    //   ...loginData,
+    // })
+    //   .then((data) => {
+    //     if (data.token) {
+    //       setToken(data.token);
+    //       localStorage.setItem("token", data.token);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     throw e;
+    //   });
+
     setToken(jwtToken);
     localStorage.setItem("token", jwtToken);
   }, []);
@@ -20,13 +42,15 @@ export const useAuth = () => {
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
-    if (!jwtToken) return;
+    if (!jwtToken || import.meta.env.MODE === "mock") return;
 
     request("/auth", "POST", {
       token: jwtToken,
     })
       .then((data) => {
         if (data.token) {
+          // setToken(data.token);
+          // localStorage.setItem("token", data.token);
           login(data.token);
         }
       })
