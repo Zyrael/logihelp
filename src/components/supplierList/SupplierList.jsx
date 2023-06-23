@@ -14,27 +14,20 @@ import { SupplierElement } from "./supplierElement";
 import { ServerContext } from "../../ServerContext";
 
 export function SupplierList({ sidebarOpened, setSidebarOpened }) {
-  const { getSuppliers } = useContext(ServerContext);
-
-  const { loading, error, data } = getSuppliers();
-
   const dispatch = useDispatch();
 
+  const [sort, setSort] = useState("asc");
   const [searchValue, setSearchValue] = useState("");
   const [searchFocus, setSearchFocus] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
 
   const supplierListRef = useRef(null);
 
-  const unsortedSuppliers = data?.getSuppliers;
+  const { getSuppliers } = useContext(ServerContext);
 
-  const suppliers = unsortedSuppliers.sort((supplierA, supplierB) => {
-    const nameA = supplierA.name;
-    const nameB = supplierB.name;
-    if (nameA > nameB) return 1;
-    if (nameA < nameB) return -1;
-    return 0;
-  });
+  const { loading, error, data } = getSuppliers({ sort });
+
+  const suppliers = data?.getSuppliers;
 
   const deferredSearchValue = useDeferredValue(searchValue);
 
@@ -44,14 +37,11 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
 
   const { supplierTabOpened } = useSelector((state) => state.supplierTab);
 
-  const showSuppliers =
-    deferredSearchValue === ""
-      ? suppliers
-      : suppliers.filter((supplier) =>
-          supplier.name
-            .toLowerCase()
-            .includes(deferredSearchValue.trim().toLowerCase())
-        );
+  const showSuppliers = suppliers?.filter((supplier) =>
+    supplier.name
+      .toLowerCase()
+      .includes(deferredSearchValue.trim().toLowerCase())
+  );
 
   const searchRef = useRef(null);
 
@@ -80,55 +70,79 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
           "supplier-list-header--shadow": scrollOffset > 0,
         })}
       >
-        <button
-          type="button"
-          className="open-sidebar-btn"
-          onClick={() => setSidebarOpened(!sidebarOpened)}
-          title={sidebarOpened ? "Закрыть меню" : "Открыть меню"}
-        >
-          {sidebarOpened ? (
-            <ArrowSVG className="close-sidebar-icon" />
-          ) : (
-            <HamburgerSVG className="open-sidebar-icon" />
-          )}
-        </button>
-        <div className="search-container">
-          <GlassSVG
-            className={cn({
-              "glass-icon": true,
-              active: searchFocus,
-            })}
-          />
-          <input
-            id="search-bar"
-            className="search-bar"
-            type="text"
-            value={searchValue}
-            placeholder="Поиск"
-            onChange={handleChangeSearch}
-            ref={searchRef}
-            onFocus={() => setSearchFocus(true)}
-            onBlur={() => setSearchFocus(false)}
-          />
-          <div className={cn("search-border", { active: searchFocus })} />
-          {deferredSearchValue !== "" && (
-            <button type="button" className="clear-input" onClick={clearSearch}>
-              <XSVG
-                className={cn("clear-input-icon", {
-                  active: searchFocus,
-                })}
-              />
-            </button>
-          )}
+        <div className="supplier-list-header-top">
+          <button
+            type="button"
+            className="open-sidebar-btn"
+            onClick={() => setSidebarOpened(!sidebarOpened)}
+            title={sidebarOpened ? "Закрыть меню" : "Открыть меню"}
+          >
+            {sidebarOpened ? (
+              <ArrowSVG className="close-sidebar-icon" />
+            ) : (
+              <HamburgerSVG className="open-sidebar-icon" />
+            )}
+          </button>
+          <div className="search-container">
+            <GlassSVG
+              className={cn({
+                "glass-icon": true,
+                active: searchFocus,
+              })}
+            />
+            <input
+              id="search-bar"
+              className="search-bar"
+              type="text"
+              value={searchValue}
+              placeholder="Поиск"
+              onChange={handleChangeSearch}
+              ref={searchRef}
+              onFocus={() => setSearchFocus(true)}
+              onBlur={() => setSearchFocus(false)}
+            />
+            <div className={cn("search-border", { active: searchFocus })} />
+            {deferredSearchValue !== "" && (
+              <button
+                type="button"
+                className="clear-input"
+                onClick={clearSearch}
+              >
+                <XSVG
+                  className={cn("clear-input-icon", {
+                    active: searchFocus,
+                  })}
+                />
+              </button>
+            )}
+          </div>
+          <button
+            type="button"
+            className="round-btn add"
+            onClick={handleCreateSupplier}
+            title="Добавить поставщика"
+          >
+            <AddSVG className="add-icon" />
+          </button>
         </div>
-        <button
+        <div className="supplier-list-header-bottom">
+          <button
+            type="button"
+            className="sort-btn"
+            onClick={() => setSort(sort === "asc" ? "desc" : "asc")}
+          >
+            {sort === "asc" ? "А-Я" : "Я-А"}
+          </button>
+        </div>
+
+        {/* <button
           type="button"
           className="round-btn add"
-          onClick={handleCreateSupplier}
+          onClick={() => setSort(sort === "asc" ? "desc" : "asc")}
           title="Добавить поставщика"
         >
-          <AddSVG className="add-icon" />
-        </button>
+          ^
+        </button> */}
       </div>
       {loading && <Loading />}
       {error && (

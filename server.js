@@ -99,10 +99,30 @@ fastify.post("/auth", async (request, reply) => {
   }
 });
 
+const sortingMethod = {
+  asc: (supplierA, supplierB) => {
+    const nameA = supplierA.name.toLowerCase();
+    const nameB = supplierB.name.toLowerCase();
+    if (nameA > nameB) return 1;
+    if (nameA < nameB) return -1;
+    return 0;
+  },
+  desc: (supplierA, supplierB) => {
+    const nameA = supplierA.name.toLowerCase();
+    const nameB = supplierB.name.toLowerCase();
+    if (nameA > nameB) return -1;
+    if (nameA < nameB) return 1;
+    return 0;
+  },
+};
+
 const typeDefs = await readFile("./schema.graphql", { encoding: "utf-8" });
 const resolvers = {
   Query: {
-    getSuppliers: () => prisma.supplier.findMany(),
+    getSuppliers: async (_, { sort = "asc" }) => {
+      const suppliers = await prisma.supplier.findMany();
+      return [...suppliers].sort(sortingMethod[sort]);
+    },
 
     getUserByName: async (_, { username }) =>
       prisma.user.findUnique({

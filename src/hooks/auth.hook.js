@@ -42,7 +42,7 @@ export const useAuth = () => {
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
-    if (!jwtToken) return;
+    if (!jwtToken || import.meta.env.MODE === "mock") return;
 
     request("/auth", "POST", {
       token: jwtToken,

@@ -47,23 +47,40 @@ let suppliers = [
   },
 ];
 
+const sortingMethod = {
+  asc: (supplierA, supplierB) => {
+    const nameA = supplierA.name.toLowerCase();
+    const nameB = supplierB.name.toLowerCase();
+    if (nameA > nameB) return 1;
+    if (nameA < nameB) return -1;
+    return 0;
+  },
+  desc: (supplierA, supplierB) => {
+    const nameA = supplierA.name.toLowerCase();
+    const nameB = supplierB.name.toLowerCase();
+    if (nameA > nameB) return -1;
+    if (nameA < nameB) return 1;
+    return 0;
+  },
+};
+
 export function useServer() {
   const [addf] = useMutation(ADD_SUPPLIER, refetchSuppliers);
   const [updatef] = useMutation(UPDATE_SUPPLIER, refetchSuppliers);
   const [deletef] = useMutation(DELETE_SUPPLIER, refetchSuppliers);
 
-  const getSuppliers = (pollInterval = 10000) => {
+  const getSuppliers = ({ sort = "asc", pollInterval = 10000 }) => {
     if (import.meta.env.MODE === "mock") {
       return {
         loading: false,
         error: false,
         data: {
-          getSuppliers: suppliers,
+          getSuppliers: [...suppliers].sort(sortingMethod[sort]),
         },
       };
     }
 
-    return useQuery(GET_SUPPLIERS, { pollInterval });
+    return useQuery(GET_SUPPLIERS, { variables: { sort }, pollInterval });
   };
 
   const addSupplier = (data) => {

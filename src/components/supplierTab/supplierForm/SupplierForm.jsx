@@ -37,7 +37,7 @@ export function SupplierForm() {
         trimmed[key] = data[key];
         return;
       }
-      trimmed[key] = data[key].replace(/\n/g, " ").replace(/\s+/g, " ").trim();
+      trimmed[key] = data[key].replace(/\s+/g, " ").trim();
     });
     return trimmed;
   };

@@ -18,8 +18,7 @@
 .supplier-tab-header {
   background: var(--primary-color);
   padding: 0 0.625rem;
-  height: 100%;
-  max-height: 4.5rem;
+  height: 4rem;
   display: flex;
   align-items: center;
 }
@@ -87,7 +86,7 @@
   }
 
   .supplier-tab-header {
-    max-height: 3.5rem;
+    height: 3.5rem;
   }
 
   /*.close-supplier-tab:active {*/

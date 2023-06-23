@@ -8,7 +8,7 @@ import { ServerContext } from "../ServerContext";
 export function App() {
   const { loading, token, login, logout } = useAuth();
 
-  const isAuthenticated = !!token;
+  const isAuthenticated = !!token || import.meta.env.MODE === "mock";
 
   const serverMethods = useServer();
 
