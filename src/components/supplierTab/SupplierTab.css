@@ -18,7 +18,7 @@
 .supplier-tab-header {
   background: var(--primary-color);
   padding: 0 0.625rem;
-  height: 4rem;
+  min-height: 4rem;
   display: flex;
   align-items: center;
 }
@@ -32,8 +32,7 @@
 
 .supplier-tab-main {
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: auto;
 }
 
 .close-supplier-tab {
@@ -45,6 +44,10 @@
   border: 0;
   cursor: pointer;
   position: relative;
+}
+
+.close-supplier-tab:active {
+  background: var(--element-hover-color);
 }
 
 .close-supplier-icon {
@@ -70,6 +73,10 @@
   justify-content: center;
 }
 
+.edit-supplier-btn:active {
+  background: var(--element-hover-color);
+}
+
 .edit-supplier-icon {
   height: 1.75rem;
   width: 1.75rem;
@@ -86,7 +93,7 @@
   }
 
   .supplier-tab-header {
-    height: 3.5rem;
+    min-height: 3.5rem;
   }
 
   /*.close-supplier-tab:active {*/

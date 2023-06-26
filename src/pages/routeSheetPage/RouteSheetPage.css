@@ -36,7 +36,8 @@
 @media screen and (min-width: 45rem) {
   .route-sheet-page {
     max-width: 100rem;
-    border: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
   }
 
   .content-container--left {

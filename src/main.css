@@ -4,20 +4,21 @@
     hsla(262, 47%, 83%, 0.4),
     hsla(262, 47%, 83%, 0.2)
   );
-  --primary-color: hsl(262, 47%, 63%);
-  --primary-color-hover: hsl(262, 47%, 67%);
-  --primary-color-disabled: hsl(262, 47%, 73%);
+  --primary-color: hsl(220, 100%, 60%);
+  --primary-color-hover: hsl(220, 100%, 65%);
+  --primary-color-disabled: hsl(220, 100%, 70%);
   --primary-color-transparent: hsl(262, 0%, 20%, 0.9);
   --main-background: hsl(195, 9%, 91%);
   --element-hover-color: hsla(236, 21%, 10%, 0.2);
-  --supplier-hover-color: hsla(236, 21%, 60%, 0.2);
+  --supplier-hover-color: hsla(220, 100%, 0%, 0.1);
   --font-color: hsl(199, 18%, 20%);
   --border-color: hsl(0, 0%, 83%);
   --error-color: hsl(0, 100%, 63%);
   --error-color-hover: hsl(0, 100%, 68%);
-  --link-color: hsl(219, 76%, 44%);
+  --link-color: hsl(220, 100%, 60%);
   --scrollbar-color: hsla(0, 0%, 0%, 0.25);
   --sidebar-width: 20rem;
+  --sidebar-background-color: hsl(220, 100%, 90%);
 }
 
 @font-face {
@@ -51,7 +52,10 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, Rubik, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Rubik, "Segoe UI", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: hsla(0, 100%, 100%, 0);
 }
 
 a,
@@ -105,7 +109,7 @@ a:visited {
 
   ::-webkit-scrollbar {
     width: 0.375rem;
-    height: 0.375rem;
+    height: 0;
   }
 
   ::-webkit-scrollbar-thumb {

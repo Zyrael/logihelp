@@ -1,6 +1,6 @@
 .supplier {
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.125rem;
   display: flex;
   align-items: center;
   padding: 1rem 1rem 1rem 1.125rem;
@@ -14,8 +14,8 @@
 
 .add-to-routes-container {
   display: none;
-  width: 2.5rem;
-  height: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
   margin-left: auto;
   opacity: 0;
   visibility: hidden;

@@ -27,21 +27,21 @@ export function RouteSheet() {
           <>
             <button
               type="button"
-              className="round-btn print"
-              onClick={() => setPrint(true)}
-              disabled={routes.length === 0}
-              title="Печать"
-            >
-              <Print className="print-icon" />
-            </button>
-            <button
-              type="button"
               className="round-btn clear"
               onClick={handleRemoveRoutes}
               disabled={routes.length === 0}
               title="Очистить список"
             >
               <Times className="times-icon" />
+            </button>
+            <button
+              type="button"
+              className="round-btn print"
+              onClick={() => setPrint(true)}
+              disabled={routes.length === 0}
+              title="Печать"
+            >
+              <Print className="print-icon" />
             </button>
           </>
         )}

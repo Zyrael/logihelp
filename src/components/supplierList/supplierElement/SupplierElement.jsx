@@ -13,7 +13,7 @@ import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {
   const [chosen, setChosen] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [showAddToRoutes, setShowAddToRoutes] = useState(false);
   const routes = useSelector((state) => state.routeSheet.routes);
   const isChosen = routes.find(({ id }) => supplier.id === id);
 
@@ -38,12 +38,12 @@ export function SupplierElement({ supplier }) {
       tabIndex={0}
       className={cn("supplier", { chosen })}
       onClick={handleSupplierClick}
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => setVisible(false)}
+      onMouseEnter={() => setShowAddToRoutes(true)}
+      onMouseLeave={() => setShowAddToRoutes(false)}
     >
       {supplier.name}
       <div
-        className={cn("add-to-routes-container", { visible })}
+        className={cn("add-to-routes-container", { visible: showAddToRoutes })}
         title={isChosen ? "Добавлено" : "Добавить в маршрутный лист"}
       >
         {!isChosen ? (

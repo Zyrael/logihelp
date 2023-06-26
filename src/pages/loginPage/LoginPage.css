@@ -64,10 +64,6 @@
   transition: border-color 0.2s;
 }
 
-.login-input-field:hover {
-  border-color: var(--primary-color);
-}
-
 .login-input-field:-webkit-autofill,
 .login-input-field:-webkit-autofill:hover,
 .login-input-field:-webkit-autofill:focus,
@@ -97,10 +93,6 @@
   background: white;
   z-index: 2;
   transition: color 0.2s;
-}
-
-.login-input:hover > .login-input-label {
-  color: var(--primary-color);
 }
 
 .login-input-label.focused {
@@ -149,6 +141,14 @@
     max-width: 30rem;
     border: 1px solid var(--border-color);
     border-radius: 10px;
+  }
+
+  .login-input-field:hover {
+    border-color: var(--primary-color);
+  }
+
+  .login-input:hover > .login-input-label {
+    color: var(--primary-color);
   }
 
   .login-btn:hover {

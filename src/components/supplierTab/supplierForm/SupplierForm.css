@@ -1,5 +1,5 @@
 .supplier-form {
-  padding: 2rem 0.875rem 0 1.25rem;
+  padding: 1.5rem;
   position: relative;
 }
 
@@ -34,7 +34,7 @@
 
 .supplier-form-footer {
   margin-top: 3.5rem;
-  height: 3.25rem;
+  height: 3rem;
   border: 0;
   display: flex;
   gap: 1rem;
@@ -48,7 +48,7 @@
   justify-content: center;
   border: 0;
   background: 0;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   overflow: hidden;
   box-shadow: 1px 1px 2px 0 hsla(0, 0%, 0%, 0.14);
@@ -91,7 +91,7 @@
 
 @media screen and (min-width: 45rem) {
   .supplier-form-footer {
-    height: 2.5rem;
+    height: 3rem;
   }
 
   .supplier-form-btn {

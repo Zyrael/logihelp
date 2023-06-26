@@ -1,57 +1,56 @@
 .route-sheet-header {
-    display: flex;
-    align-items: center;
-    padding: 0 1rem 0 1.125rem;
-    height: 100%;
-    max-height: 3.5rem;
-    border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 0 1.125rem;
+  height: 100%;
+  max-height: 3.5rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .route-sheet-title {
-    font-size: 1.5rem;
-    font-weight: 300;
-    white-space: nowrap;
-    user-select: none;
-    color: var(--font-color);
+  font-size: 1.5rem;
+  white-space: nowrap;
+  user-select: none;
+  color: var(--font-color);
 }
 
 .clear {
-    margin-left: .5rem;
+  margin-left: auto;
 }
 
 .print {
-    margin-left: auto;
+  margin-left: 0.5rem;
 }
 
 .times-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    fill: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: white;
 }
 
 .print-icon {
-    width: 1.625rem;
-    height: 1.625rem;
-    stroke: white;
+  width: 1.625rem;
+  height: 1.625rem;
+  stroke: white;
 }
 
 .cancel-print {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .cancel-print-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    stroke: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: white;
 }
 
 .route-sheet-main {
-    padding-right: .625rem;
-    overflow-y: scroll;
-    height: 100%;
-    width: 100%;
+  /* padding-right: 0.625rem; */
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
 }
 
 .route-sheet {
-    list-style: none;
+  list-style: none;
 }

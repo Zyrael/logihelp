@@ -1,58 +1,58 @@
 .supplier-info > * + * {
-    border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
 }
 
 .supplier-header {
-    padding: 1.5rem .7rem .7rem 1rem;
+  padding: 1rem;
 }
 
 .supplier-header > * {
-    width: 100%;
+  width: 100%;
 }
 
 .supplier-name {
-    display: flex;
-    color: var(--font-color);
+  display: flex;
+  color: var(--font-color);
 }
 
 .supplier-name > span {
-    font-size: 1.5rem;
-    margin: .25rem 0 0 .25rem;
+  font-size: 1.5rem;
+  margin: 0.25rem 0 0 0.25rem;
 }
 
 .supplier-info-text {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-    color: var(--font-color);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: var(--font-color);
 }
 
 .supplier-url {
-    margin: .5rem 0 0 .25rem;
-    text-decoration: none;
+  margin: 0.5rem 0 0 0.25rem;
+  text-decoration: none;
 }
 
 .url {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .url:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .supplier-info-text > p {
-    padding-right: 3rem;
-    margin-left: 1rem;
-    text-align: justify;
+  padding-right: 3rem;
+  margin-left: 1rem;
+  text-align: justify;
 }
 
 .icon-container {
-    display: flex;
+  display: flex;
 }
 
 .supplier-info-icon {
-    height: 1.75rem;
-    width: 1.75rem;
-    stroke: var(--font-color);
+  height: 1.75rem;
+  width: 1.75rem;
+  stroke: var(--font-color);
 }

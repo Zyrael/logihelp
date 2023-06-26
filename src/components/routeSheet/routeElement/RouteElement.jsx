@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
+import cn from "classnames";
 import { useDispatch } from "react-redux";
 import { removeRoute } from "../routeSheetSlice";
 import { ReactComponent as RemoveIcon } from "../../../assets/icons/cross.svg";
@@ -8,18 +9,24 @@ export function RouteElement({ route }) {
   const { name } = route;
   const dispatch = useDispatch();
 
-  const nodeRef = useRef(null);
+  const [showRemove, setShowRemove] = useState(false);
 
   const handleRemoveRoute = () => {
     dispatch(removeRoute(route));
   };
 
   return (
-    <li ref={nodeRef} className="route-element">
+    <li
+      className="route-element"
+      onMouseEnter={() => setShowRemove(true)}
+      onMouseLeave={() => setShowRemove(false)}
+    >
       <p>{name}</p>
       <button
         type="button"
-        className="remove-btn"
+        className={cn("remove-btn", {
+          visible: showRemove,
+        })}
         onClick={handleRemoveRoute}
         title="Удалить"
       >
