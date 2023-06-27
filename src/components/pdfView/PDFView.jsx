@@ -9,28 +9,28 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
-import openSans from "../../assets/fonts/OpenSans/OpenSans-Regular.ttf";
-import openSansBold from "../../assets/fonts/OpenSans/OpenSans-Bold.ttf";
+import Roboto from "../../assets/fonts/Roboto/Roboto-Regular.ttf";
+import RobotoBold from "../../assets/fonts/Roboto/Roboto-Bold.ttf";
 import "./PDFView.css";
 
 Font.register({
-  family: "OpenSans",
-  fonts: [{ src: openSans }, { src: openSansBold, fontWeight: 700 }],
+  family: "Roboto",
+  fonts: [{ src: Roboto }, { src: RobotoBold, fontWeight: 700 }],
 });
 
 const styles = StyleSheet.create({
   page: {
     padding: 30,
     paddingRight: 70,
-    fontSize: 16,
-    fontFamily: "OpenSans",
+    fontSize: 14,
+    fontFamily: "Roboto",
     flexDirection: "column",
     justifyContent: "flex-start",
   },
 
   header: {
     fontWeight: "bold",
-    fontSize: 25,
+    fontSize: 20,
     letterSpacing: 0.5,
   },
 
