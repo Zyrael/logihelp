@@ -207,7 +207,6 @@
   display: flex;
   justify-content: center;
   overflow: auto;
-  /* -webkit-overflow-scrolling: touch; */
   padding-top: 0.5rem;
   height: 100%;
   width: 100%;
@@ -235,7 +234,12 @@
   bottom: 3rem;
   right: 2rem;
   background: var(--element-hover-color);
-  transition: opacity 0.2s, visibility 0.2s;
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  transform: translateY(1.5rem);
+}
+
+.scroll-top-btn.visible {
+  transform: translateY(0);
 }
 
 .scroll-top-icon {

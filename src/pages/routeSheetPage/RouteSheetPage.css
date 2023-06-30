@@ -20,7 +20,7 @@
 .content-container--left {
   width: 100%;
   left: 0;
-  transition: left 0.2s;
+  transition: left 0.4s;
 }
 
 .content-container--left.left-margin {
@@ -43,7 +43,7 @@
   .content-container--left {
     max-width: 28rem;
     min-width: 20rem;
-    transition: margin-left 0.2s;
+    transition: margin-left 0.4s;
   }
 
   .content-container--left.left-margin {
