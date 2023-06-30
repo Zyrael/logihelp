@@ -27,6 +27,7 @@
 
 .supplier-input-field.error {
   border-color: var(--error-color);
+  caret-color: var(--error-color);
 }
 
 .supplier-input-border {
@@ -85,6 +86,10 @@
 @media screen and (min-width: 45rem) {
   .supplier-input-field:hover {
     border-color: var(--primary-color);
+  }
+
+  .supplier-input-field.error:hover {
+    border-color: var(--error-color);
   }
 
   .supplier-input:hover > .supplier-input-label {

@@ -4,10 +4,7 @@
   align-items: center;
   font-size: 1.125rem;
   color: var(--font-color);
-}
-
-.route-element + .route-element {
-  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .remove-btn {
@@ -35,7 +32,3 @@
   fill: black;
   transition: fill 0.2s;
 }
-
-/*.remove-icon:hover {*/
-/*    fill: var(--error-color);*/
-/*}*/
