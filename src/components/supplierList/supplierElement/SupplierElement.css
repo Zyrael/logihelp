@@ -2,7 +2,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 0.75rem 3.5rem 0.75rem 1rem;
+  padding: 0.875rem 3.5rem 0.875rem 1.5rem;
   user-select: none;
   position: relative;
 }
@@ -19,7 +19,7 @@
   margin-top: 0.25rem;
 }
 
-.supplier.chosen {
+.supplier.active {
   background: var(--supplier-hover-color);
 }
 
@@ -31,7 +31,7 @@
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  right: 0.5rem;
+  right: 1rem;
 }
 
 .add-to-routes-btn {

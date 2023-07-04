@@ -102,7 +102,7 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
               onBlur={() => setSearchFocus(false)}
             />
             <div className={cn("search-border", { active: searchFocus })} />
-            {searchRef.current?.value !== "" && (
+            {searchValue !== "" && (
               <button
                 type="button"
                 className="clear-input"

@@ -27,7 +27,7 @@
 .supplier-list-header-top {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1.125rem 0 0.75rem;
+  padding: 0.5rem 1.125rem 0 1rem;
   width: 100%;
 }
 
@@ -255,6 +255,14 @@
 }
 
 @media screen and (min-width: 45rem) {
+  .supplier-list-header-top {
+    padding: 0.5rem 1.125rem 0 1.375rem;
+  }
+
+  .supplier-list-header-bottom {
+    padding: 0.25rem 0 0.25rem 1.625rem;
+  }
+
   .open-sidebar-btn:hover {
     background: var(--element-hover-color);
   }

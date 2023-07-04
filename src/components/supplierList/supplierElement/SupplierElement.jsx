@@ -12,21 +12,21 @@ import { ReactComponent as CircleCheckSVG } from "../../../assets/icons/circle-c
 import "./SupplierElement.css";
 
 export function SupplierElement({ supplier }) {
-  const [chosen, setChosen] = useState(false);
+  const [active, setActive] = useState(false);
   const [showAddToRoutes, setShowAddToRoutes] = useState(false);
   const routes = useSelector((state) => state.routeSheet.routes);
   const isChosen = routes.find(({ id }) => supplier.id === id);
 
   const dispatch = useDispatch();
-  const handleEditButton = (e) => {
+  const handleAddToRoutes = (e) => {
     e.stopPropagation();
     dispatch(addRoute(supplier));
   };
 
   const handleSupplierClick = () => {
     if (window.matchMedia("(max-width: 45rem)").matches) {
-      setChosen(true);
-      setTimeout(() => setChosen(false), 200);
+      setActive(true);
+      setTimeout(() => setActive(false), 200);
     }
     dispatch(setCurrentSupplier(supplier));
     dispatch(setMode("browseSupplier"));
@@ -36,7 +36,7 @@ export function SupplierElement({ supplier }) {
   return (
     <li
       tabIndex={0}
-      className={cn("supplier", { chosen })}
+      className={cn("supplier", { active })}
       onClick={handleSupplierClick}
       onMouseEnter={() => setShowAddToRoutes(true)}
       onMouseLeave={() => setShowAddToRoutes(false)}
@@ -56,7 +56,7 @@ export function SupplierElement({ supplier }) {
           <button
             type="button"
             className="add-to-routes-btn"
-            onClick={handleEditButton}
+            onClick={handleAddToRoutes}
           >
             <InfoSVG className="add-to-routes-icon" />
           </button>
