@@ -41,7 +41,13 @@ export function SupplierElement({ supplier }) {
       onMouseEnter={() => setShowAddToRoutes(true)}
       onMouseLeave={() => setShowAddToRoutes(false)}
     >
-      {supplier.name}
+      <div className="supplier-left">
+        <div className="supplier-name">{supplier.name}</div>
+        {supplier.address && (
+          <div className="supplier-address">{supplier.address}</div>
+        )}
+      </div>
+
       <div
         className={cn("add-to-routes-container", { visible: showAddToRoutes })}
         title={isChosen ? "Добавлено" : "Добавить в маршрутный лист"}

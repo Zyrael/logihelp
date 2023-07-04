@@ -1,11 +1,22 @@
 .supplier {
   cursor: pointer;
-  font-size: 1.125rem;
   display: flex;
   align-items: center;
-  padding: 1rem 1rem 1rem 1.125rem;
-  color: var(--font-color);
+  padding: 0.75rem 3.5rem 0.75rem 1rem;
   user-select: none;
+  position: relative;
+}
+
+.supplier-name {
+  color: var(--font-color);
+  font-size: 1.25rem;
+}
+
+.supplier-address {
+  font-size: 0.75rem;
+  color: var(--font-color-light);
+  max-width: 250px;
+  margin-top: 0.25rem;
 }
 
 .supplier.chosen {
@@ -19,6 +30,8 @@
   margin-left: auto;
   opacity: 0;
   visibility: hidden;
+  position: absolute;
+  right: 0.5rem;
 }
 
 .add-to-routes-btn {
@@ -48,7 +61,6 @@
 @media screen and (min-width: 45rem) {
   .supplier {
     border-radius: 10px;
-    padding: 0.5rem 0.625rem 0.5rem 0.625rem;
   }
 
   .supplier:hover {

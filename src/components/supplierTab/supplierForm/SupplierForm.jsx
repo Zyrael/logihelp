@@ -94,7 +94,7 @@ export function SupplierForm() {
   const onBlur = () => validateForm();
 
   const onKeyDown = (e) => {
-    if (!e.shiftKey && e.key === "Enter") {
+    if ((e.shiftKey || e.ctrlKey) && e.key === "Enter") {
       e.preventDefault();
       handleSubmit(e);
     }

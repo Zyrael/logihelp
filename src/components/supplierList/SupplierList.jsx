@@ -1,4 +1,4 @@
-import React, { useRef, useState, useDeferredValue, useContext } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { setMode, openSupplierTab } from "../supplierTab/supplierTabSlice";
@@ -12,6 +12,7 @@ import { Loading } from "../loading";
 import "./SupplierList.css";
 import { SupplierElement } from "./supplierElement";
 import { ServerContext } from "../../ServerContext";
+import { useDebounce } from "../../hooks/debounce.hook";
 
 export function SupplierList({ sidebarOpened, setSidebarOpened }) {
   const dispatch = useDispatch();
@@ -29,18 +30,18 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
 
   const suppliers = data?.getSuppliers;
 
-  const deferredSearchValue = useDeferredValue(searchValue);
-
   const handleChangeSearch = (e) => {
     setSearchValue(e.target.value);
   };
 
+  const debouncedSearch = useDebounce(handleChangeSearch);
+
   const { supplierTabOpened } = useSelector((state) => state.supplierTab);
 
-  const showSuppliers = suppliers?.filter((supplier) =>
-    supplier.name
-      .toLowerCase()
-      .includes(deferredSearchValue.trim().toLowerCase())
+  const showSuppliers = suppliers?.filter(
+    (supplier) =>
+      supplier.name.toLowerCase().includes(searchValue.trim().toLowerCase()) ||
+      supplier.address?.toLowerCase().includes(searchValue.trim().toLowerCase())
   );
 
   const searchRef = useRef(null);
@@ -94,15 +95,14 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
               id="search-bar"
               className="search-bar"
               type="text"
-              value={searchValue}
               placeholder="Поиск"
-              onChange={handleChangeSearch}
+              onChange={debouncedSearch}
               ref={searchRef}
               onFocus={() => setSearchFocus(true)}
               onBlur={() => setSearchFocus(false)}
             />
             <div className={cn("search-border", { active: searchFocus })} />
-            {deferredSearchValue !== "" && (
+            {searchRef.current?.value !== "" && (
               <button
                 type="button"
                 className="clear-input"
@@ -134,15 +134,6 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
             {sort === "asc" ? "А-Я" : "Я-А"}
           </button>
         </div>
-
-        {/* <button
-          type="button"
-          className="round-btn add"
-          onClick={() => setSort(sort === "asc" ? "desc" : "asc")}
-          title="Добавить поставщика"
-        >
-          ^
-        </button> */}
       </div>
       {loading && <Loading />}
       {error && (
@@ -163,6 +154,10 @@ export function SupplierList({ sidebarOpened, setSidebarOpened }) {
                 <SupplierElement key={supplier.id} supplier={supplier} />
               ))}
             </ul>
+            // <ReactList
+            //   length={showSuppliers.length}
+            //   itemRenderer={renderSupplier}
+            // />
           )}
         </div>
       )}
