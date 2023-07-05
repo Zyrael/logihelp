@@ -9,8 +9,7 @@
   --primary-color-disabled: hsl(220, 100%, 70%);
   --primary-color-transparent: hsl(262, 0%, 20%, 0.9);
   --main-background: hsl(195, 9%, 91%);
-  --element-hover-color: hsla(236, 21%, 10%, 0.2);
-  --supplier-hover-color: hsla(220, 100%, 0%, 0.1);
+  --element-hover-color: hsla(220, 10%, 10%, 0.1);
   --font-color: hsl(199, 18%, 10%);
   --font-color-light: hsl(199, 8%, 40%);
   --border-color: hsl(0, 0%, 83%);
@@ -19,7 +18,10 @@
   --link-color: hsl(220, 100%, 60%);
   --scrollbar-color: hsla(0, 0%, 0%, 0.25);
   --sidebar-width: 20rem;
-  --sidebar-background-color: hsl(220, 100%, 90%);
+  --sidebar-background-color: linear-gradient(
+    hsl(6, 100%, 95%),
+    hsl(220, 100%, 90%)
+  );
 }
 
 @font-face {

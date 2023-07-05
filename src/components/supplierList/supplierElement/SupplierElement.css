@@ -20,7 +20,7 @@
 }
 
 .supplier.active {
-  background: var(--supplier-hover-color);
+  background: var(--element-hover-color);
 }
 
 .add-to-routes-container {
@@ -64,7 +64,7 @@
   }
 
   .supplier:hover {
-    background: var(--supplier-hover-color);
+    background: var(--element-hover-color);
   }
 
   .add-to-routes-container {

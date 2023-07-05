@@ -35,6 +35,7 @@
 
 .url {
   text-decoration: none;
+  user-select: none;
 }
 
 .url:hover {
