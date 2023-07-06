@@ -5,7 +5,7 @@
   width: 100%;
   position: absolute;
   left: -200px;
-  transition: left 0.2s ease-in-out;
+  transition: left 0.3s;
 }
 
 .supplier-list-container--active {
@@ -17,7 +17,7 @@
   justify-content: flex-start;
   flex-direction: column;
   width: 100%;
-  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.1s;
 }
 
 .supplier-list-header--shadow {
@@ -45,6 +45,7 @@
   color: var(--font-color);
   cursor: pointer;
   padding: 0.375rem 0.5rem;
+  user-select: none;
 }
 
 .sort-btn:active {
@@ -146,9 +147,17 @@
   caret-color: var(--primary-color);
 }
 
+.search-bar:-webkit-autofill,
+.search-bar:-webkit-autofill:hover,
+.search-bar:-webkit-autofill:focus,
+.search-bar:-webkit-autofill:active {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
 .search-bar::placeholder {
   color: #aaa;
   transition: color 0.2s;
+  user-select: none;
 }
 
 .search-bar:focus::placeholder {
@@ -244,8 +253,8 @@
 }
 
 .scroll-top-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: auto;
   stroke: hsl(0, 0%, 10%);
   transform: rotateZ(90deg);
 }
@@ -285,7 +294,7 @@
   }
 
   .clear-input:hover {
-    background: var(--supplier-hover-color);
+    background: var(--element-hover-color);
   }
 
   .supplier-list-main {

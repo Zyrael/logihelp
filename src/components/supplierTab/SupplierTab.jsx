@@ -7,7 +7,7 @@ import {
   closeSupplierTab,
   setMode,
 } from "./supplierTabSlice";
-import { ReactComponent as BackSVG } from "../../assets/icons/chevron-left.svg";
+import { ReactComponent as BackSVG } from "../../assets/icons/arrow-left.svg";
 import { ReactComponent as EditSVG } from "../../assets/icons/edit.svg";
 import { SupplierInfo } from "./supplierInfo";
 import { SupplierForm } from "./supplierForm";
