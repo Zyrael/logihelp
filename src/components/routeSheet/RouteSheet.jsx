@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RouteElement } from "./routeElement/index";
 import "./RouteSheet.css";
 import { ReactComponent as Times } from "../../assets/icons/cross.svg";
 import { ReactComponent as Print } from "../../assets/icons/printer.svg";
+import { ReactComponent as DocumentSVG } from "../../assets/icons/document.svg";
 import { ReactComponent as LeftSVG } from "../../assets/icons/arrow-undo-up-left.svg";
 import { removeAllRoutes } from "./routeSheetSlice";
-import { PDFView } from "../pdfView";
+import { PDFView } from "./pdfView";
+import { RouteList } from "./routeList";
+import { PlainRouteSheet } from "./plainRouteSheet";
+
+const modeMap = {
+  routeList: (routes) => <RouteList routes={routes} />,
+  print: (routes) => <PDFView routes={routes} />,
+  plain: (routes) => <PlainRouteSheet routes={routes} />,
+};
 
 export function RouteSheet() {
   const routes = useSelector((state) => state.routeSheet.routes);
@@ -15,7 +23,7 @@ export function RouteSheet() {
     dispatch(removeAllRoutes());
   };
 
-  const [print, setPrint] = useState(false);
+  const [mode, setMode] = useState("routeList");
 
   return (
     <>
@@ -23,7 +31,7 @@ export function RouteSheet() {
         <div className="route-sheet-title">
           {print ? "Печать" : "Маршрутный лист"}
         </div>
-        {!print && (
+        {mode === "routeList" && (
           <>
             <button
               type="button"
@@ -37,7 +45,16 @@ export function RouteSheet() {
             <button
               type="button"
               className="round-btn print"
-              onClick={() => setPrint(true)}
+              onClick={() => setMode("plain")}
+              disabled={routes.length === 0}
+              title="Вывести информацию"
+            >
+              <DocumentSVG className="print-icon" />
+            </button>
+            <button
+              type="button"
+              className="round-btn print"
+              onClick={() => setMode("print")}
               disabled={routes.length === 0}
               title="Печать"
             >
@@ -45,27 +62,18 @@ export function RouteSheet() {
             </button>
           </>
         )}
-        {print && (
+        {mode !== "routeList" && (
           <button
             type="button"
             className="round-btn cancel-print"
-            onClick={() => setPrint(false)}
+            onClick={() => setMode("routeList")}
             title="Отмена"
           >
             <LeftSVG className="cancel-print-icon" />
           </button>
         )}
       </div>
-      {!print && (
-        <div className="route-sheet-main">
-          <ul className="route-sheet">
-            {routes.map((route) => (
-              <RouteElement key={route.id} route={route} />
-            ))}
-          </ul>
-        </div>
-      )}
-      {print && <PDFView />}
+      <div className="route-sheet-main">{modeMap[mode](routes)}</div>
     </>
   );
 }

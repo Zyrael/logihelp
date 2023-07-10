@@ -1,0 +1,11 @@
+.plain-route-sheet {
+  padding: 1rem 1rem 1rem 1.125rem;
+}
+
+.plain-route + .plain-route {
+  margin-top: 1rem;
+}
+
+.plain-route > * + * {
+  margin-top: 0.25rem;
+}
