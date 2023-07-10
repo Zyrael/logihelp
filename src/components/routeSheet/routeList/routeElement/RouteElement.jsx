@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
-import { removeRoute } from "../routeSheetSlice";
-import { ReactComponent as RemoveIcon } from "../../../assets/icons/cross.svg";
+import { removeRoute } from "../../routeSheetSlice";
+import { ReactComponent as RemoveIcon } from "../../../../assets/icons/cross.svg";
 import "./RouteElement.css";
 
 export function RouteElement({ route }) {

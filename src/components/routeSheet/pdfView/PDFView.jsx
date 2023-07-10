@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import {
   Document,
   Font,
@@ -9,8 +8,8 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
-import Roboto from "../../assets/fonts/Roboto/Roboto-Regular.ttf";
-import RobotoBold from "../../assets/fonts/Roboto/Roboto-Bold.ttf";
+import Roboto from "../../../assets/fonts/Roboto/Roboto-Regular.ttf";
+import RobotoBold from "../../../assets/fonts/Roboto/Roboto-Bold.ttf";
 import "./PDFView.css";
 
 Font.register({
@@ -53,14 +52,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export function PDFView() {
-  const routes = useSelector((state) => state.routeSheet.routes);
-
+export function PDFView({ routes }) {
   const document = (
     <Document title="Маршрутный лист">
       <Page style={styles.page} wrap size="A4">
         <Text style={styles.header}>Маршрутный лист</Text>
-        {routes.map(
+        {routes?.map(
           ({
             id,
             name = "",
