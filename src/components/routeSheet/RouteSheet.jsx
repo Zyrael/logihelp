@@ -29,7 +29,7 @@ export function RouteSheet() {
     <>
       <div className="route-sheet-header">
         <div className="route-sheet-title">
-          {print ? "Печать" : "Маршрутный лист"}
+          {mode === "print" ? "Печать" : "Маршрутный лист"}
         </div>
         {mode === "routeList" && (
           <>
