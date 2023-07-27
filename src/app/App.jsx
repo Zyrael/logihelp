@@ -14,7 +14,7 @@ export function App() {
 
   return (
     <ServerContext.Provider value={serverMethods}>
-      <div className="app">
+      <div className="text">
         {loading && <Loading />}
         {!loading &&
           (isAuthenticated ? (
