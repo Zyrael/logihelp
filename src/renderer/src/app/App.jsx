@@ -8,7 +8,7 @@ import { ServerContext } from "../ServerContext";
 export function App() {
   const { loading, token, login, logout } = useAuth();
 
-  const isAuthenticated = !!token || import.meta.env.MODE === "mock";
+  // const isAuthenticated = !!token || import.meta.env.MODE === "mock";
 
   const serverMethods = useServer();
 
@@ -17,11 +17,12 @@ export function App() {
       <div className="app">
         {loading && <Loading />}
         {!loading &&
-          (isAuthenticated ? (
-            <RouteSheetPage logout={logout} />
-          ) : (
-            <LoginPage loading={loading} login={login} />
-          ))}
+          // (isAuthenticated ? (
+          <RouteSheetPage logout={logout} />
+          // ) : (
+          //   <LoginPage loading={loading} login={login} />
+          // ))
+        }
       </div>
     </ServerContext.Provider>
   );
