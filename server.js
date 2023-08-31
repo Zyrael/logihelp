@@ -86,7 +86,7 @@ fastify.post('/auth', async (request, reply) => {
       );
       if (refreshDecoded) {
         const newToken = jwt.sign(
-          { username: user.username },
+          { username: refreshDecoded.username },
           process.env.SECRET,
           { expiresIn: '1h' }
         );
