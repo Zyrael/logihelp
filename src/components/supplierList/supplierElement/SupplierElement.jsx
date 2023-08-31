@@ -9,11 +9,12 @@ import {
 } from "../../supplierTab/supplierTabSlice";
 import { ReactComponent as InfoSVG } from "../../../assets/icons/add-plus-circle.svg";
 import { ReactComponent as CircleCheckSVG } from "../../../assets/icons/circle-check.svg";
-import "./SupplierElement.css";
+import './SupplierElement.sass'
 
 export function SupplierElement({ supplier }) {
   const [active, setActive] = useState(false);
   const [showAddToRoutes, setShowAddToRoutes] = useState(false);
+  const [opened, setOpened] = useState(false)
   const routes = useSelector((state) => state.routeSheet.routes);
   const isChosen = routes.find(({ id }) => supplier.id === id);
 
@@ -64,6 +65,17 @@ export function SupplierElement({ supplier }) {
           <CircleCheckSVG className="add-to-routes-icon" />
         )}
       </div>
+      <button
+        type="button"
+        className="add-to-routes-btn"
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpened(!opened)
+        }}
+      >
+        ^
+      </button>
+      {opened && <div>Opened</div>}
     </li>
   );
 }

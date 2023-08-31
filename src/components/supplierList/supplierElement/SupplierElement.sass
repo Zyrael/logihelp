@@ -1,0 +1,66 @@
+.supplier
+  cursor: pointer
+  display: flex
+  align-items: center
+  padding: 0.875rem 3.5rem 0.875rem 1.5rem
+  user-select: none
+  position: relative
+
+  .supplier-name
+    color: var(--font-color)
+    font-size: 1.25rem
+
+.supplier-address
+  font-size: 0.75rem
+  color: var(--font-color-light)
+  max-width: 250px
+  margin-top: 0.25rem
+
+.supplier.active
+  background: var(--element-hover-color)
+
+.add-to-routes-container
+  display: none
+  min-width: 2.5rem
+  min-height: 2.5rem
+  margin-left: auto
+  opacity: 0
+  visibility: hidden
+  position: absolute
+  right: 1rem
+
+.add-to-routes-btn
+  border: 0
+  border-radius: 50%
+  min-width: 2.5rem
+  min-height: 2.5rem
+  cursor: pointer
+  background: 0
+  display: none
+  align-items: center
+  justify-content: center
+
+  &:hover
+    background: var(--element-hover-color)
+
+.add-to-routes-icon
+  padding: 0
+  width: 2rem
+  height: 2rem
+  stroke: var(--font-color)
+  transition: stroke 0.2s
+
+@media screen and (min-width: 45rem)
+  .supplier
+    border-radius: 10px
+
+    &:hover
+      background: var(--element-hover-color)
+
+  .add-to-routes-container
+    display: flex
+    align-items: center
+    justify-content: center
+
+  .add-to-routes-btn
+    display: flex

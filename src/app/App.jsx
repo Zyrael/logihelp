@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth, useServer } from "../hooks";
 import { LoginPage, RouteSheetPage } from "../pages";
 import { Loading } from "../components";
-import "./App.css";
+import "./App.sass";
 import { ServerContext } from "../ServerContext";
 
 export function App() {

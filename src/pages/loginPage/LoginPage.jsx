@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./LoginPage.css";
+import "./LoginPage.sass";
 import cn from "classnames";
 import { useDebounce, useHttp } from "../../hooks";
 import { Loading } from "../../components";

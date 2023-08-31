@@ -10,7 +10,6 @@
   },
   "scripts": {
     "dev": "vite",
-    "generate": "yarn prisma migrate dev && yarn prisma generate",
     "build": "vite build",
     "preview": "vite preview",
     "start": "yarn nodemon server.js --ignore src",
@@ -54,6 +53,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.8.3",
     "prisma": "5.0.0",
+    "sass": "^1.66.1",
     "vite": "^4.0.0",
     "vite-plugin-svgr": "^2.4.0"
   },

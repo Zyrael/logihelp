@@ -6,8 +6,7 @@
   user-select: none;
   position: relative;
 }
-
-.supplier-name {
+.supplier .supplier-name {
   color: var(--font-color);
   font-size: 1.25rem;
 }
@@ -45,7 +44,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .add-to-routes-btn:hover {
   background: var(--element-hover-color);
 }
@@ -62,18 +60,17 @@
   .supplier {
     border-radius: 10px;
   }
-
   .supplier:hover {
     background: var(--element-hover-color);
   }
-
   .add-to-routes-container {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
   .add-to-routes-btn {
     display: flex;
   }
 }
+
+/*# sourceMappingURL=SupplierElement.css.map */

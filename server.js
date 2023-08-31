@@ -51,7 +51,7 @@ fastify.post('/login', async (request, reply) => {
   const refreshToken = jwt.sign({ username }, process.env.REFRESH_SECRET);
 
   const token = jwt.sign({ username: user.username }, process.env.SECRET, {
-    expiresIn: '1h',
+    expiresIn: '1s',
   });
 
   reply
@@ -80,11 +80,12 @@ fastify.post('/auth', async (request, reply) => {
   } catch {
     try {
       const refreshToken = request.cookies['refresh-token'];
-      const refreshDecoded = await jwt.verify(
+      const decodedRefresh = await jwt.verify(
         refreshToken,
         process.env.REFRESH_SECRET
       );
-      if (refreshDecoded) {
+      if (decodedRefresh) {
+        console.log(ok);
         const newToken = jwt.sign(
           { username: user.username },
           process.env.SECRET,
