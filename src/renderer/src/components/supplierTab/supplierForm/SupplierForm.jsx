@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ReactComponent as XSVG } from "../../../assets/icons/cross.svg";
-import { ReactComponent as CheckSVG } from "../../../assets/icons/check.svg";
+import React, { useState, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReactComponent as XSVG } from '../../../assets/icons/cross.svg';
+import { ReactComponent as CheckSVG } from '../../../assets/icons/check.svg';
 import {
   setMode,
   closeSupplierTab,
   setCurrentSupplier,
   clearSupplierTab,
-} from "../supplierTabSlice";
-import { SupplierInput } from "./supplierInput";
-import { removeRoute, updateRoute } from "../../routeSheet/routeSheetSlice";
-import "./SupplierForm.css";
-import { Loading } from "../../loading";
-import { ServerContext } from "../../../ServerContext";
+} from '../supplierTabSlice';
+import { SupplierInput } from './supplierInput';
+import { removeRoute, updateRoute } from '../../routeSheet/routeSheetSlice';
+import './SupplierForm.css';
+import { Loading } from '../../loading';
+import { ServerContext } from '../../../ServerContext';
 
 export function SupplierForm() {
   const urlRegex =
@@ -33,17 +33,17 @@ export function SupplierForm() {
     const keys = Object.keys(data);
     const trimmed = {};
     keys.forEach((key) => {
-      if (!data[key] || key === "id") {
+      if (!data[key] || key === 'id') {
         trimmed[key] = data[key];
         return;
       }
-      trimmed[key] = data[key].replace(/\s+/g, " ").trim();
+      trimmed[key] = data[key].replace(/\s+/g, ' ').trim();
     });
     return trimmed;
   };
 
   const validateForm = () => {
-    const nameValidated = formData.name.trim() === "";
+    const nameValidated = formData.name.trim() === '';
     setNameError(nameValidated);
 
     const URLValidated = !!formData.url && !urlRegex.test(formData.url);
@@ -58,7 +58,7 @@ export function SupplierForm() {
   };
 
   const handleDelete = () => {
-    if (!confirm("Удалить поставщика?")) return;
+    if (!confirm('Удалить поставщика?')) return;
     setLoading(true);
     deleteSupplier(formData).then(() => {
       dispatch(removeRoute(formData));
@@ -76,25 +76,24 @@ export function SupplierForm() {
     if (!validated) return;
     setLoading(true);
     const trimmedData = trimData(formData);
-    submitAction[mode](trimmedData).then(({ data }) => {
-      const newData = data.updateSupplier || data.addSupplier;
-      if (mode === "editSupplier") dispatch(updateRoute(newData));
+    submitAction[mode](trimmedData).then(() => {
+      if (mode === 'editSupplier') dispatch(updateRoute(trimmedData));
       setLoading(false);
-      dispatch(setCurrentSupplier(newData));
-      dispatch(setMode("browseSupplier"));
+      dispatch(setCurrentSupplier(trimmedData));
+      dispatch(setMode('browseSupplier'));
     });
   };
 
   const onChange = (key) => (e) => {
-    if (key === "name") setNameError(false);
-    if (key === "url") setURLError(false);
+    if (key === 'name') setNameError(false);
+    if (key === 'url') setURLError(false);
     setFormData({ ...formData, [key]: e.currentTarget.value });
   };
 
   const onBlur = () => validateForm();
 
   const onKeyDown = (e) => {
-    if ((e.shiftKey || e.ctrlKey) && e.key === "Enter") {
+    if ((e.shiftKey || e.ctrlKey) && e.key === 'Enter') {
       e.preventDefault();
       handleSubmit(e);
     }
@@ -102,66 +101,66 @@ export function SupplierForm() {
 
   return (
     <form
-      className="supplier-form"
+      className='supplier-form'
       onSubmit={handleSubmit}
       onKeyDown={onKeyDown}
     >
       <SupplierInput
-        data={formData.name ?? ""}
-        label="Название"
-        onChange={onChange("name")}
+        data={formData.name ?? ''}
+        label='Название'
+        onChange={onChange('name')}
         onBlur={onBlur}
         error={nameError}
         required
       />
-      {nameError && <div className="danger-text">Введите название</div>}
+      {nameError && <div className='danger-text'>Введите название</div>}
       <SupplierInput
-        data={formData.url ?? ""}
-        label="Сайт"
-        onChange={onChange("url")}
+        data={formData.url ?? ''}
+        label='Сайт'
+        onChange={onChange('url')}
         onBlur={onBlur}
         error={urlError}
         required
       />
-      {urlError && <div className="danger-text">Введите корректный URL</div>}
+      {urlError && <div className='danger-text'>Введите корректный URL</div>}
       <SupplierInput
-        data={formData.address ?? ""}
-        label="Адрес"
-        onChange={onChange("address")}
+        data={formData.address ?? ''}
+        label='Адрес'
+        onChange={onChange('address')}
         onBlur={onBlur}
         required
       />
       <SupplierInput
-        data={formData.contacts ?? ""}
-        label="Контакты"
-        onChange={onChange("contacts")}
+        data={formData.contacts ?? ''}
+        label='Контакты'
+        onChange={onChange('contacts')}
         onBlur={onBlur}
         required
       />
       <SupplierInput
-        data={formData.additionalData ?? ""}
-        label="Примечание"
-        onChange={onChange("additionalData")}
+        data={formData.additionalData ?? ''}
+        label='Примечание'
+        onChange={onChange('additionalData')}
         onBlur={onBlur}
         required
       />
-      <div className="supplier-form-footer">
-        {mode === "editSupplier" && (
+      <div className='supplier-form-footer'>
+        {mode === 'editSupplier' && (
           <button
-            type="button"
-            className="supplier-form-btn supplier-form-delete"
+            type='button'
+            className='supplier-form-btn supplier-form-delete'
             onClick={() => handleDelete()}
-            title="Удалить"
+            title='Удалить'
           >
-            <XSVG className="delete-supplier-icon" />
+            <XSVG className='delete-supplier-icon' />
           </button>
         )}
         <button
-          type="submit"
-          className="supplier-form-btn supplier-form-submit"
-          title="Сохранить"
+          type='submit'
+          className='supplier-form-btn supplier-form-submit'
+          title='Сохранить'
         >
-          <CheckSVG className="submit-supplier-icon" />
+          <CheckSVG className='submit-supplier-icon' />
         </button>
       </div>
       {loading && <Loading />}

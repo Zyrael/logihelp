@@ -4,19 +4,23 @@
   "repository": "git@github.com:Zyrael/logihelp.git",
   "author": "zyrael <zyrael@icloud.com>",
   "license": "MIT",
-  "main": "out/main/main.js",
+  "main": "out/main/index.js",
   "prisma": {
     "schema": "./prisma/schema.prisma"
   },
   "scripts": {
     "dev": "electron-vite dev -w",
     "mock": "electron-vite dev -w --mode mock",
-    "generate": "yarn prisma migrate dev && yarn prisma generate",
+    "generate": "yarn prisma generate",
     "build": "electron-vite build",
-    "preview": "electron-vite preview",
-    "start": "yarn nodemon server.js --ignore src",
-    "start:dev": "yarn concurrently \"yarn start\" \"yarn dev\"",
-    "start:dev--host": "yarn concurrently \"yarn start\" \"yarn dev --host\""
+    "preview": "electron-vite preview"
+  },
+  "build": {
+    "extraResources": [
+      "prisma/**/*",
+      "node_modules/.prisma/**/*",
+      "node_modules/@prisma/client/**/*"
+    ]
   },
   "dependencies": {
     "@apollo/client": "^3.7.5",

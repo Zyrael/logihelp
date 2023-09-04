@@ -26,6 +26,7 @@ vite.config.js.timestamp*
 dev.db*
 migrations
 out
+userData.json
 
 # Editor directories and files
 .vscode/*

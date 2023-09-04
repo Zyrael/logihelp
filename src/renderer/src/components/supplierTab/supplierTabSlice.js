@@ -1,20 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   supplierTabOpened: false,
-  mode: "browseSupplier",
+  mode: 'browseSupplier',
   currentSupplier: {
-    id: "",
-    name: "",
-    url: "",
-    address: "",
-    contacts: "",
-    additionalData: "",
+    name: '',
+    url: '',
+    address: '',
+    contacts: '',
+    additionalData: '',
   },
 };
 
 export const supplierTabSlice = createSlice({
-  name: "supplierTab",
+  name: 'supplierTab',
   initialState,
   reducers: {
     openSupplierTab: (state) => {
@@ -28,11 +27,11 @@ export const supplierTabSlice = createSlice({
     },
     clearSupplierTab: (state) => {
       state.currentSupplier = {
-        name: "",
-        url: "",
-        address: "",
-        contacts: "",
-        additionalData: "",
+        name: '',
+        url: '',
+        address: '',
+        contacts: '',
+        additionalData: '',
       };
       state.mode = null;
     },

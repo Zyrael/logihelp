@@ -7,7 +7,7 @@
   justify-content: center;
 }
 
-.login-window {
+/* .login-window {
   height: 100%;
   width: 100%;
   padding: 1rem;
@@ -154,4 +154,4 @@
   .login-btn:hover {
     background: var(--primary-color-hover);
   }
-}
+} */
