@@ -1,8 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  // engineType    = "library"
-  // binaryTargets = ["native", "windows"]
-  // output        = "../release/app/node_modules/@prisma/client"
 }
 
 datasource db {
@@ -17,10 +14,4 @@ model Supplier {
   address        String?
   contacts       String?
   additionalData String?
-}
-
-model User {
-  id       Int    @id @default(autoincrement())
-  username String @unique
-  password String
 }
