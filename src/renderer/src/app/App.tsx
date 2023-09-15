@@ -4,11 +4,7 @@ import { LoginPage } from '../pages'
 import { ServerContext } from '../ServerContext'
 
 export function App(): React.ReactNode {
-  // const { loading, token, login, logout } = useAuth();
-
-  // const isAuthenticated = !!token || import.meta.env.MODE === "mock";
-
-  // const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('loggedIn') ?? false)
+  const [loggedIn, setLoggedIn] = useState(false)
   const [url, setUrl] = useState('')
 
   const serverMethods: UseServer = useServer()
@@ -26,15 +22,14 @@ export function App(): React.ReactNode {
     setUrl(newUrl)
   }
 
-  // const login = (): void => {
-  //   setLoggedIn(true)
-  //   sessionStorage.setItem('loggedIn', 'true')
-  // }
+  const login = (): void => {
+    setLoggedIn(true)
+  }
 
   return (
     <ServerContext.Provider value={serverMethods}>
       <div className="h-[100vh]">
-        <LoginPage url={url} updateDB={updateDB} />
+        {loggedIn ? <MainPage /> : <LoginPage url={url} updateDB={updateDB} login={login} />}
       </div>
     </ServerContext.Provider>
   )

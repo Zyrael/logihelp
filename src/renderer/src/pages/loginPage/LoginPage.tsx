@@ -1,22 +1,26 @@
 interface Props {
   url: string
   updateDB: () => void
+  login: () => void
 }
 
-export function LoginPage({ url, updateDB }: Props): JSX.Element {
+export function LoginPage({ url, updateDB, login }: Props): JSX.Element {
   return (
-    <div className="flex flex-col justify-center items-center h-full bg-neutral-light  font-roboto">
+    <div className="flex flex-col justify-center items-center h-full bg-neutral  font-roboto">
       <div className="bg-primary text-white py-16 px-14 rounded-3xl flex flex-col items-center min-w-[550px]">
         <div className="text-2xl font-bold">Войти в справочник</div>
-        <div className="w-full mt-8">
-          <div className="text-2xl select-none">База:</div>
+        <div className="w-full mt-4 flex min-h-[40px]">
+          <div className="text-xl select-none flex items-end">База:</div>
           {url ? (
-            <div className="text-2xl mt-2 rounded-md select-none font-light">{url}</div>
+            <div className="text-xl ml-2 flex items-end rounded-md select-none font-light">
+              {url}
+            </div>
           ) : (
             <button
               type="button"
               onClick={(): void => updateDB()}
-              className="mt-4 bg-white text-2xl px-14 py-3 rounded-md text-primary font-bold"
+              tabIndex={-1}
+              className="ml-2 bg-neutral-light px-4 py-1 rounded-md text-primary shadow-bottom active:translate-y-1 active:shadow-bottom-pressed select-none"
             >
               ДОБАВИТЬ
             </button>
@@ -27,7 +31,9 @@ export function LoginPage({ url, updateDB }: Props): JSX.Element {
           <button
             type="button"
             disabled={!url}
-            className="text-2xl px-14 py-3 rounded-md bg-white text-primary font-bold"
+            tabIndex={-1}
+            onClick={login}
+            className="text-2xl px-14 py-3 rounded-md bg-neutral-light text-primary font-bold shadow-bottom active:translate-y-1 active:shadow-bottom-pressed disabled:pointer-events-none select-none"
           >
             ВХОД
           </button>
