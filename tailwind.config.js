@@ -9,7 +9,9 @@ export default {
         'neutral-dark': '#5580c2',
         'neutral-light': '#e9f4ff',
         'blue-dark': '#232323',
-        'blue-light': '#bddfff'
+        'blue-light': '#bddfff',
+        'gray-neutral': '#f5f7f9',
+        'gray-dark': '#d3d3d3'
       },
       boxShadow: {
         bottom: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',

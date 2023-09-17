@@ -2,20 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #f1f2f3;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7facf0;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+}
+
 @font-face {
   font-family: Roboto;
-  src: url("assets/fonts/Roboto/Roboto-Regular.ttf");
+  src: url('assets/fonts/Roboto/Roboto-Regular.ttf');
   font-weight: normal;
 }
 
 @font-face {
   font-family: Roboto;
-  src: url("assets/fonts/Roboto/Roboto-Bold.ttf");
+  src: url('assets/fonts/Roboto/Roboto-Bold.ttf');
   font-weight: 700;
 }
 
 @font-face {
   font-family: Roboto;
-  src: url("assets/fonts/Roboto/Roboto-Light.ttf");
+  src: url('assets/fonts/Roboto/Roboto-Light.ttf');
   font-weight: 300;
 }

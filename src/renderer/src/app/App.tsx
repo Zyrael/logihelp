@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useServer } from '@renderer/hooks'
-import { LoginPage } from '../pages'
-import { ServerContext } from '../ServerContext'
+import { LoginPage, MainPage } from '@renderer/pages'
+import { ServerContext } from '@renderer/ServerContext'
 
 export function App(): React.ReactNode {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -28,7 +28,7 @@ export function App(): React.ReactNode {
 
   return (
     <ServerContext.Provider value={serverMethods}>
-      <div className="h-[100vh]">
+      <div className="h-full font-roboto">
         {loggedIn ? <MainPage /> : <LoginPage url={url} updateDB={updateDB} login={login} />}
       </div>
     </ServerContext.Provider>
