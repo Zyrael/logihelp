@@ -1,12 +1,13 @@
 type Supplier = {
+  id: string
   name: string
-  url: string
-  address: string
-  contacts: string
-  additionalData: string
+  url?: string
+  address?: string
+  contacts?: string
+  additionalData?: string
 }
 
-type GetSuppliers = (sort: 'asc' | 'desc') => Promise<Supplier[]>
+type GetSuppliers = (sort: 'asc' | 'desc' = 'asc') => Promise<Supplier[]>
 type AddSupplier = (data: Supplier) => Promise<void>
 type UpdateSupplier = (data: Supplier) => Promise<void>
 type DeleteSupplier = (data: Supplier) => Promise<void>
