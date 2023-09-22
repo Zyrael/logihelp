@@ -37,7 +37,7 @@ export function App(): React.ReactNode {
 
   return (
     <ServerContext.Provider value={serverMethods}>
-      <div className="flex justify-center h-full font-roboto bg-gradient-to-b from-neutral-blue from[30%]  to-blue-dark">
+      <div className="flex justify-center h-full font-roboto bg-gradient-to-b from-neutral-blue/10 to-slate-400">
         {loggedIn ? (
           <MainPage />
         ) : (

@@ -25,7 +25,7 @@ export function SupplierElement({ supplier, openedId, setOpenedId }: Props): Rea
           onClick={(): void => setOpenedId(opened ? '' : supplier.id)}
         >
           <DropDownIcon
-            className={cn('fill-gray-dark hover:fill-primary transition-all', {
+            className={cn('fill-gray-dark hover:fill-primary transition-all duration-200', {
               'rotate-180': opened
             })}
           />
@@ -33,12 +33,10 @@ export function SupplierElement({ supplier, openedId, setOpenedId }: Props): Rea
       </div>
       <div
         className={cn(
-          'origin-top-right transition-all ease-dropdown duration-300 absolute top-[calc(100%-10px)] right-0 z-[1000] bg-neutral-blue/10 backdrop-blur-xl shadow-md px-4 py-2 border-[1px] ml-4 mr-1 rounded-lg',
+          'origin-top-right transition-all ease-dropdown duration-300 absolute top-[calc(100%-10px)] right-1 left-1 z-[1000] bg-neutral-blue/10 backdrop-blur-xl shadow-md px-4 py-2 border-[1px] rounded-lg',
           {
-            'scale-100': opened,
-            'opacity-100': opened,
-            'scale-0': !opened,
-            'opacity-0': !opened
+            'scale-100 opacity-100': opened,
+            'scale-0 opacity-0 select-none': !opened
           }
         )}
       >
@@ -78,6 +76,20 @@ export function SupplierElement({ supplier, openedId, setOpenedId }: Props): Rea
             </p>
           </div>
         ) : null}
+        <div className="flex justify-end">
+          <button
+            type="button"
+            className="text-red-500 hover:bg-slate-800/10 px-2 py-1 rounded-md transition-colors select-none"
+          >
+            Удалить
+          </button>
+          <button
+            type="button"
+            className="ml-1 text-primary hover:bg-slate-800/10 px-2 py-1 rounded-md transition-colors  select-none"
+          >
+            Редактировать
+          </button>
+        </div>
       </div>
     </div>
   )

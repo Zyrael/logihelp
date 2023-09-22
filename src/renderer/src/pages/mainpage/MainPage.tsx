@@ -3,7 +3,7 @@ import { SupplierList } from '@renderer/components'
 
 export function MainPage(): React.ReactNode {
   return (
-    <div className="h-full flex bg-white w-full max-w-[1440px]">
+    <div className="h-full flex bg-white w-full">
       <div className="h-full min-w-[400px] relative border-r-[1px] border-gray-dark">
         <SupplierList />
       </div>

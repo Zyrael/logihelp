@@ -25,7 +25,7 @@ export default {
         roboto: ['Roboto', 'sans-serif']
       },
       transitionTimingFunction: {
-        dropdown: 'cubic-bezier(0.45, 0.1, 0.19, 1.29)'
+        dropdown: 'cubic-bezier(0.31, 0.31, 0.49, 1.13)'
       }
     }
   },

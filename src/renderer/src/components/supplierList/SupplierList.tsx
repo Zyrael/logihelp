@@ -22,8 +22,8 @@ export function SupplierList(): React.ReactNode {
 
   return (
     <div>
-      <Header />
-      <div className="px-2 pb-4 absolute bottom-0 top-[var(--header-height)] left-0 right-0">
+      <Header setOpenedId={setOpenedId} />
+      <div className="pl-3 pr-2 pb-4 absolute bottom-0 top-[var(--header-height)] left-0 right-0">
         <div
           className="h-full flex overflow-auto overflow-x-hidden w-full"
           onScroll={(): void => setOpenedId('')}
