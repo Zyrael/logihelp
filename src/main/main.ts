@@ -6,6 +6,9 @@ import { readFileSync, writeFileSync } from 'fs'
 
 let prisma: PrismaClient
 let dbPath: string | null = null
+const userDataFolder = is.dev
+  ? join(__dirname, '../..')
+  : join(process.env.APPDATA || '', '/logihelp')
 
 const getPrisma = (path: string): PrismaClient =>
   new PrismaClient({
@@ -42,13 +45,13 @@ const getDBFromUser = async (): Promise<string | null> => {
 }
 
 try {
-  const data = readFileSync(join(process.env.APPDATA || '', '/logihelp/userData.json'), {
+  const data = readFileSync(join(userDataFolder, 'userData.json'), {
     encoding: 'utf-8'
   })
   const userData = JSON.parse(data)
   dbPath = userData?.dbPath
 } catch (err) {
-  writeFileSync(join(process.env.APPDATA || '', '/logihelp/userData.json'), '')
+  writeFileSync(join(userDataFolder, 'userData.json'), '')
 } finally {
   if (dbPath) {
     prisma = getPrisma(dbPath)
