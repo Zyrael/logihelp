@@ -15,11 +15,8 @@ export default {
         'gray-dark': '#d3d3d3'
       },
       boxShadow: {
-        bottom: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
+        pop: '0 0 16px -4px rgba(0, 0, 0, 0.25)',
         'bottom-pressed': '0 2px 4px 0 rgba(0, 0, 0, 0.25)'
-      },
-      dropShadow: {
-        glow: ['0 0px 20px rgba(255,255, 255, 0.35)', '0 0px 65px rgba(255, 255,255, 0.2)']
       },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif']
