@@ -98,7 +98,7 @@ try {
       if (dbPath !== null) {
         prisma = getPrisma(dbPath)
         writeFileSync(
-          join(process.env.APPDATA || '', '/logihelp/userData.json'),
+          join(userDataFolder, 'userData.json'),
           JSON.stringify({
             dbPath
           })
